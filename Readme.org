@@ -1,7 +1,7 @@
 #+CATEGORY: manual, ddj
 #+TAGS: manual, análisis, limpieza, visualización, ddj, periodismo
 #+DESCRIPTION: Tutorial de Openrefine
-#+TITLE: OpenRefine
+#+TITLE: OpenRefine para todxs
 #+DATE: [2016-07-16 sáb 00:30]
 #+AUTHOR: Adolfo Antón Bravo
 #+EMAIL: adolflow@infotics.es
@@ -23,7 +23,7 @@
 #+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
 #+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
 
-* Qué es Open Refine
+
 
 - Herramienta creada por /Google/ para el manejo de bases de datos.
 - Permite limpiar bases de datos, exportarlas en diferentes formatos, y arreglar y manejar las bases para un mejor uso.
@@ -31,7 +31,68 @@
 - Se trata de un proyecto abierto con licencia /BSD/ https://github.com/OpenRefine
 - Aunque el proyecto se llama /OpenRefine/, nos referiremos a él como /Refine/
 
-* Descarga
+
+* Índice                                                                :TOC:
+- [[#descarga][Descarga]]
+- [[#extensiones][Extensiones]]
+- [[#primeros-pasos][Primeros pasos]]
+- [[#abrir-un-proyecto][Abrir un proyecto]]
+  - [[#language-settings][Language Settings]]
+  - [[#import-project][Import Project]]
+  - [[#open-proyect][Open Proyect]]
+  - [[#create-project][Create project]]
+- [[#records-y-rows][Records y rows]]
+  - [[#crear-registros][Crear registros]]
+- [[#filas][Filas]]
+- [[#facetas][Facetas]]
+- [[#buscar][Buscar]]
+- [[#búsqueda-de-valores-duplicados][Búsqueda de valores duplicados]]
+- [[#borrar-celdas-vacías-de-una-columna][Borrar celdas vacías de una columna]]
+- [[#celdas-vacías][Celdas vacías]]
+- [[#transformar-datos][Transformar datos]]
+  - [[#transformar-a-numérico][Transformar a numérico]]
+  - [[#transformaciones][Transformaciones]]
+  - [[#eliminar-registros-seleccionados][Eliminar registros seleccionados]]
+  - [[#clustering][Clustering]]
+  - [[#limpiar-valores-de-columna-numérica][Limpiar valores de columna numérica]]
+  - [[#limpiar-fechas][Limpiar fechas]]
+  - [[#partirunir-columnas][Partir/Unir columnas]]
+  - [[#añadir-nuevas-columnas][Añadir nuevas columnas]]
+  - [[#jugando-con-value][Jugando con =value=]]
+- [[#variables][Variables]]
+  - [[#cell][cell]]
+  - [[#value][value]]
+  - [[#row][row]]
+  - [[#cells][cells]]
+  - [[#rowindex][rowIndex]]
+- [[#más-funciones][Más funciones]]
+  - [[#funciones-booleanas][Funciones Booleanas]]
+  - [[#funciones-de-cadenas-de-caracteres-literales-o-string][Funciones de cadenas de caracteres, literales o /string/]]
+  - [[#abs][abs]]
+  - [[#length][length]]
+  - [[#startswith][startsWith]]
+  - [[#todas][Todas]]
+- [[#georeferenciación][Georeferenciación]]
+  - [[#nominatim][Nominatim]]
+- [[#expresiones-regulares][Expresiones regulares]]
+- [[#recursos][Recursos]]
+  - [[#recetas-y-consejos-de-openrefine][Recetas y consejos de /OpenRefine/]]
+  - [[#verificación-de-fuentes-de-datos][Verificación de fuentes de datos]]
+  - [[#limpieza-de-datos-con-open-refine][Limpieza de datos con Open Refine]]
+  - [[#lista-de-expresiones-regulares][Lista de expresiones regulares]]
+  - [[#recursos-externos-de-openrefine][Recursos externos de OpenRefine]]
+  - [[#reconcilia-tus-metadatos][Reconcilia tus metadatos]]
+  - [[#utiliza-refine-para-manipular-html][Utiliza Refine para manipular /HTML/]]
+  - [[#how-to-clean-a-converted-pdf-using-refine][How to clean a converted PDF using Refine]]
+  - [[#limpiando-datos-con-google-refine][Limpiando Datos con Google Refine]]
+  - [[#introducción-a-las-expresiones-regulares-con-open-refine][Introducción a las Expresiones Regulares con Open Refine]]
+  - [[#introduction-to-open-refine][Introduction to Open Refine:]]
+  - [[#refine-por-freeyourmetadata][Refine por Freeyourmetadata]]
+  - [[#google-refine-para-el-periodismo-de-investigación][Google Refine para el periodismo de investigación]]
+  - [[#bibliografía][Bibliografía]]
+- [[#dudas][Dudas]]
+
+* Descarga                                                              :TOC:
 
 - Desde la web [[http://www.openrefine.org][openrefine.org]] se pueden [[http://openrefine.org/download.html][descargar tres versiones del programa]]:
  - /Google Refine 2.5 Stable Version/, para [[https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.zip][Windows]], [[https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.dmg][Mac]] o [[https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.tar.gz][Linux]]
@@ -42,7 +103,7 @@
 - Solo la versión estable cuenta con algunas extensiones preinstaladas.
 - Puedes tener varias versiones descargadas y lanzar la que quieras en cada ocasión.
 
-* Extensiones
+* Extensiones                                                           :TOC:
 - [[https://wiki.biovel.eu/display/doc/Installing+and+running+DR+Workflow+on+Taverna+Workbench#InstallingandrunningDRWorkflowonTavernaWorkbench-InstallingGoogleRefine%2520and%2520https://github.com/BioVeL/refine-ext][BioVel]], del Museo Botánico y Jardín Botánico de Berlín-Dahlem, 
 - /Crowdsourcing/, por /Zemanta/.
 - /DBpedia/, por /Zemanta/.
@@ -59,7 +120,7 @@
 - /geoXtension/, basado en /gdal/, /proj/ y /geos/. Su instalación lleva mucho tiempo, se recomienda la instalación del /docker/.
 - /Kuali/, requiere credenciales del servidor /Kuali OLE/.
 
-* Primeros pasos
+* Primeros pasos                                                        :TOC:
 
 - /Refine/ es una aplicación web cliente-servidor.
 - Cuando lanzamos /Refine/, estamos activando el servidor.
@@ -83,7 +144,7 @@ Donde:
 - =-m 6000M= es el tamaño máximo que soporta para la sesión.
 - =-d /ruta/directorio/trabajo= indica el directorio donde almacenará /refine/ la información.
 
-* Abrir un proyecto
+* Abrir un proyecto                                                     :TOC:
 
 - Dado que la opción estable y en desarrollo es en inglés, seguiremos los menús en este idioma aunque lo traduciremos al castellano/español.
 - Cuando se abre /Refine/, en la columna de la izquierda hay cuatro opciones:
@@ -129,7 +190,7 @@ Donde:
  - Echar un vistazo a los datos y elegir el =Character encoding= apropiado. Normalmente, =UTF-8= valdrá pero puede que el texto esté codificado en otro conjunto de caracteres.
  - En caso de subir un /CSV/, elegir el separador adecuado.
 
-* Records y rows
+* Records y rows                                                        :TOC:
 
 - /Refine/ distingue entre registros /Records/ y filas o /Rows/ y permite trabajar de una u otra manera.
 - Una fila o /row/ es una línea de datos. El número total de filas se indica en la parte superior de la página, =N rows=
@@ -147,7 +208,7 @@ Donde:
 - Desde la misma columna, opción =Editar celdas > vaciar hacia abajo o /blank down/=
 - Finalmente, mostramos como registros o /records/.
 
-* Filas
+* Filas                                                                 :TOC:
 Si quisiéramos un número distinto de filas, podríamos modificar el archivo que las produce, =data-table-view.js=. Suponiendo que estemos en el directorio raíz de /Refine/, editamos el archivo con [[http://blog.infotics.es/2015/11/11/editor-de-textos/][nuestro editor de textos favorito]]:
 
 #+BEGIN_EXAMPLE
@@ -161,7 +222,7 @@ En la línea número 185 se muestra este código (si no es en la 185, buscar la 
 #+END_SRC
 
 Modificamos los valores o añadimos, guardamos y cerramos y recargamos el navegador donde aparece /Refine/.
-* Facetas
+* Facetas                                                               :TOC:
 Las facetas o /facets/ se utilizan para filtrar el contenido, para
 explorar, ver o encontrar valores erróneos o que se salgan de la
 norma, mostrar distintas caras de los datos.
@@ -178,7 +239,7 @@ Sobre la columna, con la opción =Facet= podemos hacer:
   /outliers/ (valores extremos, extraños).
 - =Text filter=, escribimos los valores que queremos encontrar.
 
-* Buscar
+* Buscar                                                                :TOC:
 - Para encontrar determinados valores, pincha en =facet= y luego en =custom text facet=.
 - Introducimos lo que queremos buscar.
 - Pincha en =count= para ver el número de repeticiones.
@@ -196,7 +257,7 @@ Se pueden anidar de esta manera:
 value.contains("millones”)+value.contains("euros")
 #+END_SRC
 
-* Búsqueda de valores duplicados
+* Búsqueda de valores duplicados                                        :TOC:
 
 Se pueden encontrar valores duplicados a través de las facetas:
 
@@ -222,7 +283,7 @@ Ver (y cambiar o agrupar) variantes similares de valores:
 edit cells > cluster and edit
 #+END_EXAMPLE
 
-* Borrar celdas vacías de una columna
+* Borrar celdas vacías de una columna                                   :TOC:
 
 A veces hay registros que producen celdas que no son necesarias. - Para eliminar los registros del /dataset/:
 
@@ -230,7 +291,7 @@ A veces hay registros que producen celdas que no son necesarias. - Para eliminar
 Facet > Customized facets > Facet by blank y clic en ‘true’
 #+END_EXAMPLE
 
-* Celdas vacías
+* Celdas vacías                                                         :TOC:
 
 Situar las celdas vacías al final
 
@@ -245,7 +306,7 @@ Edit cells > Blank down
 - Pincha en en uno de los gráficos para filtrar/mostrar esos registros.
 - Pincha y arrastra sobre el gráfico de la izqda. para seleccionar un grupo de registros y mostrarlos.
 
-* Transformar datos
+* Transformar datos                                                     :TOC:
 
 - Tras aplicar 1 ó más filtros en el panel izquierdo podemos editar lo que interese. 
 - Cambiar conjunto de valores tras filtrar por nombre: renombrar, renombrar uno para que se fusione con otro, agrupar, etc.
@@ -513,7 +574,7 @@ Una nueva columna con el resultado de la división de dos valores:
 cells[“A”].value / cells[“C”].value
 #+END_SRC
 
-* Variables
+* Variables                                                             :TOC:
 
 ** cell
 
@@ -535,7 +596,7 @@ Las celdas de la fila actual. Es una abreviación para =row.cells=. Una celda pa
 ** rowIndex
 Es el índice de la columna actual. Es una abreviación para 'row.index'.
 
-* Más funciones
+* Más funciones                                                         :TOC:
 
 Las funciones se invocan de dos maneras:
 - =nombreFuncion(argumento0, argumento1, ...)=
@@ -957,7 +1018,7 @@ isNumeric	(expression o)
 with	(expression o, variable v, expression e)
 	devuelve: Depends on actual arguments
 	Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result
-* Georeferenciación
+* Georeferenciación                                                     :TOC:
 Sobre el documento =1_entidades_credito= se puede extraer la localización en el mapa a través de la /API/ de /Google/.
 
 Sobre la columna de dirección se elige la opción /Edit column/ y dentro la opción /Add column by fetching URLs/ y se escribe la expresión:
@@ -1020,7 +1081,7 @@ También podemos utilizar cualquier otro servicio de geodatos como Nominatim y o
 'http://open.mapquestapi.com/nominatim/v1/search.php?' + 'format=json&' + 'q=' + escape(value, 'url')
 #+END_SRC
 
-* Expresiones regulares
+* Expresiones regulares                                                 :TOC:
 
 Se pueden utilizar expresiones regulares.
 
@@ -1044,7 +1105,7 @@ La función =value.match= busca la expresión de la siguiente manera con /RegExp
 - Después extrae lo que aparece antes del cierre del paréntesis: =([^\)]*)\)=
 - Por último, descarta todos los caracteres hasta el final de la cadena: =.*=
 - Finalmente con la función =join= une las dos coincidencias separándolas con dobles dos puntos.
-* Recursos
+* Recursos                                                              :TOC:
 
 ** Recetas y consejos de /OpenRefine/
 
@@ -1151,7 +1212,7 @@ https://dannguyen.github.io/NICAR-Google-Refine/
 
 - Verborgh, R & De Wilde, M. (2013) Using OpenRefine. Packt Publishing
 
-* Dudas
+* Dudas                                                                 :TOC:
 
 - sort anidados?
 - cluster que no encuentra obra
