@@ -1,0 +1,1158 @@
+#+CATEGORY: manual, ddj
+#+TAGS: manual, análisis, limpieza, visualización, ddj, periodismo
+#+DESCRIPTION: Tutorial de Openrefine
+#+TITLE: OpenRefine
+#+DATE: [2016-07-16 sáb 00:30]
+#+AUTHOR: Adolfo Antón Bravo
+#+EMAIL: adolflow@infotics.es
+#+OPTIONS: todo:nil pri:nil tags:nil ^:nil 
+
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+OPTIONS: toc:nil
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: linear
+#+REVEAL_THEME: sky
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Org-Reveal Introduction.">
+#+REVEAL_POSTAMBLE: <p> Creado por adolflow. </p>
+#+REVEAL_PLUGINS: (highlight markdown notes)
+#+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
+#+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
+
+* Qué es Open Refine
+
+- Herramienta creada por /Google/ para el manejo de bases de datos.
+- Permite limpiar bases de datos, exportarlas en diferentes formatos, y arreglar y manejar las bases para un mejor uso.
+- El proyecto lo abandonó /Google/ y lo acogió la comunidad de periodismo de datos.
+- Se trata de un proyecto abierto con licencia /BSD/ https://github.com/OpenRefine
+- Aunque el proyecto se llama /OpenRefine/, nos referiremos a él como /Refine/
+
+* Descarga
+
+- Desde la web [[http://www.openrefine.org][openrefine.org]] se pueden [[http://openrefine.org/download.html][descargar tres versiones del programa]]:
+ - /Google Refine 2.5 Stable Version/, para [[https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.zip][Windows]], [[https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.dmg][Mac]] o [[https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.tar.gz][Linux]]
+ - /Open Refine 2.6 beta 1/, para [[https://github.com/OpenRefine/OpenRefine/releases/download/2.6-beta.1/openrefine-win-2.6-beta.1.zip][Windows]], [[https://github.com/OpenRefine/OpenRefine/releases/download/2.6-beta.1/openrefine-mac-2.6-beta.1.dmg][Mac]] o [[https://github.com/OpenRefine/OpenRefine/releases/download/2.6-beta.1/openrefine-linux-2.6-beta.1.tar.gz][Linux]].
+ - /Open Refine 2.6-rc2 Release Candidate 2/, para [[https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-win-2.6-rc.2.zip][Windows]], [[https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-mac-2.6-rc.2.dmg][Mac]] o [[https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-linux-2.6-rc.2.tar.gz][Linux]].
+- También puedes descargar la versión de desarrollo: https://github.com/OpenRefine/OpenRefine
+- Todas las versiones: https://github.com/OpenRefine/OpenRefine/releases
+- Solo la versión estable cuenta con algunas extensiones preinstaladas.
+- Puedes tener varias versiones descargadas y lanzar la que quieras en cada ocasión.
+
+* Extensiones
+- [[https://wiki.biovel.eu/display/doc/Installing+and+running+DR+Workflow+on+Taverna+Workbench#InstallingandrunningDRWorkflowonTavernaWorkbench-InstallingGoogleRefine%2520and%2520https://github.com/BioVeL/refine-ext][BioVel]], del Museo Botánico y Jardín Botánico de Berlín-Dahlem, 
+- /Crowdsourcing/, por /Zemanta/.
+- /DBpedia/, por /Zemanta/.
+- /History tools/, /pivot tool/ y /scatterplot/ con /D3/, por /VIB-BITS/.
+- /Diff/, por /VIB-BITS/
+- /LMF Extension/, por /Salzburg Research/
+- /Named-Entity Recognition/, por Ruben Verborgh /Free Your Metadata/
+-  [[https://github.com/nickynicolson/refine-opentree][Opentree]], de nickynicolson, para mostrar árboles filogenéticos del /Open Tree of Life/, 
+- /RDF/, por /DERI/, http://refine.deri.ie/
+- /Stats/, estadísticas, dos extensiones:
+ - /Chicago Tribune/ para /Refine 2.1/.
+ - /sparkica/, para /Refine 2.5 +/.
+- /extraCTU-plugin/ para extraer correos electrónicos, números de teléfono, /URL/ y números de identificación por /giTorto/.
+- /geoXtension/, basado en /gdal/, /proj/ y /geos/. Su instalación lleva mucho tiempo, se recomienda la instalación del /docker/.
+- /Kuali/, requiere credenciales del servidor /Kuali OLE/.
+
+* Primeros pasos
+
+- /Refine/ es una aplicación web cliente-servidor.
+- Cuando lanzamos /Refine/, estamos activando el servidor.
+- A la vez, se abre el navegador con una pestaña que apunta a la dirección =127.0.0.1:3333=.
+- El navegador actúa como cliente de /Refine/.
+- No necesita conexión a Internet para funcionar.
+- =127.0.0.1= es la dirección del /locahost/, el equipo local, el ordenador donde trabajamos.
+- =3333= es el puerto que utiliza la aplicación
+
+Si lo lanzamos desde la terminal, podemos modificar las opciones:
+
+#+BEGIN_SRC sh
+./refine -p 3333 -i 0.0.0.0 -m 6000M -d /ruta/directorio/trabajo
+
+#+END_SRC
+
+Donde:
+- =./refine= es la ejecución del programa
+- =-p 3333= le dice el puerto en el que queremos que se lance.
+- =-i 0.0.0.0= especifica la dirección donde se abrirá.
+- =-m 6000M= es el tamaño máximo que soporta para la sesión.
+- =-d /ruta/directorio/trabajo= indica el directorio donde almacenará /refine/ la información.
+
+* Abrir un proyecto
+
+- Dado que la opción estable y en desarrollo es en inglés, seguiremos los menús en este idioma aunque lo traduciremos al castellano/español.
+- Cuando se abre /Refine/, en la columna de la izquierda hay cuatro opciones:
+ - /Create project/ o crear proyecto.
+ - /Open Project/ o abrir proyecto.
+ - /Import Project/ o importar proyecto.
+ - /Language Settings/ o configuración de idioma.
+
+** Language Settings
+
+- Actualmente, las versiones estable y en desarrollo solo están disponibles en Inglés (English) o Italiano (Italian).
+- En la versión [[https://github.com/OpenRefine/OpenRefine/releases/tag/2.6-rc.2][2.6-rc.2]] puedes disfrutar, además, de francés, chino y español.
+
+** Import Project
+
+- Puedes cargar un proyecto de /Refine/, importar un proyecto, si:
+ - Has trabajado en algún proyecto y lo has exportado.
+ - Alguien te ha pasado un proyecto.
+- Si no tienes un proyecto en el que trabajar, comienza uno.
+
+** Open Proyect
+
+- /Refine/ guarda todos los proyectos con los que trabajes en el equipo.
+- No hace falta que guardes durante el proceso de análisis o limpieza de datos, aunque copias extra siempre son recomendables.
+- Puedes exportar el proyecto por si quieres tener una copia más del mismo (/ver más adelante cómo/).
+- En la opción de /Abrir Proyecto/ se muestran estos datos, siempre que no sea la primera vez que abres el programa:
+ - Una =x= por si quieres borrarlo.
+ - Un =rename= o =renombrar= para renombrarlo.
+ - La última fecha de modificación, /last modified/ o /Última modificación/.
+ - El /nombre/ del proyecto o /name/.
+
+** Create project
+
+- Para crear un proyecto, necesitamos que /Refine/ tenga algunos datos.
+- Podemos importar datos de algún archivo /TSV/, /CSV/, /*SV/, /Excel/ (.xls y .xlsx), /JSON/, /XML/, /RDF como XML/ y datos de documentos de /Google Drive/.
+- Otros formatos también se soportan a través de algunas extensiones (/ver extensiones/)
+- Lo más habitual es subir un archivo de datos que tengamos en nuestra carpeta de /datasets/.
+- Se pueden cargar datos desde una dirección /URL/ que contenga un archivo de datos con alguna de las extensiones anteriores.
+- Si disponemos de unos datos en el portapapeles, también se pueden cargar desde aquí /from clipboard/.
+- O podemos cargar datos que contengamos en /Google Drive/. Esta opción no es la más recomendable si pretendes mantener la privacidad sobre los datos que estás utilizando.
+- Es importante:
+ - En =Project name= no escribir caracteres no /ASCII/ ni mayúsculas ni espacios en blanco.
+ - Echar un vistazo a los datos y elegir el =Character encoding= apropiado. Normalmente, =UTF-8= valdrá pero puede que el texto esté codificado en otro conjunto de caracteres.
+ - En caso de subir un /CSV/, elegir el separador adecuado.
+
+* Records y rows
+
+- /Refine/ distingue entre registros /Records/ y filas o /Rows/ y permite trabajar de una u otra manera.
+- Una fila o /row/ es una línea de datos. El número total de filas se indica en la parte superior de la página, =N rows=
+- Un registro o /record/ es una combinación de una o muchas filas que se identifican por un objeto único y compartido en función de los datos de la primera columna.
+- Es decir, si en la primera columna de datos --no en la columna /All/ o /Todo/-- hay datos en algunas filas y en la segunda columna hay datos que se refieren a la primera.
+- Si quisiéramos convertir nuestro conjunto de datos de filas a registros, podríamos seguir este [[http://kb.refinepro.com/2012/06/create-records-in-google-refine.html][tutorial]], que explicamos a continuación.
+
+** Crear registros
+
+- Primero hay que identificar la columna que contiene el marcador de registros, una cuyas celdas se repitan.
+- Para ver esto, podemos utilizar una faceta de texto sobre la columna desde el menú de =columna > facetas=. 
+- Movemos esa columna al principio desde el menú de =columna > editar columna > mover columna al principio=.
+- Ordenamos la columna desde el menú de la =columna > Ordenar (/sort/)=.
+- Desde el menú de ordenar que sale en la parte gris de los =menús de arriba > reordenar filas permanentemente o /reorder rows permanently/=
+- Desde la misma columna, opción =Editar celdas > vaciar hacia abajo o /blank down/=
+- Finalmente, mostramos como registros o /records/.
+
+* Filas
+Si quisiéramos un número distinto de filas, podríamos modificar el archivo que las produce, =data-table-view.js=. Suponiendo que estemos en el directorio raíz de /Refine/, editamos el archivo con [[http://blog.infotics.es/2015/11/11/editor-de-textos/][nuestro editor de textos favorito]]:
+
+#+BEGIN_EXAMPLE
+vim webapp/modules/core/scripts/views/data-table/data-table-view.js 
+#+END_EXAMPLE
+
+En la línea número 185 se muestra este código (si no es en la 185, buscar la cadena =50=):
+
+#+BEGIN_SRC js
+  var sizes = [ 5, 10, 25, 50 ];
+#+END_SRC
+
+Modificamos los valores o añadimos, guardamos y cerramos y recargamos el navegador donde aparece /Refine/.
+* Facetas
+Las facetas o /facets/ se utilizan para filtrar el contenido, para
+explorar, ver o encontrar valores erróneos o que se salgan de la
+norma, mostrar distintas caras de los datos.
+
+- Se pueden anidar y se puede modificar el orden de anidación para
+  obtener distintos resultados.
+
+Sobre la columna, con la opción =Facet= podemos hacer:
+- =Text facet=, faceta de texto, nos agrupa los datos de las celdas si son iguales.
+- =Numeric facet=, si se trata de datos numéricos.
+- =Timeline facet=, si se trata de datos que reconoce como fechas.
+- =Scatterplot facet=, si se trata de datos numéricos, para hacer
+  gráficos de dispersió donde encontrar patrones, tendencias o
+  /outliers/ (valores extremos, extraños).
+- =Text filter=, escribimos los valores que queremos encontrar.
+
+* Buscar
+- Para encontrar determinados valores, pincha en =facet= y luego en =custom text facet=.
+- Introducimos lo que queremos buscar.
+- Pincha en =count= para ver el número de repeticiones.
+
+Por ejemplo:
+
+#+BEGIN_SRC grel
+value.contains("millones”)
+#+END_SRC
+
+Localiza el valor =millones= con la función =.contains()=.
+
+Se pueden anidar de esta manera:
+#+BEGIN_SRC grel
+value.contains("millones”)+value.contains("euros")
+#+END_SRC
+
+* Búsqueda de valores duplicados
+
+Se pueden encontrar valores duplicados a través de las facetas:
+
+#+BEGIN_EXAMPLE
+Facet > Customized facets > Duplicates facet
+#+END_EXAMPLE
+
+Se pueden ver las partes que se repiten de los valores de una columna
+
+#+BEGIN_EXAMPLE
+Facet > Customized facets > Word facet
+#+END_EXAMPLE
+
+Ver todos los valores de una columna:
+
+#+BEGIN_EXAMPLE
+Facet > Text facet
+#+END_EXAMPLE
+
+Ver (y cambiar o agrupar) variantes similares de valores:
+
+#+BEGIN_EXAMPLE
+edit cells > cluster and edit
+#+END_EXAMPLE
+
+* Borrar celdas vacías de una columna
+
+A veces hay registros que producen celdas que no son necesarias. - Para eliminar los registros del /dataset/:
+
+#+BEGIN_EXAMPLE
+Facet > Customized facets > Facet by blank y clic en ‘true’
+#+END_EXAMPLE
+
+* Celdas vacías
+
+Situar las celdas vacías al final
+
+#+BEGIN_EXAMPLE
+Edit cells > Blank down
+#+END_EXAMPLE
+
+- Filtramos para mostrar solo los valores vacíos =Facet > Customized facets > Facet by blank= y pinchamos en =true=
+- Podemos eliminar, ver punto siguiente.
+- Se pueden explorar los datos con gráficos de dispersión.
+- En la columna que nos interese: =Facet > Scatterplot facet=, pincha en =log= para verlo mejor. Se muestran las relaciones entre todos los valores numéricos en cada una de las columnas.
+- Pincha en en uno de los gráficos para filtrar/mostrar esos registros.
+- Pincha y arrastra sobre el gráfico de la izqda. para seleccionar un grupo de registros y mostrarlos.
+
+* Transformar datos
+
+- Tras aplicar 1 ó más filtros en el panel izquierdo podemos editar lo que interese. 
+- Cambiar conjunto de valores tras filtrar por nombre: renombrar, renombrar uno para que se fusione con otro, agrupar, etc.
+- También podemos hacerlo en cualquier celda de la dcha (datos filtrados) y aplicar los cambios a todas las instancias o celdas similares.
+
+** Transformar a numérico
+
+ Si queremos pasar millón a números, escribiremos:
+
+ #+BEGIN_SRC grel
+ toNumber(value.replace(" millón", ""))*1000000
+
+ #+END_SRC
+
+Con =value.replace= reemplazamos el valor =millón= y lo sustituimos por la multiplicación del valor.
+
+** Transformaciones
+
+Se realizan con:
+
+#+BEGIN_EXAMPLE
+Edit cells > transform
+#+END_EXAMPLE
+
+*** Eliminar caracteres
+
+#+BEGIN_SRC grel
+value.unescape(‘url’)
+#+END_SRC
+
+Elimina los caracteres raros de una /URL/
+
+#+BEGIN_SRC grel
+value.replace("+","")
+#+END_SRC
+
+Elimina el signo =+=, lo reemplaza por nada.
+
+*** Obtener URL
+
+#+BEGIN_SRC grel
+‘http://’+ cells[‘nombre_columna’].value +’.com’
+#+END_SRC
+
+Obtiene la /URL/ http://valor.com
+
+*** Añadir y borrar a la vez
+
+#+BEGIN_SRC grel
+‘Avenida ’+value.replace(‘AV.’,’’)
+#+END_SRC
+
+Añadimos =Avenida= al mismo tiempo que eliminamos =AV=
+
+*** Uso de regexp
+
+#+BEGIN_SRC grel
+replace(value, /\d/,"")
+
+#+END_SRC
+Elimina la parte numérica de las celdas.
+
+#+BEGIN_SRC grel
+value.replace(regex, “”)
+#+END_SRC
+
+En general, usamos cualquier tipo de expresiones regulares
+
+*** Eliminar espacios en blanco
+#+BEGIN_EXAMPLE
+Edit cells > Common transforms > Trim leading and trailing whitespace
+#+END_EXAMPLE
+
+Elimina espacios blancos del inicio y final de los valores
+
+** Eliminar registros seleccionados
+
+#+BEGIN_EXAMPLE
+All > Edit rows > Remove all matching rows
+#+END_EXAMPLE
+
+** Clustering
+
+Agrupaciones basada en similitudes. En el panel de la izqda., en filtro, aparece el botón de /cluster/ donde se abre una ventana que podemos fusionar o /merge/ los diferentes grupos escribiendo en todos el mismo nombre como /nuevo valor de celda/. También podemos hacerlo con:
+
+#+BEGIN_EXAMPLE
+edit cells > cluster and edit
+#+END_EXAMPLE
+
+Si no obtenemos los resultados esperados, podemos repetir el proceso para todos los algoritmos cambiando el /método/, la /función/ y el /radius/
+
+** Limpiar valores de columna numérica
+Para limpiar valores de columna numérica, hacemos una faceta numérica
+
+#+BEGIN_EXAMPLE
+Facet > numeric facet
+#+END_EXAMPLE
+
+A la izqda. seleccionamos solo el tipo /non-numeric/ para transformar estos datos. Si vemos que, erróneamente, los valores están muy dispersos, tenemos varias opciones:
+
+Usar escala logarítmica para corregir. Pinchamos en =Change= (/submenú izq/) y escribimos:
+
+#+BEGIN_SRC grel
+value.log()
+#+END_SRC
+
+Aceptamos, si la previsualización es correcta.
+
+Arrastramos los extremos del gráfico para visualizar el subconjunto de datos más dispersos sobre los que hacer las transformaciones necesarias con =edit cells > transform=:
+
+#+BEGIN_SRC grel
+value.replace(",",".")
+#+END_SRC
+
+Convertir en valores numéricos:
+
+#+BEGIN_EXAMPLE
+Edit cells > common transforms > to number
+#+END_EXAMPLE
+
+** Limpiar fechas
+
+Primero convertimos valores de columna a texto para evitar q haya números:
+
+#+BEGIN_EXAMPLE
+Edit cells -> Common transformations -> To text
+#+END_EXAMPLE
+
+Luego convertir valores a fecha:
+
+#+BEGIN_EXAMPLE
+Edit cells -> Common transformations -> To date
+#+END_EXAMPLE
+
+A continuación mostramos patrones de fecha
+
+#+BEGIN_EXAMPLE
+Facet -> Timeline facet
+#+END_EXAMPLE
+
+Seleccionamos sólo los valores =non-time= para transformar sólo éstos y extraemos  sólo el año mediante una expresión regular:
+
+#+BEGIN_EXAMPLE
+Edit cells -> Transform
+#+END_EXAMPLE
+
+Entonces, escribimos:
+
+#+BEGIN_SRC grel
+value.match(/.*(d{4}).*/)[0]
+#+END_SRC
+
+Donde:
+- Dentro de la función =()=, las barras =//= indican que se trata de una expresión regular.
+- =.*= significa que se trata de una secuencia de cero o más caracteres (letras, números, símbolos, etc.). Es el comodín para cualquier tipo de carácter.
+- =d= indica que estamos buscando dígitos.
+- ={4}= muestra que queremos encontrar cuatro dígitos.
+- La función =value.match= devuelve una matriz o /array/ de resultados, de manera que usamos =[0]= para recuperar sólo la primera coincidencia (en las matrices o /arrays/, el primer valor es el 0).
+
+Convertimos estos valores extraidos a fechas con:
+
+#+BEGIN_EXAMPLE
+Edit cells -> Common transformations -> To date
+#+END_EXAMPLE
+
+Si hay fechas con varios formatos, utilizamos:
+
+#+BEGIN_EXAMPLE
+Edit cells -> Transform
+#+END_EXAMPLE
+
+Y así extraemos el valor que nos interesa con la función =toString=, de tal modo que:
+
+#+BEGIN_SRC grel
+value.toString('yyyy')
+#+END_SRC
+
+Obtiene el año, 2013.
+
+#+BEGIN_SRC grel
+value.toString('M')
+#+END_SRC
+
+Obtiene el dígito del mes, es decir, el =1= de enero.
+
+#+BEGIN_SRC grel
+value.toString('MM')
+#+END_SRC
+
+Obtenemos dos dígitos del mes, es decir, =01= de enero.
+
+#+BEGIN_SRC grel
+value.toString('MMM')
+#+END_SRC
+
+Obtenemos tres caracteres del mes, es decir, =Ene= de enero.
+
+#+BEGIN_SRC grel
+value.toString('MMMM')
+#+END_SRC
+
+Obtenemos los caracteres del mes completo, es decir, =Enero= de enero.
+
+Podemos concatenar las funciones =toDate= y =toString= para modificar el formato en una sola línea:
+
+#+BEGIN_SRC grel
+value.toDate(‘MM/yy’,’MMM-yy’).toString(‘yyyy-MM’)
+#+END_SRC
+
+** Partir/Unir columnas
+
+Separar en distintas columnas:
+
+#+BEGIN_EXAMPLE
+Edit column > split into several columns
+#+END_EXAMPLE
+
+Se pone el separador y el número de columnas. Funciona de izqda. a dcha. Después se puede renombrar la nueva columna con:
+
+#+BEGIN_EXAMPLE
+Edit Column -> Rename this column
+#+END_EXAMPLE
+
+** Añadir nuevas columnas
+Añadimos una nueva columna basada en otra columna:
+
+#+BEGIN_EXAMPLE
+edit column>add column based on this column
+#+END_EXAMPLE
+
+Ponemos un nombre a la nueva columna y escribimos:
+
+#+BEGIN_SRC grel
+cells("nombre-una-columna").value+""+cells("nombre-otra-columna").value
+#+END_SRC
+
+** Jugando con =value=
+
+Si escribimos:
+
+#+BEGIN_SRC grel
+not(value.startsWith("-"))
+#+END_SRC
+
+Si queremos que extraiga los valores 2-5:
+#+BEGIN_SRC grel
+value[1,5]
+#+END_SRC
+
+Si queremos extraer a partir del séptimo carácter:
+
+#+BEGIN_SRC grel
+value.substring(6)
+#+END_SRC
+
+Para crear nueva columna con el nº de repeticiones de la palabra "hola":
+
+#+BEGIN_SRC grel
+value.facetCount("value", "hola")
+#+END_SRC
+
+Una nueva columna con el resultado de la división de dos valores:
+
+#+BEGIN_SRC grel
+cells[“A”].value / cells[“C”].value
+#+END_SRC
+
+* Variables
+
+** cell
+
+Es la celda actual. Tiene los campos =value= y =recon=
+
+** value
+El valor de la celda actual. Es una abreviación para =cell.value=
+
+** row
+La fila actual. Tiene 5 campos:
+- =flagged=
+- =starred=
+- =index=
+- =cells=
+- =record=
+** cells
+Las celdas de la fila actual. Es una abreviación para =row.cells=. Una celda particular puede ser recuperada con =cells.<nombre de la columna>= (sin los caracteres menor que y mayor que), si el nombre de la columna no está separada por espacios. De lo contrario, habrá que ponerlo entre comillas y entre corchetes con =cells["<nombre de la columna>"]=
+
+** rowIndex
+Es el índice de la columna actual. Es una abreviación para 'row.index'.
+
+* Más funciones
+
+Las funciones se invocan de dos maneras:
+- =nombreFuncion(argumento0, argumento1, ...)=
+- =argumento0.nombreFuncion(argumento1, ...)=
+
+La primera forma es la /normal/, mientras que la segunda es un atajo que se conoce como /syntactic sugar/.
+
+** Funciones Booleanas
+
+https://github.com/OpenRefine/OpenRefine/wiki/GREL-Boolean-Functions
+
+*** and
+
+=and(booleano b1, booleano b2, ...)= crea un booleano en el que las dos condiciones sean verdaderas. 
+
+Por ejemplo:
+
+#+BEGIN_SRC grel
+and(value.contains("servicios"),value.startsWith("Otros"))
+
+#+END_SRC
+
+Los resultados serán =true= o =false=, verdadero o falso, si la celda contiene la cadena =servicios= y la celda comienza con la cadena =Otros=
+
+
+*** or
+=or(booleano b1, booleano b2, ...)= crea un booleano en el que o bien la primera condición o el segundo sean verdaderos.
+
+Por ejemplo:
+#+BEGIN_SRC grel
+or(value.contains("servicios"),value.startsWith("Otros"))
+
+#+END_SRC
+
+Los resultados serán =true= o =false=, verdadero o falso, si la celda contiene la cadena =servicios= o la celda comienza con la cadena =Otros=
+
+*** not
+
+=not(booleano b)=, crea un booleano si no se cumple la condición que se declara.
+
+Por ejemplo:
+
+#+BEGIN_SRC grel
+not(value.contains("servicios")
+#+END_SRC
+
+=value.contains("servicios")= daría un verdadero si la celda contuviese =servicios= y un falso si no los tuviera. Al ponerle la condición, la función booleana =not=, al revés, dará un falso si los contiene y verdadero si no lo contiene.
+
+** Funciones de cadenas de caracteres, literales o /string/
+
+*** length
+
+=length(cadena s)= devuelve la cadena =s= como un número.
+
+Por ejemplo:
+
+#+BEGIN_SRC grel
+value.length()
+
+#+END_SRC
+
+Y también:
+
+#+BEGIN_SRC grel
+length(value)
+
+#+END_SRC
+** abs
+abs	(number d)
+	devuelve: number
+	Returns the absolute value of a number
+acos	(number d)
+	devuelve: number
+	Returns the arc cosine of an angle, in the range 0 through PI
+and	(boolean a, boolean b)
+	devuelve: boolean
+	ANDs two boolean values
+asin	(number d)
+	devuelve: number
+	Returns the arc sine of an angle in the range of -PI/2 through PI/2
+atan	(number d)
+	devuelve: number
+	Returns the arc tangent of an angle in the range of -PI/2 through PI/2
+atan2	(number x, number y)
+	devuelve: number theta
+	Converts rectangular coordinates (x, y) to polar (r, theta)
+ceil	(number d)
+	devuelve: number
+	Returns the ceiling of a number
+chomp	(string str, string separator)
+	devuelve: string
+	Removes separator from the end of str if it's there, otherwise leave it alone.
+combin	(number d)
+	devuelve: number
+	Returns the number of combinations for n elements as divided into k
+contains	(string s, string frag)
+	devuelve: boolean
+	Returns whether s contains frag
+cos	(number d)
+	devuelve: number
+	Returns the trigonometric cosine of an angle
+cosh	(number d)
+	devuelve: number
+	Returns the hyperbolic cosine of a value
+cross	(cell c, string projectName, string columnName)
+	devuelve: array
+	TODO
+datePart	(date d, string part)
+	devuelve: date
+	Returns part of a date
+degrees	(number d)
+	devuelve: number
+	Converts an angle from radians to degrees.
+diff	(o1, o2, time unit (optional))
+	devuelve: string for strings, number for dates
+	For strings, returns the portion where they differ. For dates, it returns the difference in given time units
+endsWith	(string s, string sub)
+	devuelve: boolean
+	Returns whether s ends with sub
+escape	(string s, string mode ['html','xml','csv','url','javascript'])
+	devuelve: string
+	Escapes a string depending on the given escaping mode.
+even	(number d)
+	devuelve: number
+	Rounds the number up to the nearest even integer
+exp	(number n)
+	devuelve: number
+	Returns e^n
+facetCount	(choiceValue, string facetExpression, string columnName)
+	devuelve: number
+	Returns the facet count corresponding to the given choice value
+fact	(number i)
+	devuelve: number
+	Returns the factorial of a number
+factn	(number i)
+	devuelve: number
+	Returns the factorial of a number
+fingerprint	(string s)
+	devuelve: string
+	Returns the fingerprint of s, a derived string that aims to be a more canonical form of it (this is mostly useful for finding clusters of strings related to the same information).
+floor	(number d)
+	devuelve: number
+	Returns the floor of a number as an integer
+gcd	(number d, number e)
+	devuelve: number
+	Returns the greatest common denominator of the two numbers
+get	(o, number or string from, optional number to)
+	devuelve: Depends on actual arguments
+	If o has fields, returns the field named 'from' of o. If o is an array, returns o[from, to]. if o is a string, returns o.substring(from, to)
+hasField	(o, string name)
+	devuelve: boolean
+	Returns whether o has field name
+htmlAttr	(Element e, String s)
+	devuelve: String attribute Value
+	Selects a value from an attribute on an Html Element
+htmlText	(Element e)
+	devuelve: String text
+	Selects the text from within an element (including all child elements)
+inc	(date d, number value, string unit (default to 'hour'))
+	devuelve: date
+	Returns a date changed by the given amount in the given unit of time
+indexOf	(string s, string sub)
+	devuelve: number
+	Returns the index of sub first ocurring in s
+innerHtml	(Element e)
+	devuelve: String innerHtml
+	The innerHtml of an HTML element
+join	(array a, string sep)
+	devuelve: string
+	Returns the string obtained by joining the array a with the separator sep
+jsonize	(value)
+	devuelve: JSON literal value
+	Quotes a value as a JSON literal value
+lastIndexOf	(string s, string sub)
+	devuelve: number
+	Returns the index of sub last ocurring in s
+lcm	(number d, number e)
+	devuelve: number
+	Returns the greatest common denominator of the two numbers
+** length
+
+La longitud de la cadena de caracteres.
+
+#+BEGIN_SRC grel
+length(value)
+
+#+END_SRC
+
+length	(array or string o)
+	devuelve: number
+	Returns the length of o
+ln	(number n)
+	devuelve: number
+	Returns the natural log of n
+log	(number n)
+	devuelve: number
+	Returns the base 10 log of n
+match	(string or regexp)
+	devuelve: array of strings
+	Returns an array of the groups matching the given regular expression
+max	(number a, number b)
+	devuelve: number
+	Returns the greater of two numbers
+md5	(string s)
+	devuelve: string
+	Returns the MD5 hash of s
+min	(number a, number b)
+	devuelve: number
+	Returns the smaller of two numbers
+mod	(number a, number b)
+	devuelve: number
+	Returns a modulus b
+multinomial	(one or more numbers)
+	devuelve: number
+	Calculates the multinomial of a series of numbers
+ngram	(string s, number n)
+	devuelve: array of strings
+	Returns an array of the word ngrams of s
+ngramFingerprint	(string s, number n)
+	devuelve: string
+	Returns the n-gram fingerprint of s
+not	(boolean b)
+	devuelve: boolean
+	Returns the opposite of b
+now	(undefined)
+	devuelve: date
+	Returns the current time
+odd	(number d)
+	devuelve: number
+	Rounds the number up to the nearest even integer
+or	(boolean a, boolean b)
+	devuelve: boolean
+	Returns a OR b
+ownText	(Element e)
+	devuelve: String ownText
+	Gets the text owned by this HTML element only; does not get the combined text of all children.
+parseHtml	(string s)
+	devuelve: HTML object
+	Parses a string as HTML
+parseJson	(string s)
+	devuelve: JSON object
+	Parses a string as JSON
+partition	(string s, string or regex frag, optional boolean omitFragment)
+	devuelve: array
+	Returns an array of strings [a,frag,b] where a is the string part before the first occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+phonetic	(string s, string encoding (optional, defaults to 'metaphone3'))
+	devuelve: string
+	Returns the a phonetic encoding of s (optionally indicating which encoding to use')
+pow	(number a, number b)
+	devuelve: number
+	Returns a^b
+quotient	(number numerator, number denominator)
+	devuelve: number
+	Returns the integer portion of a division
+radians	(number d)
+	devuelve: number
+	Converts an angle in degrees to radians
+reinterpret	(string s, string encoder)
+	devuelve: string
+	Returns s reinterpreted thru the given encoder.
+replace	(string s, string or regex f, string r)
+	devuelve: string
+	Returns the string obtained by replacing f with r in s
+replaceChars	(string s, string f, string r)
+	devuelve: string
+	Returns the string obtained by replacing all chars in f with the char in s at that same position
+reverse	(array a)
+	devuelve: array
+	Reverses array a
+round	(number n)
+	devuelve: number
+	Returns n rounded
+rpartition	(string s, string or regex frag, optional boolean omitFragment)
+	devuelve: array
+	Returns an array of strings [a,frag,b] where a is the string part before the last occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+select	(Element e, String s)
+	devuelve: HTML Elements
+	Selects an element from an HTML elementn using selector syntax
+sha1	(string s)
+	devuelve: string
+	Returns the SHA-1 hash of s
+sin	(number d)
+	devuelve: number
+	Returns the trigonometric sine of an angle
+sinh	(number d)
+	devuelve: number
+	Returns the hyperbolic sine of an angle
+slice	(o, number from, optional number to)
+	devuelve: Depends on actual arguments
+	If o is an array, returns o[from, to]. if o is a string, returns o.substring(from, to)
+smartSplit	(string s, optional string sep)
+	devuelve: array
+	Returns the array of strings obtained by splitting s with separator sep. Handles quotes properly. Guesses tab or comma separator if "sep" is not given.
+sort	(array a)
+	devuelve: array
+	Sorts array a
+split	(string s, string or regex sep, optional boolean preserveAllTokens)
+	devuelve: array
+	Returns the array of strings obtained by splitting s with separator sep. If preserveAllTokens is true, then empty segments are preserved.
+splitByCharType	(string s)
+	devuelve: array
+	Returns an array of strings obtained by splitting s grouping consecutive chars by their unicode type
+splitByLengths	(string s, number n, ...)
+	devuelve: array
+	Returns the array of strings obtained by splitting s into substrings with the given lengths
+** startsWith
+
+Comprobar si comienza con una cadena de caracteres
+
+#+BEGIN_SRC grel
+value.startsWith("Compra")
+
+#+END_SRC
+
+O bien, lo contrario:
+
+#+BEGIN_SRC grel
+not(value.startsWith("Compra"))
+#+END_SRC
+
+** Todas
+startsWith	(string s, string sub)
+	devuelve: boolean
+	Returns whether s starts with sub
+strip	(string s)
+	devuelve: string
+	Returns copy of the string, with leading and trailing whitespace omitted.
+substring	(o, number from, optional number to)
+	devuelve: Depends on actual arguments
+	If o is an array, returns o[from, to]. if o is a string, returns o.substring(from, to)
+sum	(array a)
+	devuelve: number
+	Sums numbers in array a
+tan	(number d)
+	devuelve: number
+	Returns the trigonometric tangent of an angle
+tanh	(number d)
+	devuelve: number
+	Returns the hyperbolic tangent of a value
+toDate	(o, boolean month_first / format1, format2, ... (all optional))
+	devuelve: date
+	Returns o converted to a date object, you can hint if the day or the month is listed first, or give an ordered list of possible formats using this syntax: 
+toLowercase	(string s)
+	devuelve: string
+	Returns s converted to lowercase
+toNumber	(o)
+	devuelve: number
+	Returns o converted to a number
+toString	(o, string format (optional))
+	devuelve: string
+	Returns o converted to a string
+toTitlecase	(string s)
+	devuelve: string
+	Returns s converted to titlecase
+toUppercase	(string s)
+	devuelve: string
+	Returns s converted to uppercase
+trim	(string s)
+	devuelve: string
+	Returns copy of the string, with leading and trailing whitespace omitted.
+type	(object o)
+	devuelve: string
+	Returns the type of o
+unescape	(string s, string mode ['html','xml','csv','url','javascript'])
+	devuelve: string
+	Unescapes all escaped parts of the string depending on the given escaping mode.
+unicode	(string s)
+	devuelve: string
+	Returns an array of strings describing each character of s in their full unicode notation
+unicodeType	(string s)
+	devuelve: string
+	Returns an array of strings describing each character of s in their full unicode notation
+uniques	(array a)
+	devuelve: array
+	Returns array a with duplicates removed
+urlify	(string s)
+	devuelve: string
+	replaces spaces with underscore
+xor	(boolean a, boolean b)
+	devuelve: boolean
+	XORs two boolean values
+Controls
+filter	(expression a, variable v, expression test)
+	devuelve: array
+	Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression test which should return a boolean. If the boolean is true, pushes v onto the result array.
+forEach	(expression a, variable v, expression e)
+	devuelve: array
+	Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression e, and pushes the result onto the result array.
+forEachIndex	(expression a, variable i, variable v, expression e)
+	devuelve: array
+	Evaluates expression a to an array. Then for each array element, binds its index to variable i and its value to variable name v, evaluates expression e, and pushes the result onto the result array.
+forNonBlank	(expression o, variable v, expression eNonBlank, expression eBlank)
+	devuelve: Depends on actual arguments
+	Evaluates expression o. If it is non-blank, binds its value to variable name v, evaluates expression eNonBlank and returns the result. Otherwise (if o evaluates to blank), evaluates expression eBlank and returns that result instead.
+forRange	(number from, number to, number step, variable v, expression e)
+	devuelve: array
+	Iterates over the variable v starting at "from", incrementing by "step" each time while less than "to". At each iteration, evaluates expression e, and pushes the result onto the result array.
+if	(expression o, expression eTrue, expression eFalse)
+	devuelve: Depends on actual arguments
+	Evaluates expression o. If it is true, evaluates expression eTrue and returns the result. Otherwise, evaluates expression eFalse and returns that result instead.
+isBlank	(expression o)
+	devuelve: boolean
+	Returns whether o is null or an empty string
+isError	(expression o)
+	devuelve: boolean
+	Returns whether o is an error
+isNonBlank	(expression o)
+	devuelve: boolean
+	Returns whether o is not null and not an empty string
+isNotNull	(expression o)
+	devuelve: boolean
+	Returns whether o is not null
+isNull	(expression o)
+	devuelve: boolean
+	Returns whether o is null
+isNumeric	(expression o)
+	devuelve: boolean
+	Returns whether o can represent a number
+with	(expression o, variable v, expression e)
+	devuelve: Depends on actual arguments
+	Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result
+* Georeferenciación
+Sobre el documento =1_entidades_credito= se puede extraer la localización en el mapa a través de la /API/ de /Google/.
+
+Sobre la columna de dirección se elige la opción /Edit column/ y dentro la opción /Add column by fetching URLs/ y se escribe la expresión:
+
+#+BEGIN_SRC grel
+"http://maps.googleapis.com/maps/api/geocode/json?&sensor=false&address=" + escape(value, "URL")
+
+#+END_SRC
+
+Con ello se obtiene la dirección en formato /JSON/ de la /API/ de /Google/. De ese /JSON/ se extrae la longitud y la latitud activando la opción /Edit column/ y dentro la opción /Add column based on this column/:
+
+Obtener la latitud:
+
+#+BEGIN_SRC grel
+value.parseJson().results[0].geometry.location.lat
+#+END_SRC
+
+Obtener la longitud:
+
+#+BEGIN_SRC grel
+value.parseJson().results[0].geometry.location.lng
+#+END_SRC
+
+Para comprobar que la latitud y la longitud de los puntos es correcta, se exporta a /CSV/ y se importa en /CartoDB/ para ver dónde se representan los puntos.
+
+Si no se representan en España, quizás sea porque la dirección sea y haya más localidades en el mundo con esa dirección. De hecho, se puede comprobar mirando el /JSON/ que hay direcciones con más de un punto.
+
+Por eso hay que añadir más datos a la dirección: el código postal, la localidad y el país.
+
+Para crear una columna con el país que no sea /España/ sino /Spain/, se crea una columna basada en esta columna:
+
+#+BEGIN_SRC grel
+value.replace(value,"Spain")
+#+END_SRC
+
+La dirección está en mayúsculas. /Refine/ contempla tres funciones para tratar con los caracteres de texto:
+- =toLowercase()=, convierte todos los caracteres en minúsculas.
+- =toUppercase()=, convierte todos los caracteres en mayúsculas.
+- =toTitlecase()=, la primera letra en mayúsculas.
+
+Para tener una dirección más legible, creamos una columna basada en dirección, con el nombre /dir/, y se emplea la fórmula:
+
+#+BEGIN_SRC grel
+toTitlecase(value)
+#+END_SRC
+
+Y entonces se crea una nueva columna de dirección con todos los datos de las otras columnas con esta fórmula:
+
+#+BEGIN_SRC grel
+cells["dir"].value + "," + " " + cells["cp"].value + "," + " " + cells["localidad"].value + "," + " " + cells["country"].value
+
+#+END_SRC
+
+Y se repite el proceso de georeferenciación.
+
+** Nominatim
+También podemos utilizar cualquier otro servicio de geodatos como Nominatim y obtener longitud y latitud:
+
+#+BEGIN_SRC grel
+'http://open.mapquestapi.com/nominatim/v1/search.php?' + 'format=json&' + 'q=' + escape(value, 'url')
+#+END_SRC
+
+* Expresiones regulares
+
+Se pueden utilizar expresiones regulares.
+
+Por ejemplo, con esta expresión:
+
+#+BEGIN_EXAMPLE
+- Nombre Apellido (Empresa) Lorem ipsum
+#+END_EXAMPLE
+
+Se extrae el nombre, el apellido y el texto entre paréntesis unido con =::= con la siguiente expresión:
+
+#+BEGIN_SRC grel
+value.match(/- ([^\(]*)\s\(([^\)]*)\).*/).join('::')
+#+END_SRC
+
+La función =value.match= busca la expresión de la siguiente manera con /RegExp/:
+- Para indicar que se trata de una expresión regular, se escribe entre barras =//=
+- Busca un guión con un espacio en blanco y todos los caracteres que no contienen un paréntesis =([^\(]*)=
+- Y que preceden a un espacio en blanco seguido por una apertura de paréntesis =\s\(=
+- Todo junto: =([^\(]*)\s\(=
+- Después extrae lo que aparece antes del cierre del paréntesis: =([^\)]*)\)=
+- Por último, descarta todos los caracteres hasta el final de la cadena: =.*=
+- Finalmente con la función =join= une las dos coincidencias separándolas con dobles dos puntos.
+* Recursos
+
+** Recetas y consejos de /OpenRefine/
+
+Este blog recoge consejos y recetas sobre Open Refine
+http://googlerefine.blogspot.com.es/ 
+
+** Verificación de fuentes de datos
+
+Con /Refine/ puedes contrastar tus datos contra cualquier servicio web que soporte la /API/ de verificación de /Refine/. En la investigación /The Dollars for Docs Data Guides 1. Using Google Refine to Clean Messy Data/, guía de /Refine/ por Dan Nguyen tal como lo utilizaron /ProPublica/ para su proyecto /Dollars for Docs/ para limpiar datos y verificar las imperfecciones de los datos que habían obtenido.
+- https://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning
+- https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources 
+- https://www.twitter.com/dancow
+
+** Limpieza de datos con Open Refine
+
+Carolina Cristanchi dedica cuatro artículos de su blog a Open Refine: para novatos, para curiosos, para fans y para quienes quieren llegar a una visualización impecable. Además, está en castellano. 
+- http://carolinacristanchi.com/category/limpieza-de-datos/
+
+** Lista de expresiones regulares
+
+De la web de ayuda de LibreOffice, https://help.libreoffice.org/Common/List_of_Regular_Expressions/es
+
+** Recursos externos de OpenRefine
+
+Listado de turoriales y recursos desarrollados fuera del wiki de OpenRefine https://github.com/OpenRefine/OpenRefine/wiki/External-Resources
+
+** Reconcilia tus metadatos
+
+De Free Your Metadata, cómo reconciliar tus metadatos:
+ http://freeyourmetadata.org/reconciliation/
+
+** Utiliza Refine para manipular /HTML/
+
+/Using Refine to manipulate HTML/ es una guía interesante sobre el uso de Refine para transformación de texto HTML.
+
+http://www.meanboyfriend.com/overdue_ideas/2014/12/using-openrefine-to-manipulate-html/ 
+
+** How to clean a converted PDF using Refine
+
+Otro uso más de Refine: limpiar el texto extraído de un PDF:
+- http://onlinejournalismblog.com/2015/04/07/how-to-clean-a-converted-pdf-using-open-refine/ - http://ionmates.com/cleaning-data-open-refine/ 
+
+
+** Limpiando Datos con Google Refine
+
+Taller impartido por David Cabo sobre Google Refine, una herramienta gratuita de Google que permite organizar y transformar datos, ya sea de la web o de las propias bases de datos.
+
+Actividad en el marco de la Segunda sesión formativa de periodismo de datos: Análisis y tratamiento de datos.
+
+
+Accede a la visualización desde la siguiente dirección web: 
+http://medialab-prado.es/article/limpiando_datos_google_refine
+http://medialab-prado.es/mmedia/8/8502/8502.flv/download 
+
+** Introducción a las Expresiones Regulares con Open Refine
+
+Taller de Introducción a las Expresiones Regulares con Open Refine impartido por Juan Elosua en la jornada decimoséptima del Grupo de Periodismo de Datos de Medialab-Prado. Las expresiones regulares las podemos utilizar en nuestra vida diaria, bien para buscar un archivo, para cambiar varios de nombre o para trabajar con hojas de cálculo.
+
+
+Accede a la visualización desde la siguiente dirección web: 
+http://medialab-prado.es/mmedia/13534/view
+ 
+
+** Introduction to Open Refine:
+
+Explora los datos. OpenRefine puede ayudarte a explorar grandes conjuntos de datos inconsistentes o sucios, limpiar o transformar datos o reconciliar y encontrar ddatos
+
+
+Accede a la visualización desde la siguiente dirección web: 
+- https://www.youtube.com/watch?feature=player_embedded&v=B70J_H_zAWM
+- https://www.youtube.com/watch?feature=player_embedded&v=cO8NVCs_Ba0
+- https://www.youtube.com/watch?feature=player_embedded&v=5tsyz3ibYzk
+
+** Refine por Freeyourmetadata
+
+por Sydney Powerhouse Museum No importa cuanto esfuerzo tengas que poner para conseguir unos datos limpios, siempre vas a tener que hacer alguna limpieza de los mismos. Con Refine podemos hacer algunas partes del proceso de manera semi automática.
+
+Accede a la visualización desde la siguiente dirección web: 
+- https://www.youtube.com/watch?feature=player_embedded&v=NnCA1dnCT-c
+- http://freeyourmetadata.org/cleanup/ 
+
+** Google Refine para el periodismo de investigación
+
+Dan Nguyen y Joe Kokenge de ProPublica realizan una introducción a una de las mejores herramientas para periodistas de cualquier nivel técnico. Aprenderás las características básicas de forma muy potente con algunos ejemplos de periodismo de datos. No require conocimientos previos de estadística, programación o  Excel.
+
+Hay un vídeo y un tutorial de cómo han usado Refine para la premiada investigación sobre ProPublica: 
+
+https://dannguyen.github.io/NICAR-Google-Refine/ 
+
+
+** Bibliografía
+
+- Bradshaw, Paul. (2011) Cleaning data using google refine. A quick guide. Web: Onlinejournalism. URL: http://onlinejournalismblog.com/2011/07/05/cleaning-data-using-google-refine-a-quick-guide/
+
+- Juan Elosua Tomé, (2014). Reg[Ee]xp? https://docs.google.com/presentation/d/1EmpM_h9YKwgwyv0NntCVQwmxFKZy36RAXjBTmf364rQ
+
+- Nguyen, Dan & Kokenge, Joe. (2012) Google Refine for Investigative Journalism. URL: https://dannguyen.github.io/NICAR-Google-Refine/
+
+- OpenRefine, (2015) OpenRefine Wiki, https://github.com/OpenRefine/OpenRefine/wiki
+
+- Hirst, Tony. (2013) Analysing UK Lobbying Data Using OpenRefine. Web: http://schoolofdata.org/2013/06/04/analysing-uk-lobbying-data-using-openrefine/
+
+- Padilla, Thomas. Getting Started with OpenRefine. Web: http://thomaspadilla.org/dataprep/
+
+- Verborgh, R & De Wilde, M. (2013) Using OpenRefine. Packt Publishing
+
+* Dudas
+
+- sort anidados?
+- cluster que no encuentra obra
+- cambiar en todas las columnas un value.replace
