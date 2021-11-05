@@ -1,0 +1,2564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenRefine para todxs</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Adolfo Antón Bravo" />
+<meta name="description" content="Tutorial de Openrefine"
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">OpenRefine para todxs</h1>
+<ul class="org-ul">
+<li>Herramienta creada por <i>Google</i> para el manejo de bases de datos.</li>
+<li>Permite limpiar bases de datos, exportarlas en diferentes formatos, y arreglar y manejar las bases para un mejor uso.</li>
+<li>El proyecto lo abandonó <i>Google</i> y lo acogió la comunidad de periodismo de datos.</li>
+<li>Se trata de un proyecto abierto con licencia <i>BSD</i> <a href="https://github.com/OpenRefine">https://github.com/OpenRefine</a></li>
+<li>Aunque el proyecto se llama <i>OpenRefine</i>, nos referiremos a él como <i>Refine</i></li>
+</ul>
+
+
+<div id="outline-container-org14e2fab" class="outline-2">
+<h2 id="org14e2fab">Descarga&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org14e2fab">
+<ul class="org-ul">
+<li>Desde la web <a href="http://www.openrefine.org">openrefine.org</a> se pueden <a href="http://openrefine.org/download.html">descargar tres versiones del programa</a>:
+<ul class="org-ul">
+<li><i>Google Refine 2.5 Stable Version</i>, para <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.zip">Windows</a>, <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.dmg">Mac</a> o <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.5/google-refine-2.5-r2407.tar.gz">Linux</a></li>
+<li><i>Open Refine 2.6 beta 1</i>, para <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.6-beta.1/openrefine-win-2.6-beta.1.zip">Windows</a>, <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.6-beta.1/openrefine-mac-2.6-beta.1.dmg">Mac</a> o <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.6-beta.1/openrefine-linux-2.6-beta.1.tar.gz">Linux</a>.</li>
+<li><i>Open Refine 2.6-rc2 Release Candidate 2</i>, para <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-win-2.6-rc.2.zip">Windows</a>, <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-mac-2.6-rc.2.dmg">Mac</a> o <a href="https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-linux-2.6-rc.2.tar.gz">Linux</a>.</li>
+</ul></li>
+<li>También puedes descargar la versión de desarrollo: <a href="https://github.com/OpenRefine/OpenRefine">https://github.com/OpenRefine/OpenRefine</a></li>
+<li>Todas las versiones: <a href="https://github.com/OpenRefine/OpenRefine/releases">https://github.com/OpenRefine/OpenRefine/releases</a></li>
+<li>Solo la versión estable cuenta con algunas extensiones preinstaladas.</li>
+<li>Puedes tener varias versiones descargadas y lanzar la que quieras en cada ocasión.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org31b0981" class="outline-2">
+<h2 id="org31b0981">Extensiones&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org31b0981">
+<ul class="org-ul">
+<li><a href="https://wiki.biovel.eu/display/doc/Installing+and+running+DR+Workflow+on+Taverna+Workbench#InstallingandrunningDRWorkflowonTavernaWorkbench-InstallingGoogleRefine%2520and%2520https://github.com/BioVeL/refine-ext">BioVel</a>, del Museo Botánico y Jardín Botánico de Berlín-Dahlem,</li>
+<li><i>Crowdsourcing</i>, por <i>Zemanta</i>.</li>
+<li><i>DBpedia</i>, por <i>Zemanta</i>.</li>
+<li><i>History tools</i>, <i>pivot tool</i> y <i>scatterplot</i> con <i>D3</i>, por <i>VIB-BITS</i>.</li>
+<li><i>Diff</i>, por <i>VIB-BITS</i></li>
+<li><i>LMF Extension</i>, por <i>Salzburg Research</i></li>
+<li><i>Named-Entity Recognition</i>, por Ruben Verborgh <i>Free Your Metadata</i></li>
+<li><a href="https://github.com/nickynicolson/refine-opentree">Opentree</a>, de nickynicolson, para mostrar árboles filogenéticos del <i>Open Tree of Life</i>,</li>
+<li><i>RDF</i>, por <i>DERI</i>, <a href="http://refine.deri.ie/">http://refine.deri.ie/</a></li>
+<li><i>Stats</i>, estadísticas, dos extensiones:
+<ul class="org-ul">
+<li><i>Chicago Tribune</i> para <i>Refine 2.1</i>.</li>
+<li><i>sparkica</i>, para <i>Refine 2.5 +</i>.</li>
+</ul></li>
+<li><i>extraCTU-plugin</i> para extraer correos electrónicos, números de teléfono, <i>URL</i> y números de identificación por <i>giTorto</i>.</li>
+<li><i>geoXtension</i>, basado en <i>gdal</i>, <i>proj</i> y <i>geos</i>. Su instalación lleva mucho tiempo, se recomienda la instalación del <i>docker</i>.</li>
+<li><i>Kuali</i>, requiere credenciales del servidor <i>Kuali OLE</i>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf8868f7" class="outline-2">
+<h2 id="orgf8868f7">Primeros pasos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgf8868f7">
+<ul class="org-ul">
+<li><i>Refine</i> es una aplicación web cliente-servidor.</li>
+<li>Cuando lanzamos <i>Refine</i>, estamos activando el servidor.</li>
+<li>A la vez, se abre el navegador con una pestaña que apunta a la dirección <code>127.0.0.1:3333</code>.</li>
+<li>El navegador actúa como cliente de <i>Refine</i>.</li>
+<li>No necesita conexión a Internet para funcionar.</li>
+<li><code>127.0.0.1</code> es la dirección del <i>locahost</i>, el equipo local, el ordenador donde trabajamos.</li>
+<li><code>3333</code> es el puerto que utiliza la aplicación</li>
+</ul>
+
+<p>
+Si lo lanzamos desde la terminal, podemos modificar las opciones:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./refine -p 3333 -i 0.0.0.0 -m 6000M -d /ruta/directorio/trabajo
+
+</pre>
+</div>
+
+<p>
+Donde:
+</p>
+<ul class="org-ul">
+<li><code>./refine</code> es la ejecución del programa</li>
+<li><code>-p 3333</code> le dice el puerto en el que queremos que se lance.</li>
+<li><code>-i 0.0.0.0</code> especifica la dirección donde se abrirá.</li>
+<li><code>-m 6000M</code> es el tamaño máximo que soporta para la sesión.</li>
+<li><code>-d /ruta/directorio/trabajo</code> indica el directorio donde almacenará <i>refine</i> la información.</li>
+</ul>
+
+<p>
+Si en GNU/Linux nos da un error de JAVA:
+</p>
+<blockquote>
+<p>
+Google Refine requires Java version 6 or later. If you have multiple versions of Java installed, please set the environment variable JAVA_HOME to the correct version.
+</p>
+</blockquote>
+
+<p>
+Significa que no tenemos ningún valor para la variable <code>JAVA_HOME</code>, por lo que tenemos que añadir la ruta correcta a la variable de entorno con el comando <code>export</code>.
+</p>
+
+<p>
+En mi caso:
+</p>
+<pre class="example" id="org5ddc790">
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+</pre>
+
+<p>
+Y comprobamos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">env | grep JAVA
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfef0f1a" class="outline-2">
+<h2 id="orgfef0f1a">Abrir un proyecto&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgfef0f1a">
+<ul class="org-ul">
+<li>Dado que la opción estable y en desarrollo es en inglés, seguiremos los menús en este idioma aunque lo traduciremos al castellano/español.</li>
+<li>Cuando se abre <i>Refine</i>, en la columna de la izquierda hay cuatro opciones:
+<ul class="org-ul">
+<li><i>Create project</i> o crear proyecto.</li>
+<li><i>Open Project</i> o abrir proyecto.</li>
+<li><i>Import Project</i> o importar proyecto.</li>
+<li><i>Language Settings</i> o configuración de idioma.</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-org76dd358" class="outline-3">
+<h3 id="org76dd358">Language Settings</h3>
+<div class="outline-text-3" id="text-org76dd358">
+<ul class="org-ul">
+<li>Actualmente, las versiones estable y en desarrollo solo están disponibles en Inglés (English) o Italiano (Italian).</li>
+<li>En la versión <a href="https://github.com/OpenRefine/OpenRefine/releases/tag/2.6-rc.2">2.6-rc.2</a> puedes disfrutar, además, de francés, chino y español.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf5d09b" class="outline-3">
+<h3 id="orgaf5d09b">Import Project</h3>
+<div class="outline-text-3" id="text-orgaf5d09b">
+<ul class="org-ul">
+<li>Puedes cargar un proyecto de <i>Refine</i>, importar un proyecto, si:
+<ul class="org-ul">
+<li>Has trabajado en algún proyecto y lo has exportado.</li>
+<li>Alguien te ha pasado un proyecto.</li>
+</ul></li>
+<li>Si no tienes un proyecto en el que trabajar, comienza uno.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8af0253" class="outline-3">
+<h3 id="org8af0253">Open Proyect</h3>
+<div class="outline-text-3" id="text-org8af0253">
+<ul class="org-ul">
+<li><i>Refine</i> guarda todos los proyectos con los que trabajes en el equipo.</li>
+<li>No hace falta que guardes durante el proceso de análisis o limpieza de datos, aunque copias extra siempre son recomendables.</li>
+<li>Puedes exportar el proyecto por si quieres tener una copia más del mismo (<i>ver más adelante cómo</i>).</li>
+<li>En la opción de <i>Abrir Proyecto</i> se muestran estos datos, siempre que no sea la primera vez que abres el programa:
+<ul class="org-ul">
+<li>Una <code>x</code> por si quieres borrarlo.</li>
+<li>Un <code>rename</code> o <code>renombrar</code> para renombrarlo.</li>
+<li>La última fecha de modificación, <i>last modified</i> o <i>Última modificación</i>.</li>
+<li>El <i>nombre</i> del proyecto o <i>name</i>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf72163e" class="outline-3">
+<h3 id="orgf72163e">Create project</h3>
+<div class="outline-text-3" id="text-orgf72163e">
+<ul class="org-ul">
+<li>Para crear un proyecto, necesitamos que <i>Refine</i> tenga algunos datos.</li>
+<li>Podemos importar datos de algún archivo <i>TSV</i>, <i>CSV</i>, <i>*SV</i>, <i>Excel</i> (.xls y .xlsx), <i>JSON</i>, <i>XML</i>, <i>RDF como XML</i> y datos de documentos de <i>Google Drive</i>.</li>
+<li>Otros formatos también se soportan a través de algunas extensiones (<i>ver extensiones</i>)</li>
+<li>Lo más habitual es subir un archivo de datos que tengamos en nuestra carpeta de <i>datasets</i>.</li>
+<li>Se pueden cargar datos desde una dirección <i>URL</i> que contenga un archivo de datos con alguna de las extensiones anteriores.</li>
+<li>Si disponemos de unos datos en el portapapeles, también se pueden cargar desde aquí <i>from clipboard</i>.</li>
+<li>O podemos cargar datos que contengamos en <i>Google Drive</i>. Esta opción no es la más recomendable si pretendes mantener la privacidad sobre los datos que estás utilizando.</li>
+<li>Es importante:
+<ul class="org-ul">
+<li>En <code>Project name</code> no escribir caracteres no <i>ASCII</i> ni mayúsculas ni espacios en blanco.</li>
+<li>Echar un vistazo a los datos y elegir el <code>Character encoding</code> apropiado. Normalmente, <code>UTF-8</code> valdrá pero puede que el texto esté codificado en otro conjunto de caracteres.</li>
+<li>En caso de subir un <i>CSV</i>, elegir el separador adecuado.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaa87ef9" class="outline-2">
+<h2 id="orgaa87ef9">Records y rows&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgaa87ef9">
+<ul class="org-ul">
+<li><i>Refine</i> distingue entre registros <i>Records</i> y filas o <i>Rows</i> y permite trabajar de una u otra manera.</li>
+<li>Una fila o <i>row</i> es una línea de datos. El número total de filas se indica en la parte superior de la página, <code>N rows</code></li>
+<li>Un registro o <i>record</i> es una combinación de una o muchas filas que se identifican por un objeto único y compartido en función de los datos de la primera columna.</li>
+<li>Es decir, si en la primera columna de datos --no en la columna <i>All</i> o <i>Todo</i>-- hay datos en algunas filas y en la segunda columna hay datos que se refieren a la primera.</li>
+<li>Si quisiéramos convertir nuestro conjunto de datos de filas a registros, podríamos seguir este <a href="http://kb.refinepro.com/2012/06/create-records-in-google-refine.html">tutorial</a>, que explicamos a continuación.</li>
+</ul>
+</div>
+
+<div id="outline-container-orga137db0" class="outline-3">
+<h3 id="orga137db0">Crear registros</h3>
+<div class="outline-text-3" id="text-orga137db0">
+<ul class="org-ul">
+<li>Primero hay que identificar la columna que contiene el marcador de registros, una cuyas celdas se repitan.</li>
+<li>Para ver esto, podemos utilizar una faceta de texto sobre la columna desde el menú de <code>columna &gt; facetas</code>.</li>
+<li>Movemos esa columna al principio desde el menú de <code>columna &gt; editar columna &gt; mover columna al principio</code>.</li>
+<li>Ordenamos la columna desde el menú de la <code>columna &gt; Ordenar (/sort/)</code>.</li>
+<li>Desde el menú de ordenar que sale en la parte gris de los <code>menús de arriba &gt; reordenar filas permanentemente o /reorder rows permanently/</code></li>
+<li>Desde la misma columna, opción <code>Editar celdas &gt; vaciar hacia abajo o /blank down/</code></li>
+<li>Finalmente, mostramos como registros o <i>records</i>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org95ff1b0" class="outline-2">
+<h2 id="org95ff1b0">Filas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org95ff1b0">
+<p>
+Si quisiéramos un número distinto de filas, podríamos modificar el archivo que las produce, <code>data-table-view.js</code>. Suponiendo que estemos en el directorio raíz de <i>Refine</i>, editamos el archivo con <a href="http://blog.infotics.es/2015/11/11/editor-de-textos/">nuestro editor de textos favorito</a>:
+</p>
+
+<pre class="example" id="org6ac45a8">
+nano webapp/modules/core/scripts/views/data-table/data-table-view.js 
+</pre>
+
+<p>
+En la línea número 185 se muestra este código (si no es en la 185, buscar la cadena <code>50</code>):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">  <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">sizes</span> = [ 5, 10, 25, 50 ];
+</pre>
+</div>
+
+<p>
+Modificamos los valores o añadimos, guardamos y cerramos y recargamos el navegador donde aparece <i>Refine</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org0b6d042" class="outline-2">
+<h2 id="org0b6d042">Facetas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org0b6d042">
+<p>
+Las facetas o <i>facets</i> se utilizan para filtrar el contenido, para
+explorar, ver o encontrar valores erróneos o que se salgan de la
+norma, mostrar distintas caras de los datos.
+</p>
+
+<ul class="org-ul">
+<li>Se pueden anidar y se puede modificar el orden de anidación para
+obtener distintos resultados.</li>
+</ul>
+
+<p>
+Sobre la columna, con la opción <code>Facet</code> podemos hacer:
+</p>
+<ul class="org-ul">
+<li><code>Text facet</code>, faceta de texto, nos agrupa los datos de las celdas si son iguales.</li>
+<li><code>Numeric facet</code>, si se trata de datos numéricos.</li>
+<li><code>Timeline facet</code>, si se trata de datos que reconoce como fechas.</li>
+<li><code>Scatterplot facet</code>, si se trata de datos numéricos, para hacer
+gráficos de dispersió donde encontrar patrones, tendencias o
+<i>outliers</i> (valores extremos, extraños).</li>
+<li><code>Text filter</code>, escribimos los valores que queremos encontrar.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org477fa38" class="outline-2">
+<h2 id="org477fa38">Buscar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org477fa38">
+<ul class="org-ul">
+<li>Para encontrar determinados valores, pincha en <code>facet</code> y luego en <code>custom text facet</code>.</li>
+<li>Introducimos lo que queremos buscar.</li>
+<li>Pincha en <code>count</code> para ver el número de repeticiones.</li>
+</ul>
+
+<p>
+Por ejemplo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.contains("millones")
+</pre>
+</div>
+
+<p>
+Localiza el valor <code>millones</code> con la función <code>.contains()</code>.
+</p>
+
+<p>
+Se pueden anidar de esta manera:
+</p>
+<div class="org-src-container">
+<pre class="src src-grel">value.contains("millones")+value.contains("euros")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2004103" class="outline-2">
+<h2 id="org2004103">Búsqueda de valores duplicados&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org2004103">
+<p>
+Se pueden encontrar valores duplicados a través de las facetas:
+</p>
+
+<pre class="example" id="org447f536">
+Facet &gt; Customized facets &gt; Duplicates facet
+</pre>
+
+<p>
+Se pueden ver las partes que se repiten de los valores de una columna
+</p>
+
+<pre class="example" id="org42b13d5">
+Facet &gt; Customized facets &gt; Word facet
+</pre>
+
+<p>
+Ver todos los valores de una columna:
+</p>
+
+<pre class="example" id="orgcceadb7">
+Facet &gt; Text facet
+</pre>
+
+<p>
+Ver (y cambiar o agrupar) variantes similares de valores:
+</p>
+
+<pre class="example" id="orgd137527">
+edit cells &gt; cluster and edit
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge88d261" class="outline-2">
+<h2 id="orge88d261">Borrar celdas vacías de una columna&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orge88d261">
+<p>
+A veces hay registros que producen celdas que no son necesarias. - Para eliminar los registros del <i>dataset</i>:
+</p>
+
+<pre class="example" id="org6d8b8d7">
+Facet &gt; Customized facets &gt; Facet by blank y clic en ‘true’
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org83b3298" class="outline-2">
+<h2 id="org83b3298">Celdas vacías&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org83b3298">
+<p>
+Situar las celdas vacías al final
+</p>
+
+<pre class="example" id="org5a51991">
+Edit cells &gt; Blank down
+</pre>
+
+<ul class="org-ul">
+<li>Filtramos para mostrar solo los valores vacíos <code>Facet &gt; Customized facets &gt; Facet by blank</code> y pinchamos en <code>true</code></li>
+<li>Podemos eliminar, ver punto siguiente.</li>
+<li>Se pueden explorar los datos con gráficos de dispersión.</li>
+<li>En la columna que nos interese: <code>Facet &gt; Scatterplot facet</code>, pincha en <code>log</code> para verlo mejor. Se muestran las relaciones entre todos los valores numéricos en cada una de las columnas.</li>
+<li>Pincha en en uno de los gráficos para filtrar/mostrar esos registros.</li>
+<li>Pincha y arrastra sobre el gráfico de la izqda. para seleccionar un grupo de registros y mostrarlos.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org650aee8" class="outline-2">
+<h2 id="org650aee8">Transformar datos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org650aee8">
+<ul class="org-ul">
+<li>Tras aplicar 1 o más filtros en el panel izquierdo podemos editar lo que interese.</li>
+<li>Cambiar conjunto de valores tras filtrar por nombre: renombrar, renombrar uno para que se fusione con otro, agrupar, etc.</li>
+<li>También podemos hacerlo en cualquier celda de la dcha (datos filtrados) y aplicar los cambios a todas las instancias o celdas similares.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgf33b5e7" class="outline-3">
+<h3 id="orgf33b5e7">Transformar a numérico</h3>
+<div class="outline-text-3" id="text-orgf33b5e7">
+<p>
+Si queremos pasar millón a números, escribiremos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel"> toNumber(value.replace(" millón", ""))*1000000
+
+</pre>
+</div>
+
+<p>
+Con <code>value.replace</code> reemplazamos el valor <code>millón</code> y lo sustituimos por la multiplicación del valor.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org85597ba" class="outline-3">
+<h3 id="org85597ba">Transformaciones</h3>
+<div class="outline-text-3" id="text-org85597ba">
+<p>
+Se realizan con:
+</p>
+
+<pre class="example" id="org96943e1">
+Edit cells &gt; transform
+</pre>
+</div>
+
+<div id="outline-container-org6a66fc2" class="outline-4">
+<h4 id="org6a66fc2">Eliminar caracteres</h4>
+<div class="outline-text-4" id="text-org6a66fc2">
+<div class="org-src-container">
+<pre class="src src-grel">value.unescape(‘url’)
+</pre>
+</div>
+
+<p>
+Elimina los caracteres raros de una <i>URL</i>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.replace("+","")
+</pre>
+</div>
+
+<p>
+Elimina el signo <code>+</code>, lo reemplaza por nada.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4343d7c" class="outline-4">
+<h4 id="org4343d7c">Obtener URL</h4>
+<div class="outline-text-4" id="text-org4343d7c">
+<div class="org-src-container">
+<pre class="src src-grel">‘http://’+ cells[‘nombre_columna’].value +’.com’
+</pre>
+</div>
+
+<p>
+Obtiene la <i>URL</i> <a href="http://valor.com">http://valor.com</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbfb46aa" class="outline-4">
+<h4 id="orgbfb46aa">Añadir y borrar a la vez</h4>
+<div class="outline-text-4" id="text-orgbfb46aa">
+<div class="org-src-container">
+<pre class="src src-grel">‘Avenida ’+value.replace(‘AV.’,’’)
+</pre>
+</div>
+
+<p>
+Añadimos <code>Avenida</code> al mismo tiempo que eliminamos <code>AV</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf534e8" class="outline-4">
+<h4 id="orgcf534e8">Uso de regexp</h4>
+<div class="outline-text-4" id="text-orgcf534e8">
+<div class="org-src-container">
+<pre class="src src-grel">replace(value, /\d/,"")
+
+</pre>
+</div>
+<p>
+Elimina la parte numérica de las celdas.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.replace(regex, “”)
+</pre>
+</div>
+
+<p>
+En general, usamos cualquier tipo de expresiones regulares
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfb5a691" class="outline-4">
+<h4 id="orgfb5a691">Eliminar espacios en blanco</h4>
+<div class="outline-text-4" id="text-orgfb5a691">
+<pre class="example" id="org3ffd24d">
+Edit cells &gt; Common transforms &gt; Trim leading and trailing whitespace
+</pre>
+
+<p>
+Elimina espacios blancos del inicio y final de los valores
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4b600e4" class="outline-3">
+<h3 id="org4b600e4">Eliminar registros seleccionados</h3>
+<div class="outline-text-3" id="text-org4b600e4">
+<pre class="example" id="orgeca9380">
+All &gt; Edit rows &gt; Remove all matching rows
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9a5f1eb" class="outline-3">
+<h3 id="org9a5f1eb">Clustering</h3>
+<div class="outline-text-3" id="text-org9a5f1eb">
+<p>
+Agrupaciones basada en similitudes. En el panel de la izqda., en filtro, aparece el botón de <i>cluster</i> donde se abre una ventana que podemos fusionar o <i>merge</i> los diferentes grupos escribiendo en todos el mismo nombre como <i>nuevo valor de celda</i>. También podemos hacerlo con:
+</p>
+
+<pre class="example" id="orgef7afcc">
+edit cells &gt; cluster and edit
+</pre>
+
+<p>
+Si no obtenemos los resultados esperados, podemos repetir el proceso para todos los algoritmos cambiando el <i>método</i>, la <i>función</i> y el <i>radius</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org50dd9a5" class="outline-3">
+<h3 id="org50dd9a5">Limpiar valores de columna numérica</h3>
+<div class="outline-text-3" id="text-org50dd9a5">
+<p>
+Para limpiar valores de columna numérica, hacemos una faceta numérica
+</p>
+
+<pre class="example" id="org270a7d1">
+Facet &gt; numeric facet
+</pre>
+
+<p>
+A la izqda. seleccionamos solo el tipo <i>non-numeric</i> para transformar estos datos. Si vemos que, erróneamente, los valores están muy dispersos, tenemos varias opciones:
+</p>
+
+<p>
+Usar escala logarítmica para corregir. Pinchamos en <code>Change</code> (<i>submenú izq</i>) y escribimos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.log()
+</pre>
+</div>
+
+<p>
+Aceptamos, si la previsualización es correcta.
+</p>
+
+<p>
+Arrastramos los extremos del gráfico para visualizar el subconjunto de datos más dispersos sobre los que hacer las transformaciones necesarias con <code>edit cells &gt; transform</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.replace(",",".")
+</pre>
+</div>
+
+<p>
+Convertir en valores numéricos:
+</p>
+
+<pre class="example" id="org8bf7bb8">
+Edit cells &gt; common transforms &gt; to number
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgceff445" class="outline-3">
+<h3 id="orgceff445">Limpiar fechas</h3>
+<div class="outline-text-3" id="text-orgceff445">
+<p>
+Primero convertimos valores de columna a texto para evitar q haya números:
+</p>
+
+<pre class="example" id="org82f2493">
+Edit cells -&gt; Common transformations -&gt; To text
+</pre>
+
+<p>
+Luego convertir valores a fecha:
+</p>
+
+<pre class="example" id="org05aa9d3">
+Edit cells -&gt; Common transformations -&gt; To date
+</pre>
+
+<p>
+A continuación mostramos patrones de fecha
+</p>
+
+<pre class="example" id="orga5cafd7">
+Facet -&gt; Timeline facet
+</pre>
+
+<p>
+Seleccionamos sólo los valores <code>non-time</code> para transformar sólo éstos y extraemos  sólo el año mediante una expresión regular:
+</p>
+
+<pre class="example" id="orgbeacde5">
+Edit cells -&gt; Transform
+</pre>
+
+<p>
+Entonces, escribimos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.match(/.*(d{4}).*/)[0]
+</pre>
+</div>
+
+<p>
+Donde:
+</p>
+<ul class="org-ul">
+<li>Dentro de la función <code>()</code>, las barras <code>//</code> indican que se trata de una expresión regular.</li>
+<li><code>.*</code> significa que se trata de una secuencia de cero o más caracteres (letras, números, símbolos, etc.). Es el comodín para cualquier tipo de carácter.</li>
+<li><code>d</code> indica que estamos buscando dígitos.</li>
+<li><code>{4}</code> muestra que queremos encontrar cuatro dígitos.</li>
+<li>La función <code>value.match</code> devuelve una matriz o <i>array</i> de resultados, de manera que usamos <code>[0]</code> para recuperar sólo la primera coincidencia (en las matrices o <i>arrays</i>, el primer valor es el 0).</li>
+</ul>
+
+<p>
+Convertimos estos valores extraidos a fechas con:
+</p>
+
+<pre class="example" id="org7498317">
+Edit cells -&gt; Common transformations -&gt; To date
+</pre>
+
+<p>
+Si hay fechas con varios formatos, utilizamos:
+</p>
+
+<pre class="example" id="org19e9fd9">
+Edit cells -&gt; Transform
+</pre>
+
+<p>
+Y así extraemos el valor que nos interesa con la función <code>toString</code>, de tal modo que:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.toString('yyyy')
+</pre>
+</div>
+
+<p>
+Obtiene el año, 2013.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.toString('M')
+</pre>
+</div>
+
+<p>
+Obtiene el dígito del mes, es decir, el <code>1</code> de enero.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.toString('MM')
+</pre>
+</div>
+
+<p>
+Obtenemos dos dígitos del mes, es decir, <code>01</code> de enero.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.toString('MMM')
+</pre>
+</div>
+
+<p>
+Obtenemos tres caracteres del mes, es decir, <code>Ene</code> de enero.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.toString('MMMM')
+</pre>
+</div>
+
+<p>
+Obtenemos los caracteres del mes completo, es decir, <code>Enero</code> de enero.
+</p>
+
+<p>
+Podemos concatenar las funciones <code>toDate</code> y <code>toString</code> para modificar el formato en una sola línea:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.toDate(‘MM/yy’,’MMM-yy’).toString(‘yyyy-MM’)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9da4821" class="outline-3">
+<h3 id="org9da4821">Partir/Unir columnas</h3>
+<div class="outline-text-3" id="text-org9da4821">
+<p>
+Separar en distintas columnas:
+</p>
+
+<pre class="example" id="org75a32ae">
+Edit column &gt; split into several columns
+</pre>
+
+<p>
+Se pone el separador y el número de columnas. Funciona de izqda. a dcha. Después se puede renombrar la nueva columna con:
+</p>
+
+<pre class="example" id="org2cb901e">
+Edit Column -&gt; Rename this column
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge6f4320" class="outline-3">
+<h3 id="orge6f4320">Añadir nuevas columnas</h3>
+<div class="outline-text-3" id="text-orge6f4320">
+<p>
+Añadimos una nueva columna basada en otra columna:
+</p>
+
+<pre class="example" id="orge12bf48">
+edit column&gt;add column based on this column
+</pre>
+
+<p>
+Ponemos un nombre a la nueva columna y escribimos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">cells("nombre-una-columna").value+""+cells("nombre-otra-columna").value
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13a0d48" class="outline-3">
+<h3 id="org13a0d48">Jugando con <code>value</code></h3>
+<div class="outline-text-3" id="text-org13a0d48">
+<p>
+Si escribimos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">not(value.startsWith("-"))
+</pre>
+</div>
+
+<p>
+Si queremos que extraiga los valores 2-5:
+</p>
+<div class="org-src-container">
+<pre class="src src-grel">value[1,5]
+</pre>
+</div>
+
+<p>
+Si queremos extraer a partir del séptimo carácter:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.substring(6)
+</pre>
+</div>
+
+<p>
+Para crear nueva columna con el nº de repeticiones de la palabra "hola":
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.facetCount("value", "hola")
+</pre>
+</div>
+
+<p>
+Una nueva columna con el resultado de la división de dos valores:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">cells[“A”].value / cells[“C”].value
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org220ae53" class="outline-2">
+<h2 id="org220ae53">Variables&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org220ae53">
+</div>
+<div id="outline-container-org7db58aa" class="outline-3">
+<h3 id="org7db58aa">cell</h3>
+<div class="outline-text-3" id="text-org7db58aa">
+<p>
+Es la celda actual. Tiene los campos <code>value</code> y <code>recon</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf3fb2f" class="outline-3">
+<h3 id="orgcf3fb2f">value</h3>
+<div class="outline-text-3" id="text-orgcf3fb2f">
+<p>
+El valor de la celda actual. Es una abreviación para <code>cell.value</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4ff4aee" class="outline-3">
+<h3 id="org4ff4aee">row</h3>
+<div class="outline-text-3" id="text-org4ff4aee">
+<p>
+La fila actual. Tiene 5 campos:
+</p>
+<ul class="org-ul">
+<li><code>flagged</code></li>
+<li><code>starred</code></li>
+<li><code>index</code></li>
+<li><code>cells</code></li>
+<li><code>record</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6159f92" class="outline-3">
+<h3 id="org6159f92">cells</h3>
+<div class="outline-text-3" id="text-org6159f92">
+<p>
+Las celdas de la fila actual. Es una abreviación para <code>row.cells</code>. Una celda particular puede ser recuperada con <code>cells.&lt;nombre de la columna&gt;</code> (sin los caracteres menor que y mayor que), si el nombre de la columna no está separada por espacios. De lo contrario, habrá que ponerlo entre comillas y entre corchetes con <code>cells["&lt;nombre de la columna&gt;"]</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org43d2ccd" class="outline-3">
+<h3 id="org43d2ccd">rowIndex</h3>
+<div class="outline-text-3" id="text-org43d2ccd">
+<p>
+Es el índice de la columna actual. Es una abreviación para 'row.index'.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6a038e5" class="outline-2">
+<h2 id="org6a038e5">Más funciones&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org6a038e5">
+<p>
+Las funciones se invocan de dos maneras:
+</p>
+<ul class="org-ul">
+<li><code>nombreFuncion(argumento0, argumento1, ...)</code></li>
+<li><code>argumento0.nombreFuncion(argumento1, ...)</code></li>
+</ul>
+
+<p>
+La primera forma es la <i>normal</i>, mientras que la segunda es un atajo que se conoce como <i>syntactic sugar</i>.
+</p>
+</div>
+
+<div id="outline-container-orgfcec1ae" class="outline-3">
+<h3 id="orgfcec1ae">Funciones Booleanas</h3>
+<div class="outline-text-3" id="text-orgfcec1ae">
+<p>
+<a href="https://github.com/OpenRefine/OpenRefine/wiki/GREL-Boolean-Functions">https://github.com/OpenRefine/OpenRefine/wiki/GREL-Boolean-Functions</a>
+</p>
+</div>
+
+<div id="outline-container-orgc80894a" class="outline-4">
+<h4 id="orgc80894a">and</h4>
+<div class="outline-text-4" id="text-orgc80894a">
+<p>
+<code>and(booleano b1, booleano b2, ...)</code> crea un booleano en el que las dos condiciones sean verdaderas. 
+</p>
+
+<p>
+Por ejemplo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">and(value.contains("servicios"),value.startsWith("Otros"))
+
+</pre>
+</div>
+
+<p>
+Los resultados serán <code>true</code> o <code>false</code>, verdadero o falso, si la celda contiene la cadena <code>servicios</code> y la celda comienza con la cadena <code>Otros</code>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd21251b" class="outline-4">
+<h4 id="orgd21251b">or</h4>
+<div class="outline-text-4" id="text-orgd21251b">
+<p>
+<code>or(booleano b1, booleano b2, ...)</code> crea un booleano en el que o bien la primera condición o el segundo sean verdaderos.
+</p>
+
+<p>
+Por ejemplo:
+</p>
+<div class="org-src-container">
+<pre class="src src-grel">or(value.contains("servicios"),value.startsWith("Otros"))
+
+</pre>
+</div>
+
+<p>
+Los resultados serán <code>true</code> o <code>false</code>, verdadero o falso, si la celda contiene la cadena <code>servicios</code> o la celda comienza con la cadena <code>Otros</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org05903d2" class="outline-4">
+<h4 id="org05903d2">not</h4>
+<div class="outline-text-4" id="text-org05903d2">
+<p>
+<code>not(booleano b)</code>, crea un booleano si no se cumple la condición que se declara.
+</p>
+
+<p>
+Por ejemplo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">not(value.contains("servicios")
+</pre>
+</div>
+
+<p>
+<code>value.contains("servicios")</code> daría un verdadero si la celda contuviese <code>servicios</code> y un falso si no los tuviera. Al ponerle la condición, la función booleana <code>not</code>, al revés, dará un falso si los contiene y verdadero si no lo contiene.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb7e069f" class="outline-3">
+<h3 id="orgb7e069f">Funciones de cadenas de caracteres, literales o <i>string</i></h3>
+<div class="outline-text-3" id="text-orgb7e069f">
+</div>
+<div id="outline-container-orgcfe6da6" class="outline-4">
+<h4 id="orgcfe6da6">length</h4>
+<div class="outline-text-4" id="text-orgcfe6da6">
+<p>
+<code>length(cadena s)</code> devuelve la cadena <code>s</code> como un número.
+</p>
+
+<p>
+Por ejemplo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.length()
+
+</pre>
+</div>
+
+<p>
+Y también:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">length(value)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfa90a6c" class="outline-3">
+<h3 id="orgfa90a6c">abs</h3>
+<div class="outline-text-3" id="text-orgfa90a6c">
+<p>
+abs	(number d)
+	devuelve: number
+	Returns the absolute value of a number
+acos	(number d)
+	devuelve: number
+	Returns the arc cosine of an angle, in the range 0 through PI
+and	(boolean a, boolean b)
+	devuelve: boolean
+	ANDs two boolean values
+asin	(number d)
+	devuelve: number
+	Returns the arc sine of an angle in the range of -PI/2 through PI/2
+atan	(number d)
+	devuelve: number
+	Returns the arc tangent of an angle in the range of -PI/2 through PI/2
+atan2	(number x, number y)
+	devuelve: number theta
+	Converts rectangular coordinates (x, y) to polar (r, theta)
+ceil	(number d)
+	devuelve: number
+	Returns the ceiling of a number
+chomp	(string str, string separator)
+	devuelve: string
+	Removes separator from the end of str if it's there, otherwise leave it alone.
+combin	(number d)
+	devuelve: number
+	Returns the number of combinations for n elements as divided into k
+contains	(string s, string frag)
+	devuelve: boolean
+	Returns whether s contains frag
+cos	(number d)
+	devuelve: number
+	Returns the trigonometric cosine of an angle
+cosh	(number d)
+	devuelve: number
+	Returns the hyperbolic cosine of a value
+cross	(cell c, string projectName, string columnName)
+	devuelve: array
+	TODO
+datePart	(date d, string part)
+	devuelve: date
+	Returns part of a date
+degrees	(number d)
+	devuelve: number
+	Converts an angle from radians to degrees.
+diff	(o1, o2, time unit (optional))
+	devuelve: string for strings, number for dates
+	For strings, returns the portion where they differ. For dates, it returns the difference in given time units
+endsWith	(string s, string sub)
+	devuelve: boolean
+	Returns whether s ends with sub
+escape	(string s, string mode ['html','xml','csv','url','javascript'])
+	devuelve: string
+	Escapes a string depending on the given escaping mode.
+even	(number d)
+	devuelve: number
+	Rounds the number up to the nearest even integer
+exp	(number n)
+	devuelve: number
+	Returns e^n
+facetCount	(choiceValue, string facetExpression, string columnName)
+	devuelve: number
+	Returns the facet count corresponding to the given choice value
+fact	(number i)
+	devuelve: number
+	Returns the factorial of a number
+factn	(number i)
+	devuelve: number
+	Returns the factorial of a number
+fingerprint	(string s)
+	devuelve: string
+	Returns the fingerprint of s, a derived string that aims to be a more canonical form of it (this is mostly useful for finding clusters of strings related to the same information).
+floor	(number d)
+	devuelve: number
+	Returns the floor of a number as an integer
+gcd	(number d, number e)
+	devuelve: number
+	Returns the greatest common denominator of the two numbers
+get	(o, number or string from, optional number to)
+	devuelve: Depends on actual arguments
+	If o has fields, returns the field named 'from' of o. If o is an array, returns o[from, to]. if o is a string, returns o.substring(from, to)
+hasField	(o, string name)
+	devuelve: boolean
+	Returns whether o has field name
+htmlAttr	(Element e, String s)
+	devuelve: String attribute Value
+	Selects a value from an attribute on an Html Element
+htmlText	(Element e)
+	devuelve: String text
+	Selects the text from within an element (including all child elements)
+inc	(date d, number value, string unit (default to 'hour'))
+	devuelve: date
+	Returns a date changed by the given amount in the given unit of time
+indexOf	(string s, string sub)
+	devuelve: number
+	Returns the index of sub first ocurring in s
+innerHtml	(Element e)
+	devuelve: String innerHtml
+	The innerHtml of an HTML element
+join	(array a, string sep)
+	devuelve: string
+	Returns the string obtained by joining the array a with the separator sep
+jsonize	(value)
+	devuelve: JSON literal value
+	Quotes a value as a JSON literal value
+lastIndexOf	(string s, string sub)
+	devuelve: number
+	Returns the index of sub last ocurring in s
+lcm	(number d, number e)
+	devuelve: number
+	Returns the greatest common denominator of the two numbers
+</p>
+</div>
+</div>
+<div id="outline-container-org96ae270" class="outline-3">
+<h3 id="org96ae270">length</h3>
+<div class="outline-text-3" id="text-org96ae270">
+<p>
+La longitud de la cadena de caracteres.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">length(value)
+
+</pre>
+</div>
+
+<p>
+length	(array or string o)
+	devuelve: number
+	Returns the length of o
+ln	(number n)
+	devuelve: number
+	Returns the natural log of n
+log	(number n)
+	devuelve: number
+	Returns the base 10 log of n
+match	(string or regexp)
+	devuelve: array of strings
+	Returns an array of the groups matching the given regular expression
+max	(number a, number b)
+	devuelve: number
+	Returns the greater of two numbers
+md5	(string s)
+	devuelve: string
+	Returns the MD5 hash of s
+min	(number a, number b)
+	devuelve: number
+	Returns the smaller of two numbers
+mod	(number a, number b)
+	devuelve: number
+	Returns a modulus b
+multinomial	(one or more numbers)
+	devuelve: number
+	Calculates the multinomial of a series of numbers
+ngram	(string s, number n)
+	devuelve: array of strings
+	Returns an array of the word ngrams of s
+ngramFingerprint	(string s, number n)
+	devuelve: string
+	Returns the n-gram fingerprint of s
+not	(boolean b)
+	devuelve: boolean
+	Returns the opposite of b
+now	(undefined)
+	devuelve: date
+	Returns the current time
+odd	(number d)
+	devuelve: number
+	Rounds the number up to the nearest even integer
+or	(boolean a, boolean b)
+	devuelve: boolean
+	Returns a OR b
+ownText	(Element e)
+	devuelve: String ownText
+	Gets the text owned by this HTML element only; does not get the combined text of all children.
+parseHtml	(string s)
+	devuelve: HTML object
+	Parses a string as HTML
+parseJson	(string s)
+	devuelve: JSON object
+	Parses a string as JSON
+partition	(string s, string or regex frag, optional boolean omitFragment)
+	devuelve: array
+	Returns an array of strings [a,frag,b] where a is the string part before the first occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+phonetic	(string s, string encoding (optional, defaults to 'metaphone3'))
+	devuelve: string
+	Returns the a phonetic encoding of s (optionally indicating which encoding to use')
+pow	(number a, number b)
+	devuelve: number
+	Returns a^b
+quotient	(number numerator, number denominator)
+	devuelve: number
+	Returns the integer portion of a division
+radians	(number d)
+	devuelve: number
+	Converts an angle in degrees to radians
+reinterpret	(string s, string encoder)
+	devuelve: string
+	Returns s reinterpreted thru the given encoder.
+replace	(string s, string or regex f, string r)
+	devuelve: string
+	Returns the string obtained by replacing f with r in s
+replaceChars	(string s, string f, string r)
+	devuelve: string
+	Returns the string obtained by replacing all chars in f with the char in s at that same position
+reverse	(array a)
+	devuelve: array
+	Reverses array a
+round	(number n)
+	devuelve: number
+	Returns n rounded
+rpartition	(string s, string or regex frag, optional boolean omitFragment)
+	devuelve: array
+	Returns an array of strings [a,frag,b] where a is the string part before the last occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+select	(Element e, String s)
+	devuelve: HTML Elements
+	Selects an element from an HTML elementn using selector syntax
+sha1	(string s)
+	devuelve: string
+	Returns the SHA-1 hash of s
+sin	(number d)
+	devuelve: number
+	Returns the trigonometric sine of an angle
+sinh	(number d)
+	devuelve: number
+	Returns the hyperbolic sine of an angle
+slice	(o, number from, optional number to)
+	devuelve: Depends on actual arguments
+	If o is an array, returns o[from, to]. if o is a string, returns o.substring(from, to)
+smartSplit	(string s, optional string sep)
+	devuelve: array
+	Returns the array of strings obtained by splitting s with separator sep. Handles quotes properly. Guesses tab or comma separator if "sep" is not given.
+sort	(array a)
+	devuelve: array
+	Sorts array a
+split	(string s, string or regex sep, optional boolean preserveAllTokens)
+	devuelve: array
+	Returns the array of strings obtained by splitting s with separator sep. If preserveAllTokens is true, then empty segments are preserved.
+splitByCharType	(string s)
+	devuelve: array
+	Returns an array of strings obtained by splitting s grouping consecutive chars by their unicode type
+splitByLengths	(string s, number n, ...)
+	devuelve: array
+	Returns the array of strings obtained by splitting s into substrings with the given lengths
+</p>
+</div>
+</div>
+<div id="outline-container-org5d3e704" class="outline-3">
+<h3 id="org5d3e704">startsWith</h3>
+<div class="outline-text-3" id="text-org5d3e704">
+<p>
+Comprobar si comienza con una cadena de caracteres
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.startsWith("Compra")
+
+</pre>
+</div>
+
+<p>
+O bien, lo contrario:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">not(value.startsWith("Compra"))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfdcd225" class="outline-3">
+<h3 id="orgfdcd225">Todas</h3>
+<div class="outline-text-3" id="text-orgfdcd225">
+<dl class="org-dl">
+<dt><code>startsWith(string s, string sub)</code></dt><dd>devuelve <code>boolean</code>.</dd>
+<dt><code>strip(string s)</code></dt><dd>devuelve <code>string</code>, omitiendo los espacios en blanco iniciales y finales.</dd>
+<dt><code>sum(array a)</code></dt><dd>devuelve <code>number</code>, suma los números de la serie <code>a</code>.</dd>
+<dt><code>tan(number d)</code></dt><dd>devuelve <code>number</code>, la tangente trigonométrica de un ángulo.</dd>
+<dt><code>tahn(number d)</code></dt><dd>devuelve <code>number</code>, la tangente hiperbólica de un valor.</dd>
+<dt><code>toDate(o, boolean month_first / format1, format2, ... (all optional))</code></dt><dd>devuelve <code>date</code>, <code>o</code> convertido en un objeto temporal, se puede dar pistas sobre si el día o el mes se lista primero, o da una lista ordenada de formatos posibles que usan esa sintaxis.</dd>
+<dt><code>toLowercase(string s)</code></dt><dd>devuelve <code>string</code>, <code>s</code> lo convierte a minúsculas.</dd>
+<dt><code>toNumber(o)</code></dt><dd>devuelve <code>number</code>, <code>o</code> convertido en número.</dd>
+<dt><code>toString(o, string format (optional))</code></dt><dd>devuelve <code>string</code>, <code>o</code> lo convierte en cadena de caracteres.</dd>
+<dt><code>toTitlecase(string s)</code></dt><dd>devuelve <code>string</code>, <code>s</code> se convierte en caracteres de titulares, la primera letra en mayúsculas.</dd>
+<dt><code>toUppercase(string s)</code></dt><dd>devuelve <code>string</code>, <code>s</code> convertido en mayúsculas.</dd>
+<dt><code>trim(string s)</code></dt><dd>devuelve <code>string</code> sin espacios en blanco iniciales y finales.</dd>
+<dt><code>type(object o)</code></dt><dd>devuelve <code>string</code>, el tipo de objeto que es <code>o</code>.</dd>
+<dt><code>unescape(string s, string mode ['html','xml','csv','url','javascript'])</code></dt><dd>devuelve <code>string</code>. Desescapa todas las partes escapadas de la cadena según el modo de escape dado.</dd>
+<dt><code>unicode(string s)</code></dt><dd>devuelve <code>string</code>. Devuelve una serie de cadenas que describen cada carácter en <code>s</code> en su notación Unicode completa.</dd>
+<dt><code>unicodeType(string s)</code></dt><dd>devuelve <code>string</code>, una serie de cadenas que describe cada carácter de <code>s</code> en su notación Unicode completa.</dd>
+<dt><code>uniques(array a)</code></dt><dd>devuelve una serie con los duplicados borrados.</dd>
+<dt><code>urlify(string s)</code></dt><dd>devuelve una serie donde reemplaza los espacios en blanco con guión bajo.</dd>
+<dt><code>xor(boolean a, boolean b)</code></dt><dd>devuelve <code>boolean</code>, <a href="https://es.wikipedia.org/wiki/Puerta_XOR">XOR</a> dos valores booleanos.</dd>
+</dl>
+</div>
+<div id="outline-container-orgb233980" class="outline-4">
+<h4 id="orgb233980">Controls</h4>
+<div class="outline-text-4" id="text-orgb233980">
+<dl class="org-dl">
+<dt><code>filter(expression a, variable v, expression test)</code></dt><dd>devuelve una serie. Evalúa la expresión <code>a</code> a una serie. Entonces, por cada elemento de la serie, vincula su valor a la variable <code>v</code>, evalúa la expresión <code>test</code> que debería devolver un booleano. Si el booleano es verdadero, lleva <code>v</code> a la serie resultante.</dd>
+<dt>forEach(expression a, variable v, expression e)</dt><dd>devuelve una serie. Evalúa la expresión <code>a</code> a una serie; entonces para cada elemento de la serie vincula su valor al nombre de la variable <code>v</code>, evalúa la expresión <code>e</code> y lleva el resultado a la serie resultante.</dd>
+<dt>forEachIndex(expression a, variable i, variable v, expression e)</dt><dd>devuelve una serie. Se evalúa la expresión <code>a</code> a una serie. Entonces, por cada elemento de la serie, vincula su índice a la variable <code>i</code> y su valor al nombre de la variable <code>v</code>, evalúa la expresión <code>e</code> y desplaza el resultado a la serie resultante.</dd>
+<dt><code>forNonBlank(expression o, variable v, expression eNonBlank, expression eBlank)</code></dt><dd>la devolución depende de lo evaluado. Se evalúa la expresión <code>o</code>. Si no está en blanco, vincula su valor al nombre de la variable <code>v</code>, evalúa la expresión <code>eNonBlank</code> y devuelve el resultado. De otra manera (si o evalúa a blanco), evalúa la expresión <code>eBlank</code> y devuelve el resultado.</dd>
+<dt><code>forRange(number from, number to, number step, variable v, expression e)</code></dt><dd>devuelve una serie. Se itera sobre la variable <code>v</code> empezando desde <code>from</code>, se incrementa por <code>step</code> cada vez mientras que sea menos que <code>to</code>. Para cada iteración, se evalúa la expresión <code>e</code> y desplaza el resultado a la serie resultante.</dd>
+<dt><code>if(expression o, expression eTrue, expression eFalse)</code></dt><dd>la respuesta depende de los argumentos de la expresión. Se evalúa la expresión <code>o</code>. Si es verdadero, evalúa la expresión <code>eTrue</code> y devuelve el resultado. De otra forma, evalúa la expresión <code>eFalse</code> y devuelve su resultado en vez de eso.</dd>
+<dt>isBlank(expression o)</dt><dd>devuelve boolean si <code>o</code> es un error.</dd>
+<dt>isNonBlank(expression o)</dt><dd>devuelve boolean si <code>o</code> no es nulo y no es una cadena vacía.</dd>
+<dt><code>isNotNull(expression o)</code></dt><dd>devuelve booleano, si <code>o</code> no es <code>null</code>.</dd>
+<dt><code>isNull(expression o)</code></dt><dd>devuelve: boolean. Returns whether o is null.</dd>
+<dt><code>isNumeric(expression o)</code></dt><dd>devuelve: boolean. Returns whether o can represent a number</dd>
+<dt><code>with(expression o, variable v, expression e)</code></dt><dd>Depends on actual arguments. Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7db36a8" class="outline-2">
+<h2 id="org7db36a8">Georeferenciación&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org7db36a8">
+<p>
+Sobre el documento <code>1_entidades_credito</code> se puede extraer la localización en el mapa a través de la <i>API</i> de <i>Google</i>.
+</p>
+
+<p>
+Sobre la columna de dirección se elige la opción <i>Edit column</i> y dentro la opción <i>Add column by fetching URLs</i> y se escribe la expresión:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">"http://maps.googleapis.com/maps/api/geocode/json?&amp;sensor=false&amp;address=" + escape(value, "URL")
+
+</pre>
+</div>
+
+<p>
+Con ello se obtiene la dirección en formato <i>JSON</i> de la <i>API</i> de <i>Google</i>. De ese <i>JSON</i> se extrae la longitud y la latitud activando la opción <i>Edit column</i> y dentro la opción <i>Add column based on this column</i>:
+</p>
+
+<p>
+Obtener la latitud:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.parseJson().results[0].geometry.location.lat
+</pre>
+</div>
+
+<p>
+Obtener la longitud:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.parseJson().results[0].geometry.location.lng
+</pre>
+</div>
+
+<p>
+Para comprobar que la latitud y la longitud de los puntos es correcta, se exporta a <i>CSV</i> y se importa en <i>CartoDB</i> para ver dónde se representan los puntos.
+</p>
+
+<p>
+Si no se representan en España, quizás sea porque la dirección sea y haya más localidades en el mundo con esa dirección. De hecho, se puede comprobar mirando el <i>JSON</i> que hay direcciones con más de un punto.
+</p>
+
+<p>
+Por eso hay que añadir más datos a la dirección: el código postal, la localidad y el país.
+</p>
+
+<p>
+Para crear una columna con el país que no sea <i>España</i> sino <i>Spain</i>, se crea una columna basada en esta columna:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.replace(value,"Spain")
+</pre>
+</div>
+
+<p>
+La dirección está en mayúsculas. <i>Refine</i> contempla tres funciones para tratar con los caracteres de texto:
+</p>
+<ul class="org-ul">
+<li><code>toLowercase()</code>, convierte todos los caracteres en minúsculas.</li>
+<li><code>toUppercase()</code>, convierte todos los caracteres en mayúsculas.</li>
+<li><code>toTitlecase()</code>, la primera letra en mayúsculas.</li>
+</ul>
+
+<p>
+Para tener una dirección más legible, creamos una columna basada en dirección, con el nombre <i>dir</i>, y se emplea la fórmula:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">toTitlecase(value)
+</pre>
+</div>
+
+<p>
+Y entonces se crea una nueva columna de dirección con todos los datos de las otras columnas con esta fórmula:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">cells["dir"].value + "," + " " + cells["cp"].value + "," + " " + cells["localidad"].value + "," + " " + cells["country"].value
+
+</pre>
+</div>
+
+<p>
+Y se repite el proceso de georeferenciación.
+</p>
+</div>
+
+<div id="outline-container-org37b436f" class="outline-3">
+<h3 id="org37b436f">Nominatim</h3>
+<div class="outline-text-3" id="text-org37b436f">
+<p>
+También podemos utilizar cualquier otro servicio de geodatos como Nominatim y obtener longitud y latitud:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">'http://open.mapquestapi.com/nominatim/v1/search.php?' + 'format=json&amp;' + 'q=' + escape(value, 'url')
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc381117" class="outline-2">
+<h2 id="orgc381117">Expresiones regulares&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgc381117">
+<p>
+Se pueden utilizar expresiones regulares en las siguientes funciones de GREL:
+</p>
+<ul class="org-ul">
+<li>replace</li>
+<li>match</li>
+<li>partition</li>
+<li>rpartition</li>
+<li>split</li>
+</ul>
+
+
+<p>
+Por ejemplo, sobre esta estructura:
+</p>
+
+<pre class="example" id="orgffe8ab3">
+- Nombre Apellido (Empresa) Lorem ipsum
+</pre>
+
+<p>
+Con esta expresión:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-grel">value.match(/- ([^\(]*)\s\(([^\)]*)\).*/).join('::')
+</pre>
+</div>
+
+<p>
+A través de la función <code>value.match</code>, utilizamosbusca la expresión de la siguiente manera con <i>RegExp</i>:
+</p>
+<ul class="org-ul">
+<li>Para indicar que se trata de una expresión regular, se escribe entre barras <code>//</code></li>
+<li>El guión y el espacio en blanco se escriben tal cual, aunque éste podría representarse por el símbolo <code>\s</code>.</li>
+<li>Luego, selecciona lo que no empieza por paréntesis <code>([^\(]*)</code></li>
+<li>Y que preceden a un espacio en blanco seguido por una apertura de paréntesis <code>\s\(</code></li>
+<li>Todo junto: <code>([^\(]*)\s\(</code></li>
+<li>Después extrae lo que aparece antes del cierre del paréntesis: <code>([^\)]*)\)</code></li>
+<li>Por último, descarta todos los caracteres hasta el final de la cadena: <code>.*</code></li>
+<li>Finalmente con la función <code>join</code> une las dos coincidencias separándolas con dobles dos puntos.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7cf915c" class="outline-2">
+<h2 id="org7cf915c">Recursos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org7cf915c">
+</div>
+<div id="outline-container-orgb30b65f" class="outline-3">
+<h3 id="orgb30b65f">Recetas y consejos de <i>OpenRefine</i></h3>
+<div class="outline-text-3" id="text-orgb30b65f">
+<p>
+Este blog recoge consejos y recetas sobre Open Refine
+<a href="http://googlerefine.blogspot.com.es/">http://googlerefine.blogspot.com.es/</a> 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga9db07b" class="outline-3">
+<h3 id="orga9db07b">Verificación de fuentes de datos</h3>
+<div class="outline-text-3" id="text-orga9db07b">
+<p>
+Con <i>Refine</i> puedes contrastar tus datos contra cualquier servicio web que soporte la <i>API</i> de verificación de <i>Refine</i>. En la investigación <i>The Dollars for Docs Data Guides 1. Using Google Refine to Clean Messy Data</i>, guía de <i>Refine</i> por Dan Nguyen tal como lo utilizaron <i>ProPublica</i> para su proyecto <i>Dollars for Docs</i> para limpiar datos y verificar las imperfecciones de los datos que habían obtenido.
+</p>
+<ul class="org-ul">
+<li><a href="https://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning">https://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning</a></li>
+<li><a href="https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources">https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources</a></li>
+<li><a href="https://www.twitter.com/dancow">https://www.twitter.com/dancow</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org14be01b" class="outline-3">
+<h3 id="org14be01b">Limpieza de datos con Open Refine</h3>
+<div class="outline-text-3" id="text-org14be01b">
+<p>
+Carolina Cristanchi dedica cuatro artículos de su blog a Open Refine: para novatos, para curiosos, para fans y para quienes quieren llegar a una visualización impecable. Además, está en castellano. 
+</p>
+<ul class="org-ul">
+<li><a href="http://carolinacristanchi.com/category/limpieza-de-datos/">http://carolinacristanchi.com/category/limpieza-de-datos/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org90a91f8" class="outline-3">
+<h3 id="org90a91f8">Lista de expresiones regulares</h3>
+<div class="outline-text-3" id="text-org90a91f8">
+<p>
+De la web de ayuda de LibreOffice, <a href="https://help.libreoffice.org/Common/List_of_Regular_Expressions/es">https://help.libreoffice.org/Common/List_of_Regular_Expressions/es</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org18dea92" class="outline-3">
+<h3 id="org18dea92">Recursos externos de OpenRefine</h3>
+<div class="outline-text-3" id="text-org18dea92">
+<p>
+Listado de turoriales y recursos desarrollados fuera del wiki de OpenRefine <a href="https://github.com/OpenRefine/OpenRefine/wiki/External-Resources">https://github.com/OpenRefine/OpenRefine/wiki/External-Resources</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org845bacd" class="outline-3">
+<h3 id="org845bacd">Reconcilia tus metadatos</h3>
+<div class="outline-text-3" id="text-org845bacd">
+<p>
+De Free Your Metadata, cómo reconciliar tus metadatos:
+ <a href="http://freeyourmetadata.org/reconciliation/">http://freeyourmetadata.org/reconciliation/</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org85c82cd" class="outline-3">
+<h3 id="org85c82cd">Utiliza Refine para manipular <i>HTML</i></h3>
+<div class="outline-text-3" id="text-org85c82cd">
+<p>
+<i>Using Refine to manipulate HTML</i> es una guía interesante sobre el uso de Refine para transformación de texto HTML.
+</p>
+
+<p>
+<a href="http://www.meanboyfriend.com/overdue_ideas/2014/12/using-openrefine-to-manipulate-html/">http://www.meanboyfriend.com/overdue_ideas/2014/12/using-openrefine-to-manipulate-html/</a> 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org93d7898" class="outline-3">
+<h3 id="org93d7898">How to clean a converted PDF using Refine</h3>
+<div class="outline-text-3" id="text-org93d7898">
+<p>
+Otro uso más de Refine: limpiar el texto extraído de un PDF:
+</p>
+<ul class="org-ul">
+<li><a href="http://onlinejournalismblog.com/2015/04/07/how-to-clean-a-converted-pdf-using-open-refine/">http://onlinejournalismblog.com/2015/04/07/how-to-clean-a-converted-pdf-using-open-refine/</a> - <a href="http://ionmates.com/cleaning-data-open-refine/">http://ionmates.com/cleaning-data-open-refine/</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org68aee7b" class="outline-3">
+<h3 id="org68aee7b">Limpiando Datos con Google Refine</h3>
+<div class="outline-text-3" id="text-org68aee7b">
+<p>
+Taller impartido por David Cabo sobre Google Refine, una herramienta gratuita de Google que permite organizar y transformar datos, ya sea de la web o de las propias bases de datos.
+</p>
+
+<p>
+Actividad en el marco de la Segunda sesión formativa de periodismo de datos: Análisis y tratamiento de datos.
+</p>
+
+
+<p>
+Accede a la visualización desde la siguiente dirección web: 
+<a href="http://medialab-prado.es/article/limpiando_datos_google_refine">http://medialab-prado.es/article/limpiando_datos_google_refine</a>
+<a href="http://medialab-prado.es/mmedia/8/8502/8502.flv/download">http://medialab-prado.es/mmedia/8/8502/8502.flv/download</a> 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org249aa76" class="outline-3">
+<h3 id="org249aa76">Introducción a las Expresiones Regulares con Open Refine</h3>
+<div class="outline-text-3" id="text-org249aa76">
+<p>
+Taller de Introducción a las Expresiones Regulares con Open Refine impartido por Juan Elosua en la jornada decimoséptima del Grupo de Periodismo de Datos de Medialab-Prado. Las expresiones regulares las podemos utilizar en nuestra vida diaria, bien para buscar un archivo, para cambiar varios de nombre o para trabajar con hojas de cálculo.
+</p>
+
+
+<p>
+Accede a la visualización desde la siguiente dirección web: 
+<a href="http://medialab-prado.es/mmedia/13534/view">http://medialab-prado.es/mmedia/13534/view</a>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org7fc4d8f" class="outline-3">
+<h3 id="org7fc4d8f">Introduction to Open Refine:</h3>
+<div class="outline-text-3" id="text-org7fc4d8f">
+<p>
+Explora los datos. OpenRefine puede ayudarte a explorar grandes conjuntos de datos inconsistentes o sucios, limpiar o transformar datos o reconciliar y encontrar ddatos
+</p>
+
+
+<p>
+Accede a la visualización desde la siguiente dirección web: 
+</p>
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=B70J_H_zAWM">https://www.youtube.com/watch?feature=player_embedded&amp;v=B70J_H_zAWM</a></li>
+<li><a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=cO8NVCs_Ba0">https://www.youtube.com/watch?feature=player_embedded&amp;v=cO8NVCs_Ba0</a></li>
+<li><a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=5tsyz3ibYzk">https://www.youtube.com/watch?feature=player_embedded&amp;v=5tsyz3ibYzk</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3889cde" class="outline-3">
+<h3 id="org3889cde">Refine por Freeyourmetadata</h3>
+<div class="outline-text-3" id="text-org3889cde">
+<p>
+por Sydney Powerhouse Museum No importa cuanto esfuerzo tengas que poner para conseguir unos datos limpios, siempre vas a tener que hacer alguna limpieza de los mismos. Con Refine podemos hacer algunas partes del proceso de manera semi automática.
+</p>
+
+<p>
+Accede a la visualización desde la siguiente dirección web: 
+</p>
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=NnCA1dnCT-c">https://www.youtube.com/watch?feature=player_embedded&amp;v=NnCA1dnCT-c</a></li>
+<li><a href="http://freeyourmetadata.org/cleanup/">http://freeyourmetadata.org/cleanup/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga0a5566" class="outline-3">
+<h3 id="orga0a5566">Google Refine para el periodismo de investigación</h3>
+<div class="outline-text-3" id="text-orga0a5566">
+<p>
+Dan Nguyen y Joe Kokenge de ProPublica realizan una introducción a una de las mejores herramientas para periodistas de cualquier nivel técnico. Aprenderás las características básicas de forma muy potente con algunos ejemplos de periodismo de datos. No require conocimientos previos de estadística, programación o  Excel.
+</p>
+
+<p>
+Hay un vídeo y un tutorial de cómo han usado Refine para la premiada investigación sobre ProPublica: 
+</p>
+
+<p>
+<a href="https://dannguyen.github.io/NICAR-Google-Refine/">https://dannguyen.github.io/NICAR-Google-Refine/</a> 
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgbe30c13" class="outline-3">
+<h3 id="orgbe30c13">Bibliografía</h3>
+<div class="outline-text-3" id="text-orgbe30c13">
+<ul class="org-ul">
+<li>Bradshaw, Paul. (2011) Cleaning data using google refine. A quick guide. Web: Onlinejournalism. URL: <a href="http://onlinejournalismblog.com/2011/07/05/cleaning-data-using-google-refine-a-quick-guide/">http://onlinejournalismblog.com/2011/07/05/cleaning-data-using-google-refine-a-quick-guide/</a></li>
+
+<li>Juan Elosua Tomé, (2014). Reg[Ee]xp? <a href="https://docs.google.com/presentation/d/1EmpM_h9YKwgwyv0NntCVQwmxFKZy36RAXjBTmf364rQ">https://docs.google.com/presentation/d/1EmpM_h9YKwgwyv0NntCVQwmxFKZy36RAXjBTmf364rQ</a></li>
+
+<li>Nguyen, Dan &amp; Kokenge, Joe. (2012) Google Refine for Investigative Journalism. URL: <a href="https://dannguyen.github.io/NICAR-Google-Refine/">https://dannguyen.github.io/NICAR-Google-Refine/</a></li>
+
+<li>OpenRefine, (2015) OpenRefine Wiki, <a href="https://github.com/OpenRefine/OpenRefine/wiki">https://github.com/OpenRefine/OpenRefine/wiki</a></li>
+
+<li>Hirst, Tony. (2013) Analysing UK Lobbying Data Using OpenRefine. Web: <a href="http://schoolofdata.org/2013/06/04/analysing-uk-lobbying-data-using-openrefine/">http://schoolofdata.org/2013/06/04/analysing-uk-lobbying-data-using-openrefine/</a></li>
+
+<li>Padilla, Thomas. Getting Started with OpenRefine. Web: <a href="http://thomaspadilla.org/dataprep/">http://thomaspadilla.org/dataprep/</a></li>
+
+<li>Verborgh, R &amp; De Wilde, M. (2013) Using OpenRefine. Packt Publishing</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdc172fc" class="outline-2">
+<h2 id="orgdc172fc">Dudas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgdc172fc">
+<ul class="org-ul">
+<li>sort anidados?</li>
+<li>cluster que no encuentra obra</li>
+<li>cambiar en todas las columnas un value.replace</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-taller-de-limpieza-y-análisis-de-datos" class="outline-2">
+<h2 id="taller-de-limpieza-y-análisis-de-datos">Taller de limpieza y análisis de datos</h2>
+<div class="outline-text-2" id="text-taller-de-limpieza-y-análisis-de-datos">
+<p>
+Un conjunto de técnicas y consejos básicos para periodistas de datos que
+se enfrentan por primera vez a <i>datasets</i> sin estructurar.
+</p>
+
+<p>
+Vamos a trabajar con un caso real --Las tarjetas <i>black</i> de Cajamadrid--
+modificado para poder aplicar varias técnicas de limpieza.
+</p>
+
+<p>
+Es bastante común encontrarse con <i>datasets</i> fragmentados, mal
+formateados, con errores... Para poder realizar un buen analisis, antes
+tenemos que <b>unificar</b>, <b>limpiar</b> y <b>estructurar</b>.
+</p>
+
+<p>
+En este caso tenemos tres archivos Excel:
+</p>
+<ul class="org-ul">
+<li><code>tarjetas_01.xlsx</code></li>
+<li><code>tarjetas_02.xlsx</code></li>
+<li><code>tarjetas_03.xlsx</code></li>
+</ul>
+
+<p>
+que contienen los registros de las tarjetas <i>black</i> de los ejecutivos de Cajamadrid.
+</p>
+
+<blockquote>
+<p>
+Tenemos que unir los tres. Cada archivo tiene varias sub-hojas, lo que
+dificulta un poco la tarea.
+</p>
+</blockquote>
+
+<p>
+Los archivos están en
+<a href="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/datasets/hoja_calculo_tarjetas_black/"><code>/datasets/hoja_calculo_tarjetas_black/</code></a>.
+</p>
+
+<p>
+En este directorio hay varias carpetas numeradas. Si te pierdes en
+alguno de los pasos, puedes ir a la <a href="https://github.com/rafadelascuevas/limpieza-analisis-basico/tree/master/datasets">carpeta siguiente</a> y <a href="https://github.com/rafadelascuevas/limpieza-analisis-basico/tree/master/datasets/hoja_calculo_tarjetas_black/04_xls_limpio">coger el dataset
+ya tratado</a>.
+</p>
+
+<p>
+Necesitaremos:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://accounts.google.com">Cuenta de Google</a></li>
+<li><a href="http://openrefine.org/">Open Refine</a></li>
+</ul>
+
+<p>
+Descargas opcionales:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://www.talend.com/download/talend-open-studio">Talend Open Studio for Big Data</a></li>
+<li><a href="https://products.office.com/es-es/excel">Microsoft Excel</a> (de pago)</li>
+<li><a href="https://www.postgresql.org/download/">PostgreSQL</a></li>
+</ul>
+</div>
+
+
+<div id="outline-container-unificar" class="outline-3">
+<h3 id="unificar">1. Unificar</h3>
+<div class="outline-text-3" id="text-unificar">
+</div>
+
+<div id="outline-container-hoja-de-cálculo" class="outline-4">
+<h4 id="hoja-de-cálculo">1.1. Hoja de cálculo</h4>
+<div class="outline-text-4" id="text-hoja-de-cálculo">
+<p>
+Bajamos el archivo
+   <code>/datasets/hoja_calculo_tarjetas_black/01_originales/tarjetas_01.xlsx</code>
+   y lo subimos a <a href="https://www.google.com/intl/es_es/drive/">Google Drive</a>.
+</p>
+
+<p>
+Una vez en Drive, lo abrimos con <b>Google Spreadsheets</b>
+</p>
+
+
+<div id="orga7468eb" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/spreadsheet-icon.png" alt="spreadsheet-icon.png" />
+</p>
+</div>
+
+<blockquote>
+<p>
+¡Problema! Hay varias sub-hojas.
+</p>
+</blockquote>
+
+<p>
+Para analizar los datos cómodamente necesitamos una sola tabla que
+   contenga todos los datos. Google Spreadsheets no tiene opción de juntar todas las sub-hojas. Pero con
+   un poco de <b>Javascript</b> podemos sacar el contenido en varios archivos
+   csv y luego juntarlos.
+</p>
+
+<ul class="org-ul">
+<li>Vamos a <b>Herramientas --&gt; Editor de Secuencias de comandos...</b></li>
+
+<li>Le damos nombre al script, por ejemplo "hojas\_a\_csv". Borramos todo
+e insertamos el siguiente código, que nos servirá para guardar todas
+las hojas en CSV.</li>
+</ul>
+
+<pre class="example" id="orgda514b0">
+    function onOpen() {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var csvMenuEntries = [{name: "export as csv files", functionName: "saveAsCSV"}];
+      ss.addMenu("csv", csvMenuEntries);
+    };
+
+    function saveAsCSV() {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var sheets = ss.getSheets();
+      // crea un directorio con el nombre de la hoja
+      var folder = DriveApp.createFolder(ss.getName().toLowerCase().replace(/ /g,'_') + '_csv_' + new Date().getTime());
+      for (var i = 0 ; i &lt; sheets.length ; i++) {
+        var sheet = sheets[i];
+        // añade la extension ".csv" al nombre de la hoja
+        fileName = sheet.getName() + ".csv";
+        // convierte todos los datos disponibles de la hoja a formato csv
+        var csvFile = convertRangeToCsvFile_(fileName, sheet);
+        // crea un archivo con el nombre y los datos csv
+        folder.createFile(fileName, csvFile);
+      }
+      Browser.msgBox('Files are waiting in a folder named ' + folder.getName());
+    }
+
+    function convertRangeToCsvFile_(csvFileName, sheet) {
+      // toma el rango disponible de datos en la hoha de calculo
+      var activeRange = sheet.getDataRange();
+      try {
+        var data = activeRange.getValues();
+        var csvFile = undefined;
+
+        // hace un loop en el rango de los datos y crea un string con los datos csv
+        if (data.length &gt; 1) {
+          var csv = "";
+          for (var row = 0; row &lt; data.length; row++) {
+            for (var col = 0; col &lt; data[row].length; col++) {
+              if (data[row][col].toString().indexOf(",") != -1) {
+                data[row][col] = "\"" + data[row][col] + "\"";
+              }
+            }
+
+            // une las columnas de cada fila
+            // añade retorno de carro al final de cada fila, excepto la ultima
+            if (row &lt; data.length-1) {
+              csv += data[row].join(",") + "\r\n";
+            }
+            else {
+              csv += data[row];
+            }
+          }
+          csvFile = csv;
+        }
+        return csvFile;
+      }
+      catch(err) {
+        Logger.log(err);
+        Browser.msgBox(err);
+      }
+    }
+</pre>
+
+<ul class="org-ul">
+<li>Le damos a <b>Guardar</b> y ejecutamos la función <b>onOpen</b></li>
+
+<li>Una vez ejecutado, volvemos a la pestaña de la hoja de cálculo.
+Debería aparecer un nuevo menú llamado <b>csv</b>.</li>
+
+<li>Seleccionamos <b>csv--&gt;Export as csv files</b>. Puede tardar un poco. Un
+pop up nos avisa del destino de los archivos: una carpeta en el
+directorio raíz de Google Drive.</li>
+</ul>
+
+<p>
+¡Bien! Ya tenemos nuestros archivos csv.
+</p>
+
+<ul class="org-ul">
+<li>Vamos a la carpeta de salida en Drive, seleccionamos y botón derecho
+<b>--&gt; Descargar</b>. Nos sandrá un zip con todos los archivos.</li>
+
+<li>Descompriminos en nuestro escritorio y le damos un nombre más
+reconocible a la carpeta.</li>
+</ul>
+
+<p>
+Repetir el proceso con los archivos <code>tarjetas_02.xlsx</code> y
+<code>tarjetas_03.xlsx</code>.
+</p>
+
+<p>
+Tenemos 64 archivos <code>.csv</code> Vamos a unirlos con <b>Talend Open Studio for
+Big Data</b>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-talend-open-studio-for-big-data" class="outline-4">
+<h4 id="talend-open-studio-for-big-data">1.2. Talend Open Studio for Big Data</h4>
+<div class="outline-text-4" id="text-talend-open-studio-for-big-data">
+<p>
+Talend es una herramienta muy potente que permite trabajar con datos a
+través de una interfaz gráfica, sin tener que escribir código. Pero
+tiene una curva de aprendizaje bastante pronunciada y la cantidad de
+opciones puede ser abrumadora.
+</p>
+
+<p>
+Utiliza <b>componentes</b> que se van añadiendo a una mesa de trabajo y se
+conectan entre sí a modo de diagrama. Esto hace que sea muy flexible a
+la hora de afrontar un problema. Podemos crear nuestros propios
+<b>trabajos</b> personalizados.
+</p>
+
+<p>
+En este caso vamos a crear un <b>trabajo</b> que nos permita extraer todos
+los archivos csv de un directorio y fundirlos en uno.
+</p>
+
+<ul class="org-ul">
+<li>Abrir Talend <b>--&gt; Create a new project</b></li>
+</ul>
+
+
+<div id="org57bf6dd" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_01.png" alt="talend_01.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li><b>Create a new... --&gt; Job</b> (o "Trabajo")</li>
+</ul>
+
+
+<div id="orgdd7ffa8" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_02.png" alt="talend_02.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>En la pestaña derecha, <b>Palette</b> buscar el componente <b>tFileList</b>.
+Arrastrarlo a la mesa de trabajo.</li>
+</ul>
+
+
+<div id="org42fd6e6" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_03.png" alt="talend_03.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Hacer lo mismo con los componentes <b>tFileInputDelimited</b>, <b>tUnite</b>,
+<b>tLogRow</b> y <b>tFileOutputDelimited</b></li>
+
+<li>Conectar de izquierda a derecha todos los componentes. Botón derecho
+en el primer componente <b>--&gt;Fila--&gt;Iterate</b> y pinchamos con el botón
+izquierdo en el siguiente componente.</li>
+</ul>
+
+<p>
+<img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_05.png" alt="talend_05.png" />
+<img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_06.png" alt="talend_06.png" />
+</p>
+
+<p>
+Vamos a definir las opciones de entrada y salida de nuestros csv.
+</p>
+
+<ul class="org-ul">
+<li>Pinchar en <b>tFileList\_1</b> y a continuación, abajo, en la pestaña
+<b>Component</b>. Seleccionar el directorio donde tenemos todos los
+archivos csv.</li>
+</ul>
+
+
+<div id="org35e62b3" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_07.png" alt="talend_07.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Pinchar en <b>tFileInputDelimited\_1</b> y a continuación, abajo, en la
+pestaña <b>Component</b>. En <b>Nombre de Archivo/flujo</b> pulsamos
+<b>Ctrl-Espacio</b> y en el desplegable seleccionamos
+<b>tFileList.CURRENT\_FILEPATH</b></li>
+</ul>
+
+
+<div id="org1ae2ae1" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_08.png" alt="talend_08.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Como <b>Separador de Campo</b> ponemos <b>","</b></li>
+
+<li>Marcamos la casilla <b>opciones csv</b>. Es importante, porque si no
+definimos bien los separadores de fila y columna de nuestros csv, se
+pueden perder datos.</li>
+
+<li>Vamos a definir las columnas que tienen nuestros archivos csv.
+Pinchamos en <b>Edit Schema</b> y en el signo <b>+</b> 9 veces para agregar 9
+columnas. Nombramos cada columna con el nombre que tienen en los csv.
+en <b>Tipo</b> (de dato) dejamos todos como <b>string</b>. Al aceptar nos
+preguntará si propagamos los cambios al resto de componentes. Le
+decimos que sí.</li>
+</ul>
+
+
+<div id="org44a7514" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_09.png" alt="talend_09.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Pinchar en <b>tLogRow\_1</b> y a continuación, abajo, en la pestaña
+<b>Component</b>. En <b>Mode</b> Seleccionar <b>Table</b>.</li>
+</ul>
+
+
+<div id="orgee15367" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_10.png" alt="talend_10.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Pinchar en <b>tFileOutputDelimited\_1</b> y a continuación, abajo, en la
+pestaña <b>Component</b>. Como <b>Separador de Campo</b> ponemos <b>";"</b>. Hay que
+fijarse en <b>Nombre de Archivo</b>. En esa ruta se guardará nuestro
+archivo csv resultante. Por defecto se llamará <code>out.csv</code>.</li>
+</ul>
+
+
+<div id="org4d89933" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_11.png" alt="talend_11.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Finalmente vamos a la pestaña <b>Run</b> y ejecutamos el trabajo con el
+botón <b>Run</b></li>
+</ul>
+
+<p>
+<img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_12.png" alt="talend_12.png" />
+Ya tenemos nuestro archivo único, <code>out.csv</code>. Vamos a limpiarlo con <b>Open
+Refine</b>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-limpiar" class="outline-3">
+<h3 id="limpiar">2. Limpiar</h3>
+<div class="outline-text-3" id="text-limpiar">
+</div>
+
+<div id="outline-container-open-refine" class="outline-4">
+<h4 id="open-refine">2.1. Open Refine</h4>
+<div class="outline-text-4" id="text-open-refine">
+<p>
+Al ejecutar Refine no se abre ninguna ventana. Lo que hace Refine es
+montar un servidor local en el puerto 3333. Así que vamos a abrir una
+pestaña del navegador con la dirección <code>http://127.0.0.1:3333/</code>.
+</p>
+
+
+<div id="orgf3aee57" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_01.png" alt="refine_01.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Vamos a la pestaña <b>Create Project</b> y seleccionamos nuestro archivo,
+<code>out.csv</code>.</li>
+</ul>
+
+
+<div id="org11e3e20" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_02.png" alt="refine_02.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Refine previsualiza la tabla. Tenemos que seleccionar la codificación
+de caracteres: <b>UTF-8</b>. Si tenemos un falso encabezamiento de
+columnas, hay que seleccionar <b>Ignore first 1 line(s) at beginning of
+file</b>.</li>
+</ul>
+
+<p>
+<img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_022.png" alt="refine_022.png" />
+Para poder analizar nuestra tabla necesitamos que los <b>elementos que se
+repiten</b> (por ejemplo, todas las entradas con un nombre y apellidos)
+sean <b>exactamente iguales</b>. En nuestra tabla hay espacios de más que no
+vemos, o puntos al final de un nombre. Estos caracteres extra harán que
+más tarde, al agrupar los elementos para su análisis, aparezcan grupos
+distintos con entradas que deberían ser iguales.
+</p>
+
+<ul class="org-ul">
+<li>Vamos a comprobarlo. Vamos a la columna <b>NOMBRE</b>. Pinchamos en el
+encabezamiento y seleccionamos <b>Facet --&gt; Text facet</b>.</li>
+</ul>
+
+<p>
+<img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_023.png" alt="refine_023.png" />
+A la izquierda aparecen todas las entradas <b>distintas</b> de la columna
+<b>NOMBRE</b>. Al lado de cada una aparece el número de filas que tiene cada
+una. Por ejemplo: Hay 448 filas con el <b>NOMBRE</b> <b>"ACOSTA CUBERO, JOSE"</b>.
+</p>
+
+<p>
+Podemos ver que, por ejemplo <b>"CAFRANGA CAVESTANY, MARIA CARMEN"</b>
+aparece dos veces. No debería ser así, vamos a arreglarlo.
+</p>
+
+<p>
+Además, tenemos una columna con dos tipos de entradas juntas: <b>Nombre de
+comercio</b> y <b>Actividad</b>. Para saber, por ejemplo, cuanto dinero gastaba
+un asesor en un comercio determinado, tenemos que separar esos
+conceptos.
+</p>
+
+<p>
+¡Empecemos!
+</p>
+
+<ul class="org-ul">
+<li>Lo primero es limpiar las celdas de espacios no deseados. Vamos a la
+columna <b>NOMBRE</b>. Pinchamos en el encabezamiento y seleccionamos
+<b>Edit cells --&gt; Common transforms --&gt; Trim leading and trailing
+whitespace</b>. Repetimos el proceso en todas las columnas.</li>
+</ul>
+
+
+<div id="org1024571" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_03.png" alt="refine_03.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Ahora vamos a editar masivamente los nombres en la columna <b>NOMBRE</b>
+para unificar los que no son iguales. Para ello usaremos <b>Edit cells
+--&gt; Cluster and edit</b></li>
+</ul>
+
+
+<div id="org4230fc9" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_04.png" alt="refine_04.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Cluster &amp; edit reconoce los patrones de caracteres parecidos y
+sugiere fusiones. Comprobamos que las sugerencias son correctas.
+Pinchamos en <b>Select all</b> y a continuación en <b>Merge selected &amp;
+re-cluster</b>. Si todo va bien, en un segundo reconocimiento todo está
+limpio. Refine utiliza distintos métodos de reconocimiento de
+patrones. El que viene por defecto nos sirve en este caso, pero a
+veces el patrón es más complejo.</li>
+
+<li>Ahora vamos a separar esa columna con dos tipos de entradas juntas.
+Pinchamos en el encabezado <b>Nombre\_Comercio\_y\_Actividad</b> y
+seleccionamos <b>Edit column --&gt; Split into several columns</b></li>
+</ul>
+
+
+<div id="orgaf43550" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_05.png" alt="refine_05.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Tenemos varias opciones para separar la columna. En nuestro caso, hay
+un patrón de caracteres que separa un concepto de otro: tres guiones
+bajos. Así que vamos a poner tres guiones bajos en el campo
+<b>Separator</b>.</li>
+</ul>
+
+
+<div id="org1cc5add" class="figure">
+<p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_06.png" alt="refine_06.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Podemos aplicar más transformaciones. Por ejemplo, separar las
+columnas de los apellidos y el nombre por la coma. Alternar el nombre
+de las columnas, sustituir caracteres de forma masiva...</li>
+
+<li>Cuando nuestra tabla esté limpia, exportamos. Vamos a guardar en
+formato Excel para poder trabajar indistintamente en Excel o Google
+Spreadsheets. <b>Export --&gt; Excel</b></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-analizar" class="outline-3">
+<h3 id="analizar">3. Analizar</h3>
+<div class="outline-text-3" id="text-analizar">
+</div>
+
+<div id="outline-container-estructurar" class="outline-4">
+<h4 id="estructurar">3.1. Estructurar</h4>
+<div class="outline-text-4" id="text-estructurar">
+<p>
+Para realizar un buen análisis es muy importante que los datos estén
+bien estratificados.
+</p>
+
+<p>
+Lo principal: "Pensar en vertical". Cada columna aporta una capa de
+conocimiento. Cuanto más concreto, mejor.
+</p>
+
+<p>
+Por ejemplo: Tenemos una columna con la fecha completa de cada
+transacción. Pero si queremos un análisis más profundo, podemos separar
+esa columna en días, meses y años.
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="hoja-de-cálculo-1"></a>Hoja de cálculo<br />
+<div class="outline-text-5" id="text-hoja-de-cálculo-1">
+<p>
+Volvemos a Google Drive. Subimos nuestro archivo limpio y lo abrimos con
+Spreadsheets.
+</p>
+
+<ul class="org-ul">
+<li>Buena práctica 1: Añadimos al nombre de nuestro archivo
+<b><b>\_ORIGINAL</b></b> y creamos una copia con el añadido <b><b>\_TRABAJO</b></b>. Así,
+si comentemos errores podemos volver a la hoja original.</li>
+
+<li>Buena práctica 2: Añadimos una columna con el encabezado <b>ID</b>.
+Ponemos un 1 en la primera fila, y rellenamos la serie
+automáticamente.</li>
+
+<li>Vamos a crear columnas con rangos de fecha que nos serán útiles para
+analizar los días, meses y horas en los que se hacía mayor uso de las
+tarjetas. Creamos columnas llamadas <b>DIA</b>, <b>MES</b>, <b>AÑO</b> y <b>RANGO
+HORA</b></li>
+
+<li>La función <code>=TEXT</code> (o <code>=TEXTO</code> si estamos en Excel y tenemos una
+versión en castellano) convierne un número a texto con un formato
+predefinido. En la columna <b>MES</b> escribimos <code>=TEXT(B2;"MMMM")</code>.
+Estamos diciendo que tome el valor de la celda B2 y de ahí pase el
+mes a texto, en formato largo: "MMMM".</li>
+
+<li>Hacemos algo similar en la columna <b>AÑO</b>: <code>=TEXT(B2;"AAAA")</code></li>
+
+<li>Y en la columna <b>DIA</b>: <code>=TEXT(B2;"DD")</code></li>
+
+<li>Además vamos a sacar las horas. Pero los datos no están en formato de
+hora <i>hh:mm:ss</i> por lo que tenemos que sustituir el punto <code>.</code> por dos
+puntos <code>:</code>. Seleccionamos la columna entera y damos a <b>Editar --&gt;
+Buscar y sustituir</b>.</li>
+
+<li>Ahora sí, En la columna <b>RANGO HORA</b> escribimos: <code>=TEXT(F2;"hh")</code></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-preguntar-a-los-datos" class="outline-4">
+<h4 id="preguntar-a-los-datos">3.2. Preguntar a los datos</h4>
+<div class="outline-text-4" id="text-preguntar-a-los-datos">
+<ul class="org-ul">
+<li>Para <i>interrogar</i> a los datos usamos tablas dinámicas. Hay que
+empezar por lo general (¿cuanto dinero se han gastado en total?,
+¿quién ha gastado más dinero?) a lo concreto (¿Quién hizo el cargo
+más grande? ¿En qué días se usaron más las tarjetas?)</li>
+</ul>
+</div>
+
+<ul class="org-ul">
+<li><a id="hoja-de-cálculo-2"></a>Hoja de cálculo<br />
+<div class="outline-text-5" id="text-hoja-de-cálculo-2">
+</div>
+
+<ul class="org-ul">
+<li><a id="tablas-dinámicas"></a>Tablas dinámicas<br />
+<div class="outline-text-6" id="text-tablas-dinámicas">
+<ul class="org-ul">
+<li>Colocamos en cursor en la casilla <b>A1</b>. <b>Vamos al menú Datos --&gt;
+Tabla dinámica</b></li>
+
+<li>En el apartado <b>Valores</b> seleccionamos <b>IMPORTE</b>. A continuación,
+vamos probando conjuntos de datos en los apartados <b>Filas</b> y
+<b>columnas</b></li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+
+<li><a id="base-de-datos"></a>Base de datos<br />
+<div class="outline-text-5" id="text-base-de-datos">
+<p>
+Excel tiene un límite de 1,048,576 filas y 16,384 columnas. Para
+analizar bases de datos grandes tenemos que utilizar herramientas de
+tratamiento de bases de datos. Existen varios lenguajes de bases de
+datos relacionales. El más extendido es SQL, así que vamos a utilizar
+una herramienta open source gratuita:
+<a href="https://www.postgresql.org/download/">PostgreSQL</a>.
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="postgresql"></a>PostgreSQL<br />
+<div class="outline-text-6" id="text-postgresql">
+<p>
+SQL es un lenguaje declarativo para hacer consultas y modificaciones en
+bases de datos. Si tenemos tiempo, practicaremos unas <i>queries</i> a la
+base de datos del ministerio de Agricultura que agrupa todas las playas
+de España. El archivo está en <code>datasets/sql_playas/playas.sql</code>
+</p>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2016-07-16 Sat 00:30</p>
+<p class="author">Author: Adolfo Antón Bravo</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,29 +1,18 @@
+# -*- coding: utf-8; org-src-preserve-indentation: false; org-edit-src-content: 0; -*-
+#+STARTUP: noindent content inlineimages
 #+CATEGORY: manual, ddj
 #+TAGS: manual, análisis, limpieza, visualización, ddj, periodismo
 #+DESCRIPTION: Tutorial de Openrefine
 #+TITLE: OpenRefine para todxs
-#+DATE: [2016-07-16 sáb 00:30]
+#+DATE: <2016-07-16 sáb 00:30>
 #+AUTHOR: Adolfo Antón Bravo
 #+EMAIL: adolflow@infotics.es
-#+OPTIONS: todo:nil pri:nil tags:nil ^:nil 
-
-#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
-#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
-#+OPTIONS: reveal_width:1200 reveal_height:800
-#+OPTIONS: toc:nil
-#+REVEAL_MARGIN: 0.1
-#+REVEAL_MIN_SCALE: 0.5
-#+REVEAL_MAX_SCALE: 2.5
-#+REVEAL_TRANS: linear
-#+REVEAL_THEME: sky
-#+REVEAL_HLEVEL: 2
-#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Org-Reveal Introduction.">
-#+REVEAL_POSTAMBLE: <p> Creado por adolflow. </p>
-#+REVEAL_PLUGINS: (highlight markdown notes)
-#+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
-#+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
-
-
+#+OPTIONS:   H:3 num:nil toc:nil  @:nil ::nil |:nil ^:nil -:nil <:nil
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc
+#+OPTIONS: author:t text:t email:nil creator:nil timestamp:nil
+#+SEQ_TODO: TODO(t!) STARTED(s!) WAITING(w!) APPT(a!) | DONE(d!) CANCELLED(c!) DEFERRED(f!)
+#+export_file_name: index
+#+SETUPFILE: https://raw.githubusercontent.com/fniessen/org-html-themes/master/org/theme-readtheorg.setup
 
 - Herramienta creada por /Google/ para el manejo de bases de datos.
 - Permite limpiar bases de datos, exportarlas en diferentes formatos, y arreglar y manejar las bases para un mejor uso.
@@ -31,66 +20,6 @@
 - Se trata de un proyecto abierto con licencia /BSD/ https://github.com/OpenRefine
 - Aunque el proyecto se llama /OpenRefine/, nos referiremos a él como /Refine/
 
-
-* Índice                                                                :TOC:
-- [[#descarga][Descarga]]
-- [[#extensiones][Extensiones]]
-- [[#primeros-pasos][Primeros pasos]]
-- [[#abrir-un-proyecto][Abrir un proyecto]]
-  - [[#language-settings][Language Settings]]
-  - [[#import-project][Import Project]]
-  - [[#open-proyect][Open Proyect]]
-  - [[#create-project][Create project]]
-- [[#records-y-rows][Records y rows]]
-  - [[#crear-registros][Crear registros]]
-- [[#filas][Filas]]
-- [[#facetas][Facetas]]
-- [[#buscar][Buscar]]
-- [[#búsqueda-de-valores-duplicados][Búsqueda de valores duplicados]]
-- [[#borrar-celdas-vacías-de-una-columna][Borrar celdas vacías de una columna]]
-- [[#celdas-vacías][Celdas vacías]]
-- [[#transformar-datos][Transformar datos]]
-  - [[#transformar-a-numérico][Transformar a numérico]]
-  - [[#transformaciones][Transformaciones]]
-  - [[#eliminar-registros-seleccionados][Eliminar registros seleccionados]]
-  - [[#clustering][Clustering]]
-  - [[#limpiar-valores-de-columna-numérica][Limpiar valores de columna numérica]]
-  - [[#limpiar-fechas][Limpiar fechas]]
-  - [[#partirunir-columnas][Partir/Unir columnas]]
-  - [[#añadir-nuevas-columnas][Añadir nuevas columnas]]
-  - [[#jugando-con-value][Jugando con =value=]]
-- [[#variables][Variables]]
-  - [[#cell][cell]]
-  - [[#value][value]]
-  - [[#row][row]]
-  - [[#cells][cells]]
-  - [[#rowindex][rowIndex]]
-- [[#más-funciones][Más funciones]]
-  - [[#funciones-booleanas][Funciones Booleanas]]
-  - [[#funciones-de-cadenas-de-caracteres-literales-o-string][Funciones de cadenas de caracteres, literales o /string/]]
-  - [[#abs][abs]]
-  - [[#length][length]]
-  - [[#startswith][startsWith]]
-  - [[#todas][Todas]]
-- [[#georeferenciación][Georeferenciación]]
-  - [[#nominatim][Nominatim]]
-- [[#expresiones-regulares][Expresiones regulares]]
-- [[#recursos][Recursos]]
-  - [[#recetas-y-consejos-de-openrefine][Recetas y consejos de /OpenRefine/]]
-  - [[#verificación-de-fuentes-de-datos][Verificación de fuentes de datos]]
-  - [[#limpieza-de-datos-con-open-refine][Limpieza de datos con Open Refine]]
-  - [[#lista-de-expresiones-regulares][Lista de expresiones regulares]]
-  - [[#recursos-externos-de-openrefine][Recursos externos de OpenRefine]]
-  - [[#reconcilia-tus-metadatos][Reconcilia tus metadatos]]
-  - [[#utiliza-refine-para-manipular-html][Utiliza Refine para manipular /HTML/]]
-  - [[#how-to-clean-a-converted-pdf-using-refine][How to clean a converted PDF using Refine]]
-  - [[#limpiando-datos-con-google-refine][Limpiando Datos con Google Refine]]
-  - [[#introducción-a-las-expresiones-regulares-con-open-refine][Introducción a las Expresiones Regulares con Open Refine]]
-  - [[#introduction-to-open-refine][Introduction to Open Refine:]]
-  - [[#refine-por-freeyourmetadata][Refine por Freeyourmetadata]]
-  - [[#google-refine-para-el-periodismo-de-investigación][Google Refine para el periodismo de investigación]]
-  - [[#bibliografía][Bibliografía]]
-- [[#dudas][Dudas]]
 
 * Descarga                                                              :TOC:
 
@@ -143,6 +72,25 @@ Donde:
 - =-i 0.0.0.0= especifica la dirección donde se abrirá.
 - =-m 6000M= es el tamaño máximo que soporta para la sesión.
 - =-d /ruta/directorio/trabajo= indica el directorio donde almacenará /refine/ la información.
+
+Si en GNU/Linux nos da un error de JAVA:
+#+BEGIN_QUOTE
+Google Refine requires Java version 6 or later. If you have multiple versions of Java installed, please set the environment variable JAVA_HOME to the correct version.
+#+END_QUOTE
+
+Significa que no tenemos ningún valor para la variable =JAVA_HOME=, por lo que tenemos que añadir la ruta correcta a la variable de entorno con el comando =export=.
+
+En mi caso:
+#+BEGIN_EXAMPLE
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+#+END_EXAMPLE
+
+Y comprobamos:
+
+#+BEGIN_SRC shell
+env | grep JAVA
+
+#+END_SRC
 
 * Abrir un proyecto                                                     :TOC:
 
@@ -212,7 +160,7 @@ Donde:
 Si quisiéramos un número distinto de filas, podríamos modificar el archivo que las produce, =data-table-view.js=. Suponiendo que estemos en el directorio raíz de /Refine/, editamos el archivo con [[http://blog.infotics.es/2015/11/11/editor-de-textos/][nuestro editor de textos favorito]]:
 
 #+BEGIN_EXAMPLE
-vim webapp/modules/core/scripts/views/data-table/data-table-view.js 
+nano webapp/modules/core/scripts/views/data-table/data-table-view.js 
 #+END_EXAMPLE
 
 En la línea número 185 se muestra este código (si no es en la 185, buscar la cadena =50=):
@@ -247,14 +195,14 @@ Sobre la columna, con la opción =Facet= podemos hacer:
 Por ejemplo:
 
 #+BEGIN_SRC grel
-value.contains("millones”)
+value.contains("millones")
 #+END_SRC
 
 Localiza el valor =millones= con la función =.contains()=.
 
 Se pueden anidar de esta manera:
 #+BEGIN_SRC grel
-value.contains("millones”)+value.contains("euros")
+value.contains("millones")+value.contains("euros")
 #+END_SRC
 
 * Búsqueda de valores duplicados                                        :TOC:
@@ -308,7 +256,7 @@ Edit cells > Blank down
 
 * Transformar datos                                                     :TOC:
 
-- Tras aplicar 1 ó más filtros en el panel izquierdo podemos editar lo que interese. 
+- Tras aplicar 1 o más filtros en el panel izquierdo podemos editar lo que interese. 
 - Cambiar conjunto de valores tras filtrar por nombre: renombrar, renombrar uno para que se fusione con otro, agrupar, etc.
 - También podemos hacerlo en cualquier celda de la dcha (datos filtrados) y aplicar los cambios a todas las instancias o celdas similares.
 
@@ -918,106 +866,38 @@ not(value.startsWith("Compra"))
 #+END_SRC
 
 ** Todas
-startsWith	(string s, string sub)
-	devuelve: boolean
-	Returns whether s starts with sub
-strip	(string s)
-	devuelve: string
-	Returns copy of the string, with leading and trailing whitespace omitted.
-substring	(o, number from, optional number to)
-	devuelve: Depends on actual arguments
-	If o is an array, returns o[from, to]. if o is a string, returns o.substring(from, to)
-sum	(array a)
-	devuelve: number
-	Sums numbers in array a
-tan	(number d)
-	devuelve: number
-	Returns the trigonometric tangent of an angle
-tanh	(number d)
-	devuelve: number
-	Returns the hyperbolic tangent of a value
-toDate	(o, boolean month_first / format1, format2, ... (all optional))
-	devuelve: date
-	Returns o converted to a date object, you can hint if the day or the month is listed first, or give an ordered list of possible formats using this syntax: 
-toLowercase	(string s)
-	devuelve: string
-	Returns s converted to lowercase
-toNumber	(o)
-	devuelve: number
-	Returns o converted to a number
-toString	(o, string format (optional))
-	devuelve: string
-	Returns o converted to a string
-toTitlecase	(string s)
-	devuelve: string
-	Returns s converted to titlecase
-toUppercase	(string s)
-	devuelve: string
-	Returns s converted to uppercase
-trim	(string s)
-	devuelve: string
-	Returns copy of the string, with leading and trailing whitespace omitted.
-type	(object o)
-	devuelve: string
-	Returns the type of o
-unescape	(string s, string mode ['html','xml','csv','url','javascript'])
-	devuelve: string
-	Unescapes all escaped parts of the string depending on the given escaping mode.
-unicode	(string s)
-	devuelve: string
-	Returns an array of strings describing each character of s in their full unicode notation
-unicodeType	(string s)
-	devuelve: string
-	Returns an array of strings describing each character of s in their full unicode notation
-uniques	(array a)
-	devuelve: array
-	Returns array a with duplicates removed
-urlify	(string s)
-	devuelve: string
-	replaces spaces with underscore
-xor	(boolean a, boolean b)
-	devuelve: boolean
-	XORs two boolean values
-Controls
-filter	(expression a, variable v, expression test)
-	devuelve: array
-	Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression test which should return a boolean. If the boolean is true, pushes v onto the result array.
-forEach	(expression a, variable v, expression e)
-	devuelve: array
-	Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression e, and pushes the result onto the result array.
-forEachIndex	(expression a, variable i, variable v, expression e)
-	devuelve: array
-	Evaluates expression a to an array. Then for each array element, binds its index to variable i and its value to variable name v, evaluates expression e, and pushes the result onto the result array.
-forNonBlank	(expression o, variable v, expression eNonBlank, expression eBlank)
-	devuelve: Depends on actual arguments
-	Evaluates expression o. If it is non-blank, binds its value to variable name v, evaluates expression eNonBlank and returns the result. Otherwise (if o evaluates to blank), evaluates expression eBlank and returns that result instead.
-forRange	(number from, number to, number step, variable v, expression e)
-	devuelve: array
-	Iterates over the variable v starting at "from", incrementing by "step" each time while less than "to". At each iteration, evaluates expression e, and pushes the result onto the result array.
-if	(expression o, expression eTrue, expression eFalse)
-	devuelve: Depends on actual arguments
-	Evaluates expression o. If it is true, evaluates expression eTrue and returns the result. Otherwise, evaluates expression eFalse and returns that result instead.
-isBlank	(expression o)
-	devuelve: boolean
-	Returns whether o is null or an empty string
-isError	(expression o)
-	devuelve: boolean
-	Returns whether o is an error
-isNonBlank	(expression o)
-	devuelve: boolean
-	Returns whether o is not null and not an empty string
-isNotNull	(expression o)
-	devuelve: boolean
-	Returns whether o is not null
-isNull	(expression o)
-	devuelve: boolean
-	Returns whether o is null
-isNumeric	(expression o)
-	devuelve: boolean
-	Returns whether o can represent a number
-with	(expression o, variable v, expression e)
-	devuelve: Depends on actual arguments
-	Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result
+- =startsWith(string s, string sub)= :: devuelve =boolean=.
+- =strip(string s)= :: devuelve =string=, omitiendo los espacios en blanco iniciales y finales.
+- =sum(array a)= ::  devuelve =number=, suma los números de la serie =a=.
+- =tan(number d)= ::  devuelve =number=, la tangente trigonométrica de un ángulo.
+- =tahn(number d)= :: devuelve =number=, la tangente hiperbólica de un valor.
+- =toDate(o, boolean month_first / format1, format2, ... (all optional))= :: devuelve =date=, =o= convertido en un objeto temporal, se puede dar pistas sobre si el día o el mes se lista primero, o da una lista ordenada de formatos posibles que usan esa sintaxis.
+- =toLowercase(string s)= :: devuelve =string=, =s= lo convierte a minúsculas.
+- =toNumber(o)= :: devuelve =number=, =o= convertido en número.
+- =toString(o, string format (optional))= :: devuelve =string=, =o= lo convierte en cadena de caracteres.
+- =toTitlecase(string s)= :: devuelve =string=, =s= se convierte en caracteres de titulares, la primera letra en mayúsculas.
+- =toUppercase(string s)= :: devuelve =string=, =s= convertido en mayúsculas.
+- =trim(string s)= :: devuelve =string= sin espacios en blanco iniciales y finales.
+- =type(object o)= :: devuelve =string=, el tipo de objeto que es =o=.
+- =unescape(string s, string mode ['html','xml','csv','url','javascript'])= :: devuelve =string=. Desescapa todas las partes escapadas de la cadena según el modo de escape dado.
+- =unicode(string s)= :: devuelve =string=. Devuelve una serie de cadenas que describen cada carácter en =s= en su notación Unicode completa.
+- =unicodeType(string s)= :: devuelve =string=, una serie de cadenas que describe cada carácter de =s= en su notación Unicode completa.
+- =uniques(array a)= :: devuelve una serie con los duplicados borrados.
+- =urlify(string s)= :: devuelve una serie donde reemplaza los espacios en blanco con guión bajo.
+- =xor(boolean a, boolean b)= :: devuelve =boolean=, [[https://es.wikipedia.org/wiki/Puerta_XOR][XOR]] dos valores booleanos.
+*** Controls
+- =filter(expression a, variable v, expression test)= :: devuelve una serie. Evalúa la expresión =a= a una serie. Entonces, por cada elemento de la serie, vincula su valor a la variable =v=, evalúa la expresión =test= que debería devolver un booleano. Si el booleano es verdadero, lleva =v= a la serie resultante.
+- forEach(expression a, variable v, expression e) :: devuelve una serie. Evalúa la expresión =a= a una serie; entonces para cada elemento de la serie vincula su valor al nombre de la variable =v=, evalúa la expresión =e= y lleva el resultado a la serie resultante.
+- forEachIndex(expression a, variable i, variable v, expression e) :: devuelve una serie. Se evalúa la expresión =a= a una serie. Entonces, por cada elemento de la serie, vincula su índice a la variable =i= y su valor al nombre de la variable =v=, evalúa la expresión =e= y desplaza el resultado a la serie resultante.
+- =forNonBlank(expression o, variable v, expression eNonBlank, expression eBlank)= :: la devolución depende de lo evaluado. Se evalúa la expresión =o=. Si no está en blanco, vincula su valor al nombre de la variable =v=, evalúa la expresión =eNonBlank= y devuelve el resultado. De otra manera (si o evalúa a blanco), evalúa la expresión =eBlank= y devuelve el resultado.
+- =forRange(number from, number to, number step, variable v, expression e)= :: devuelve una serie. Se itera sobre la variable =v= empezando desde =from=, se incrementa por =step= cada vez mientras que sea menos que =to=. Para cada iteración, se evalúa la expresión =e= y desplaza el resultado a la serie resultante.
+- =if(expression o, expression eTrue, expression eFalse)= :: la respuesta depende de los argumentos de la expresión. Se evalúa la expresión =o=. Si es verdadero, evalúa la expresión =eTrue= y devuelve el resultado. De otra forma, evalúa la expresión =eFalse= y devuelve su resultado en vez de eso.
+- isBlank(expression o) :: devuelve boolean si =o= es un error.
+- isNonBlank(expression o) :: devuelve boolean si =o= no es nulo y no es una cadena vacía.
+- =isNotNull(expression o)= :: devuelve booleano, si =o= no es =null=.
+- =isNull(expression o)= :: devuelve: boolean. Returns whether o is null.
+- =isNumeric(expression o)= :: 	devuelve: boolean. Returns whether o can represent a number
+- =with(expression o, variable v, expression e)= :: Depends on actual arguments. Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result
 * Georeferenciación                                                     :TOC:
 Sobre el documento =1_entidades_credito= se puede extraer la localización en el mapa a través de la /API/ de /Google/.
 
@@ -1083,23 +963,31 @@ También podemos utilizar cualquier otro servicio de geodatos como Nominatim y o
 
 * Expresiones regulares                                                 :TOC:
 
-Se pueden utilizar expresiones regulares.
 
-Por ejemplo, con esta expresión:
+Se pueden utilizar expresiones regulares en las siguientes funciones de GREL:
+- replace
+- match
+- partition
+- rpartition
+- split
+
+
+Por ejemplo, sobre esta estructura:
 
 #+BEGIN_EXAMPLE
 - Nombre Apellido (Empresa) Lorem ipsum
 #+END_EXAMPLE
 
-Se extrae el nombre, el apellido y el texto entre paréntesis unido con =::= con la siguiente expresión:
+Con esta expresión:
 
 #+BEGIN_SRC grel
 value.match(/- ([^\(]*)\s\(([^\)]*)\).*/).join('::')
 #+END_SRC
 
-La función =value.match= busca la expresión de la siguiente manera con /RegExp/:
+A través de la función =value.match=, utilizamosbusca la expresión de la siguiente manera con /RegExp/:
 - Para indicar que se trata de una expresión regular, se escribe entre barras =//=
-- Busca un guión con un espacio en blanco y todos los caracteres que no contienen un paréntesis =([^\(]*)=
+- El guión y el espacio en blanco se escriben tal cual, aunque éste podría representarse por el símbolo =\s=.
+- Luego, selecciona lo que no empieza por paréntesis =([^\(]*)=
 - Y que preceden a un espacio en blanco seguido por una apertura de paréntesis =\s\(=
 - Todo junto: =([^\(]*)\s\(=
 - Después extrae lo que aparece antes del cierre del paréntesis: =([^\)]*)\)=
@@ -1217,3 +1105,491 @@ https://dannguyen.github.io/NICAR-Google-Refine/
 - sort anidados?
 - cluster que no encuentra obra
 - cambiar en todas las columnas un value.replace
+* Taller de limpieza y análisis de datos
+  :PROPERTIES:
+  :CUSTOM_ID: taller-de-limpieza-y-análisis-de-datos
+  :Autoría:  Rafa de las Cuevas
+  :END:
+
+Un conjunto de técnicas y consejos básicos para periodistas de datos que
+se enfrentan por primera vez a /datasets/ sin estructurar.
+
+Vamos a trabajar con un caso real --Las tarjetas /black/ de Cajamadrid--
+modificado para poder aplicar varias técnicas de limpieza.
+
+Es bastante común encontrarse con /datasets/ fragmentados, mal
+formateados, con errores... Para poder realizar un buen analisis, antes
+tenemos que *unificar*, *limpiar* y *estructurar*.
+
+En este caso tenemos tres archivos Excel:
+- =tarjetas_01.xlsx=
+- =tarjetas_02.xlsx=
+- =tarjetas_03.xlsx=
+
+que contienen los registros de las tarjetas /black/ de los ejecutivos de Cajamadrid.
+
+#+BEGIN_QUOTE
+Tenemos que unir los tres. Cada archivo tiene varias sub-hojas, lo que
+dificulta un poco la tarea.
+#+END_QUOTE
+
+Los archivos están en
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/datasets/hoja_calculo_tarjetas_black/][=/datasets/hoja_calculo_tarjetas_black/=]].
+
+En este directorio hay varias carpetas numeradas. Si te pierdes en
+alguno de los pasos, puedes ir a la [[https://github.com/rafadelascuevas/limpieza-analisis-basico/tree/master/datasets][carpeta siguiente]] y [[https://github.com/rafadelascuevas/limpieza-analisis-basico/tree/master/datasets/hoja_calculo_tarjetas_black/04_xls_limpio][coger el dataset
+ya tratado]].
+
+Necesitaremos:
+
+-  [[https://accounts.google.com][Cuenta de Google]]
+-  [[http://openrefine.org/][Open Refine]]
+
+Descargas opcionales:
+
+-  [[https://www.talend.com/download/talend-open-studio][Talend Open Studio for Big Data]]
+-  [[https://products.office.com/es-es/excel][Microsoft Excel]] (de pago)
+-  [[https://www.postgresql.org/download/][PostgreSQL]]
+
+
+** 1. Unificar
+   :PROPERTIES:
+   :CUSTOM_ID: unificar
+   :END:
+
+*** 1.1. Hoja de cálculo
+    :PROPERTIES:
+    :CUSTOM_ID: hoja-de-cálculo
+    :END:
+
+Bajamos el archivo
+   =/datasets/hoja_calculo_tarjetas_black/01_originales/tarjetas_01.xlsx=
+   y lo subimos a [[https://www.google.com/intl/es_es/drive/][Google Drive]].
+
+Una vez en Drive, lo abrimos con *Google Spreadsheets*
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/spreadsheet-icon.png]]
+
+#+BEGIN_QUOTE
+¡Problema! Hay varias sub-hojas.
+#+END_QUOTE
+
+Para analizar los datos cómodamente necesitamos una sola tabla que
+   contenga todos los datos. Google Spreadsheets no tiene opción de juntar todas las sub-hojas. Pero con
+   un poco de *Javascript* podemos sacar el contenido en varios archivos
+   csv y luego juntarlos.
+
+-  Vamos a *Herramientas --> Editor de Secuencias de comandos...*
+
+-  Le damos nombre al script, por ejemplo "hojas\_a\_csv". Borramos todo
+   e insertamos el siguiente código, que nos servirá para guardar todas
+   las hojas en CSV.
+
+#+BEGIN_EXAMPLE
+    function onOpen() {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var csvMenuEntries = [{name: "export as csv files", functionName: "saveAsCSV"}];
+      ss.addMenu("csv", csvMenuEntries);
+    };
+
+    function saveAsCSV() {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var sheets = ss.getSheets();
+      // crea un directorio con el nombre de la hoja
+      var folder = DriveApp.createFolder(ss.getName().toLowerCase().replace(/ /g,'_') + '_csv_' + new Date().getTime());
+      for (var i = 0 ; i < sheets.length ; i++) {
+        var sheet = sheets[i];
+        // añade la extension ".csv" al nombre de la hoja
+        fileName = sheet.getName() + ".csv";
+        // convierte todos los datos disponibles de la hoja a formato csv
+        var csvFile = convertRangeToCsvFile_(fileName, sheet);
+        // crea un archivo con el nombre y los datos csv
+        folder.createFile(fileName, csvFile);
+      }
+      Browser.msgBox('Files are waiting in a folder named ' + folder.getName());
+    }
+
+    function convertRangeToCsvFile_(csvFileName, sheet) {
+      // toma el rango disponible de datos en la hoha de calculo
+      var activeRange = sheet.getDataRange();
+      try {
+        var data = activeRange.getValues();
+        var csvFile = undefined;
+
+        // hace un loop en el rango de los datos y crea un string con los datos csv
+        if (data.length > 1) {
+          var csv = "";
+          for (var row = 0; row < data.length; row++) {
+            for (var col = 0; col < data[row].length; col++) {
+              if (data[row][col].toString().indexOf(",") != -1) {
+                data[row][col] = "\"" + data[row][col] + "\"";
+              }
+            }
+
+            // une las columnas de cada fila
+            // añade retorno de carro al final de cada fila, excepto la ultima
+            if (row < data.length-1) {
+              csv += data[row].join(",") + "\r\n";
+            }
+            else {
+              csv += data[row];
+            }
+          }
+          csvFile = csv;
+        }
+        return csvFile;
+      }
+      catch(err) {
+        Logger.log(err);
+        Browser.msgBox(err);
+      }
+    }
+#+END_EXAMPLE
+
+-  Le damos a *Guardar* y ejecutamos la función *onOpen*
+
+-  Una vez ejecutado, volvemos a la pestaña de la hoja de cálculo.
+   Debería aparecer un nuevo menú llamado *csv*.
+
+-  Seleccionamos *csv-->Export as csv files*. Puede tardar un poco. Un
+   pop up nos avisa del destino de los archivos: una carpeta en el
+   directorio raíz de Google Drive.
+
+¡Bien! Ya tenemos nuestros archivos csv.
+
+-  Vamos a la carpeta de salida en Drive, seleccionamos y botón derecho
+   *--> Descargar*. Nos sandrá un zip con todos los archivos.
+
+-  Descompriminos en nuestro escritorio y le damos un nombre más
+   reconocible a la carpeta.
+
+Repetir el proceso con los archivos =tarjetas_02.xlsx= y
+=tarjetas_03.xlsx=.
+
+Tenemos 64 archivos =.csv= Vamos a unirlos con *Talend Open Studio for
+Big Data*.
+
+*** 1.2. Talend Open Studio for Big Data
+    :PROPERTIES:
+    :CUSTOM_ID: talend-open-studio-for-big-data
+    :END:
+
+Talend es una herramienta muy potente que permite trabajar con datos a
+través de una interfaz gráfica, sin tener que escribir código. Pero
+tiene una curva de aprendizaje bastante pronunciada y la cantidad de
+opciones puede ser abrumadora.
+
+Utiliza *componentes* que se van añadiendo a una mesa de trabajo y se
+conectan entre sí a modo de diagrama. Esto hace que sea muy flexible a
+la hora de afrontar un problema. Podemos crear nuestros propios
+*trabajos* personalizados.
+
+En este caso vamos a crear un *trabajo* que nos permita extraer todos
+los archivos csv de un directorio y fundirlos en uno.
+
+-  Abrir Talend *--> Create a new project*
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_01.png]]
+
+-  *Create a new... --> Job* (o "Trabajo")
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_02.png]]
+
+-  En la pestaña derecha, *Palette* buscar el componente *tFileList*.
+   Arrastrarlo a la mesa de trabajo.
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_03.png]]
+
+-  Hacer lo mismo con los componentes *tFileInputDelimited*, *tUnite*,
+   *tLogRow* y *tFileOutputDelimited*
+
+-  Conectar de izquierda a derecha todos los componentes. Botón derecho
+   en el primer componente *-->Fila-->Iterate* y pinchamos con el botón
+   izquierdo en el siguiente componente.
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_05.png]]
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_06.png]]
+
+Vamos a definir las opciones de entrada y salida de nuestros csv.
+
+-  Pinchar en *tFileList\_1* y a continuación, abajo, en la pestaña
+   *Component*. Seleccionar el directorio donde tenemos todos los
+   archivos csv.
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_07.png]]
+
+-  Pinchar en *tFileInputDelimited\_1* y a continuación, abajo, en la
+   pestaña *Component*. En *Nombre de Archivo/flujo* pulsamos
+   *Ctrl-Espacio* y en el desplegable seleccionamos
+   *tFileList.CURRENT\_FILEPATH*
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_08.png]]
+
+-  Como *Separador de Campo* ponemos *","*
+
+-  Marcamos la casilla *opciones csv*. Es importante, porque si no
+   definimos bien los separadores de fila y columna de nuestros csv, se
+   pueden perder datos.
+
+-  Vamos a definir las columnas que tienen nuestros archivos csv.
+   Pinchamos en *Edit Schema* y en el signo *+* 9 veces para agregar 9
+   columnas. Nombramos cada columna con el nombre que tienen en los csv.
+   en *Tipo* (de dato) dejamos todos como *string*. Al aceptar nos
+   preguntará si propagamos los cambios al resto de componentes. Le
+   decimos que sí.
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_09.png]]
+
+-  Pinchar en *tLogRow\_1* y a continuación, abajo, en la pestaña
+   *Component*. En *Mode* Seleccionar *Table*.
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_10.png]]
+
+-  Pinchar en *tFileOutputDelimited\_1* y a continuación, abajo, en la
+   pestaña *Component*. Como *Separador de Campo* ponemos *";"*. Hay que
+   fijarse en *Nombre de Archivo*. En esa ruta se guardará nuestro
+   archivo csv resultante. Por defecto se llamará =out.csv=.
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_11.png]]
+
+-  Finalmente vamos a la pestaña *Run* y ejecutamos el trabajo con el
+   botón *Run*
+
+#+CAPTION: Talend
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_12.png]]
+Ya tenemos nuestro archivo único, =out.csv=. Vamos a limpiarlo con *Open
+Refine*.
+
+** 2. Limpiar
+   :PROPERTIES:
+   :CUSTOM_ID: limpiar
+   :END:
+
+*** 2.1. Open Refine
+    :PROPERTIES:
+    :CUSTOM_ID: open-refine
+    :END:
+
+Al ejecutar Refine no se abre ninguna ventana. Lo que hace Refine es
+montar un servidor local en el puerto 3333. Así que vamos a abrir una
+pestaña del navegador con la dirección =http://127.0.0.1:3333/=.
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_01.png]]
+
+-  Vamos a la pestaña *Create Project* y seleccionamos nuestro archivo,
+   =out.csv=.
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_02.png]]
+
+-  Refine previsualiza la tabla. Tenemos que seleccionar la codificación
+   de caracteres: *UTF-8*. Si tenemos un falso encabezamiento de
+   columnas, hay que seleccionar *Ignore first 1 line(s) at beginning of
+   file*.
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_022.png]]
+Para poder analizar nuestra tabla necesitamos que los *elementos que se
+repiten* (por ejemplo, todas las entradas con un nombre y apellidos)
+sean *exactamente iguales*. En nuestra tabla hay espacios de más que no
+vemos, o puntos al final de un nombre. Estos caracteres extra harán que
+más tarde, al agrupar los elementos para su análisis, aparezcan grupos
+distintos con entradas que deberían ser iguales.
+
+-  Vamos a comprobarlo. Vamos a la columna *NOMBRE*. Pinchamos en el
+   encabezamiento y seleccionamos *Facet --> Text facet*.
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_023.png]]
+A la izquierda aparecen todas las entradas *distintas* de la columna
+*NOMBRE*. Al lado de cada una aparece el número de filas que tiene cada
+una. Por ejemplo: Hay 448 filas con el *NOMBRE* *"ACOSTA CUBERO, JOSE"*.
+
+Podemos ver que, por ejemplo *"CAFRANGA CAVESTANY, MARIA CARMEN"*
+aparece dos veces. No debería ser así, vamos a arreglarlo.
+
+Además, tenemos una columna con dos tipos de entradas juntas: *Nombre de
+comercio* y *Actividad*. Para saber, por ejemplo, cuanto dinero gastaba
+un asesor en un comercio determinado, tenemos que separar esos
+conceptos.
+
+¡Empecemos!
+
+-  Lo primero es limpiar las celdas de espacios no deseados. Vamos a la
+   columna *NOMBRE*. Pinchamos en el encabezamiento y seleccionamos
+   *Edit cells --> Common transforms --> Trim leading and trailing
+   whitespace*. Repetimos el proceso en todas las columnas.
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_03.png]]
+
+-  Ahora vamos a editar masivamente los nombres en la columna *NOMBRE*
+   para unificar los que no son iguales. Para ello usaremos *Edit cells
+   --> Cluster and edit*
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_04.png]]
+
+-  Cluster & edit reconoce los patrones de caracteres parecidos y
+   sugiere fusiones. Comprobamos que las sugerencias son correctas.
+   Pinchamos en *Select all* y a continuación en *Merge selected &
+   re-cluster*. Si todo va bien, en un segundo reconocimiento todo está
+   limpio. Refine utiliza distintos métodos de reconocimiento de
+   patrones. El que viene por defecto nos sirve en este caso, pero a
+   veces el patrón es más complejo.
+
+-  Ahora vamos a separar esa columna con dos tipos de entradas juntas.
+   Pinchamos en el encabezado *Nombre\_Comercio\_y\_Actividad* y
+   seleccionamos *Edit column --> Split into several columns*
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_05.png]]
+
+-  Tenemos varias opciones para separar la columna. En nuestro caso, hay
+   un patrón de caracteres que separa un concepto de otro: tres guiones
+   bajos. Así que vamos a poner tres guiones bajos en el campo
+   *Separator*.
+
+#+CAPTION: Refine
+
+[[https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_06.png]]
+
+-  Podemos aplicar más transformaciones. Por ejemplo, separar las
+   columnas de los apellidos y el nombre por la coma. Alternar el nombre
+   de las columnas, sustituir caracteres de forma masiva...
+
+-  Cuando nuestra tabla esté limpia, exportamos. Vamos a guardar en
+   formato Excel para poder trabajar indistintamente en Excel o Google
+   Spreadsheets. *Export --> Excel*
+
+** 3. Analizar
+   :PROPERTIES:
+   :CUSTOM_ID: analizar
+   :END:
+
+*** 3.1. Estructurar
+    :PROPERTIES:
+    :CUSTOM_ID: estructurar
+    :END:
+
+Para realizar un buen análisis es muy importante que los datos estén
+bien estratificados.
+
+Lo principal: "Pensar en vertical". Cada columna aporta una capa de
+conocimiento. Cuanto más concreto, mejor.
+
+Por ejemplo: Tenemos una columna con la fecha completa de cada
+transacción. Pero si queremos un análisis más profundo, podemos separar
+esa columna en días, meses y años.
+
+**** Hoja de cálculo
+     :PROPERTIES:
+     :CUSTOM_ID: hoja-de-cálculo-1
+     :END:
+
+Volvemos a Google Drive. Subimos nuestro archivo limpio y lo abrimos con
+Spreadsheets.
+
+-  Buena práctica 1: Añadimos al nombre de nuestro archivo
+   **\_ORIGINAL** y creamos una copia con el añadido **\_TRABAJO**. Así,
+   si comentemos errores podemos volver a la hoja original.
+
+-  Buena práctica 2: Añadimos una columna con el encabezado *ID*.
+   Ponemos un 1 en la primera fila, y rellenamos la serie
+   automáticamente.
+
+-  Vamos a crear columnas con rangos de fecha que nos serán útiles para
+   analizar los días, meses y horas en los que se hacía mayor uso de las
+   tarjetas. Creamos columnas llamadas *DIA*, *MES*, *AÑO* y *RANGO
+   HORA*
+
+-  La función ==TEXT= (o ==TEXTO= si estamos en Excel y tenemos una
+   versión en castellano) convierne un número a texto con un formato
+   predefinido. En la columna *MES* escribimos ==TEXT(B2;"MMMM")=.
+   Estamos diciendo que tome el valor de la celda B2 y de ahí pase el
+   mes a texto, en formato largo: "MMMM".
+
+-  Hacemos algo similar en la columna *AÑO*: ==TEXT(B2;"AAAA")=
+
+-  Y en la columna *DIA*: ==TEXT(B2;"DD")=
+
+-  Además vamos a sacar las horas. Pero los datos no están en formato de
+   hora /hh:mm:ss/ por lo que tenemos que sustituir el punto =.= por dos
+   puntos =:=. Seleccionamos la columna entera y damos a *Editar -->
+   Buscar y sustituir*.
+
+-  Ahora sí, En la columna *RANGO HORA* escribimos: ==TEXT(F2;"hh")=
+
+*** 3.2. Preguntar a los datos
+    :PROPERTIES:
+    :CUSTOM_ID: preguntar-a-los-datos
+    :END:
+
+-  Para /interrogar/ a los datos usamos tablas dinámicas. Hay que
+   empezar por lo general (¿cuanto dinero se han gastado en total?,
+   ¿quién ha gastado más dinero?) a lo concreto (¿Quién hizo el cargo
+   más grande? ¿En qué días se usaron más las tarjetas?)
+
+**** Hoja de cálculo
+     :PROPERTIES:
+     :CUSTOM_ID: hoja-de-cálculo-2
+     :END:
+
+***** Tablas dinámicas
+      :PROPERTIES:
+      :CUSTOM_ID: tablas-dinámicas
+      :END:
+
+-  Colocamos en cursor en la casilla *A1*. *Vamos al menú Datos -->
+   Tabla dinámica*
+
+-  En el apartado *Valores* seleccionamos *IMPORTE*. A continuación,
+   vamos probando conjuntos de datos en los apartados *Filas* y
+   *columnas*
+
+**** Base de datos
+     :PROPERTIES:
+     :CUSTOM_ID: base-de-datos
+     :END:
+
+Excel tiene un límite de 1,048,576 filas y 16,384 columnas. Para
+analizar bases de datos grandes tenemos que utilizar herramientas de
+tratamiento de bases de datos. Existen varios lenguajes de bases de
+datos relacionales. El más extendido es SQL, así que vamos a utilizar
+una herramienta open source gratuita:
+[[https://www.postgresql.org/download/][PostgreSQL]].
+
+***** PostgreSQL
+      :PROPERTIES:
+      :CUSTOM_ID: postgresql
+      :END:
+
+SQL es un lenguaje declarativo para hacer consultas y modificaciones en
+bases de datos. Si tenemos tiempo, practicaremos unas /queries/ a la
+base de datos del ministerio de Agricultura que agrupa todas las playas
+de España. El archivo está en =datasets/sql_playas/playas.sql=
