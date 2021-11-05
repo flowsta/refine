@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2021-11-05 Fri 17:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OpenRefine para todxs</title>
@@ -226,6 +227,135 @@
 <body>
 <div id="content">
 <h1 class="title">OpenRefine para todxs</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org063394b">Descarga</a></li>
+<li><a href="#orgd12c225">Extensiones</a></li>
+<li><a href="#org9924e52">Primeros pasos</a></li>
+<li><a href="#org6542645">Abrir un proyecto</a>
+<ul>
+<li><a href="#orgc161bcd">Language Settings</a></li>
+<li><a href="#orga20f3c9">Import Project</a></li>
+<li><a href="#org739895a">Open Proyect</a></li>
+<li><a href="#org6dff751">Create project</a></li>
+</ul>
+</li>
+<li><a href="#orgc2dce2f">Records y rows</a>
+<ul>
+<li><a href="#org922012c">Crear registros</a></li>
+</ul>
+</li>
+<li><a href="#org0e69e9a">Filas</a></li>
+<li><a href="#org0251a87">Facetas</a></li>
+<li><a href="#orgb6ab5f4">Buscar</a></li>
+<li><a href="#orga00b91e">Búsqueda de valores duplicados</a></li>
+<li><a href="#org72778e5">Borrar celdas vacías de una columna</a></li>
+<li><a href="#org6b4e51e">Celdas vacías</a></li>
+<li><a href="#org8a1be9b">Transformar datos</a>
+<ul>
+<li><a href="#org4b3766c">Transformar a numérico</a></li>
+<li><a href="#orgdff5437">Transformaciones</a>
+<ul>
+<li><a href="#org46c41b9">Eliminar caracteres</a></li>
+<li><a href="#orged744d8">Obtener URL</a></li>
+<li><a href="#org708d840">Añadir y borrar a la vez</a></li>
+<li><a href="#org7b66f18">Uso de regexp</a></li>
+<li><a href="#orgdeb75e3">Eliminar espacios en blanco</a></li>
+</ul>
+</li>
+<li><a href="#org7b6e057">Eliminar registros seleccionados</a></li>
+<li><a href="#orged9ee00">Clustering</a></li>
+<li><a href="#orge7df637">Limpiar valores de columna numérica</a></li>
+<li><a href="#org0c666ce">Limpiar fechas</a></li>
+<li><a href="#orgc9f0905">Partir/Unir columnas</a></li>
+<li><a href="#org039c8b0">Añadir nuevas columnas</a></li>
+<li><a href="#org453cf46">Jugando con <code>value</code></a></li>
+</ul>
+</li>
+<li><a href="#org7b47d9b">Variables</a>
+<ul>
+<li><a href="#orgc10421a">cell</a></li>
+<li><a href="#org8fb2f9b">value</a></li>
+<li><a href="#orgdb6e0c1">row</a></li>
+<li><a href="#org496e787">cells</a></li>
+<li><a href="#org95a0dc6">rowIndex</a></li>
+</ul>
+</li>
+<li><a href="#orge0d6d60">Más funciones</a>
+<ul>
+<li><a href="#orgcccea24">Funciones Booleanas</a>
+<ul>
+<li><a href="#org40bed33">and</a></li>
+<li><a href="#org2662db1">or</a></li>
+<li><a href="#org072a529">not</a></li>
+</ul>
+</li>
+<li><a href="#orgb946ca7">Funciones de cadenas de caracteres, literales o <i>string</i></a>
+<ul>
+<li><a href="#org041fb08">length</a></li>
+</ul>
+</li>
+<li><a href="#orgdc9924f">abs</a></li>
+<li><a href="#org70e5128">length</a></li>
+<li><a href="#orgba64a6e">startsWith</a></li>
+<li><a href="#orge853133">Todas</a>
+<ul>
+<li><a href="#orgf449946">Controls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd486475">Georeferenciación</a>
+<ul>
+<li><a href="#orgac33136">Nominatim</a></li>
+</ul>
+</li>
+<li><a href="#orgc28b346">Expresiones regulares</a></li>
+<li><a href="#org637321c">Recursos</a>
+<ul>
+<li><a href="#org78fb513">Recetas y consejos de <i>OpenRefine</i></a></li>
+<li><a href="#org2c80eaf">Verificación de fuentes de datos</a></li>
+<li><a href="#org43a4ddc">Limpieza de datos con Open Refine</a></li>
+<li><a href="#org3cb9ec0">Lista de expresiones regulares</a></li>
+<li><a href="#orgaecf652">Recursos externos de OpenRefine</a></li>
+<li><a href="#org94a0b9f">Reconcilia tus metadatos</a></li>
+<li><a href="#org144f147">Utiliza Refine para manipular <i>HTML</i></a></li>
+<li><a href="#orgc7fc5e1">How to clean a converted PDF using Refine</a></li>
+<li><a href="#org468b54b">Limpiando Datos con Google Refine</a></li>
+<li><a href="#org9d00d1c">Introducción a las Expresiones Regulares con Open Refine</a></li>
+<li><a href="#orgf2f2d52">Introduction to Open Refine:</a></li>
+<li><a href="#org6052ded">Refine por Freeyourmetadata</a></li>
+<li><a href="#org3c2a709">Google Refine para el periodismo de investigación</a></li>
+<li><a href="#orga447673">Bibliografía</a></li>
+</ul>
+</li>
+<li><a href="#org3325b23">Dudas</a></li>
+<li><a href="#taller-de-limpieza-y-análisis-de-datos">Taller de limpieza y análisis de datos</a>
+<ul>
+<li><a href="#unificar">1. Unificar</a>
+<ul>
+<li><a href="#hoja-de-cálculo">1.1. Hoja de cálculo</a></li>
+<li><a href="#talend-open-studio-for-big-data">1.2. Talend Open Studio for Big Data</a></li>
+</ul>
+</li>
+<li><a href="#limpiar">2. Limpiar</a>
+<ul>
+<li><a href="#open-refine">2.1. Open Refine</a></li>
+</ul>
+</li>
+<li><a href="#analizar">3. Analizar</a>
+<ul>
+<li><a href="#estructurar">3.1. Estructurar</a></li>
+<li><a href="#preguntar-a-los-datos">3.2. Preguntar a los datos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <ul class="org-ul">
 <li>Herramienta creada por <i>Google</i> para el manejo de bases de datos.</li>
 <li>Permite limpiar bases de datos, exportarlas en diferentes formatos, y arreglar y manejar las bases para un mejor uso.</li>
@@ -235,9 +365,9 @@
 </ul>
 
 
-<div id="outline-container-org14e2fab" class="outline-2">
-<h2 id="org14e2fab">Descarga&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org14e2fab">
+<div id="outline-container-org063394b" class="outline-2">
+<h2 id="org063394b">Descarga&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org063394b">
 <ul class="org-ul">
 <li>Desde la web <a href="http://www.openrefine.org">openrefine.org</a> se pueden <a href="http://openrefine.org/download.html">descargar tres versiones del programa</a>:
 <ul class="org-ul">
@@ -253,9 +383,9 @@
 </div>
 </div>
 
-<div id="outline-container-org31b0981" class="outline-2">
-<h2 id="org31b0981">Extensiones&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org31b0981">
+<div id="outline-container-orgd12c225" class="outline-2">
+<h2 id="orgd12c225">Extensiones&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgd12c225">
 <ul class="org-ul">
 <li><a href="https://wiki.biovel.eu/display/doc/Installing+and+running+DR+Workflow+on+Taverna+Workbench#InstallingandrunningDRWorkflowonTavernaWorkbench-InstallingGoogleRefine%2520and%2520https://github.com/BioVeL/refine-ext">BioVel</a>, del Museo Botánico y Jardín Botánico de Berlín-Dahlem,</li>
 <li><i>Crowdsourcing</i>, por <i>Zemanta</i>.</li>
@@ -278,9 +408,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgf8868f7" class="outline-2">
-<h2 id="orgf8868f7">Primeros pasos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-orgf8868f7">
+<div id="outline-container-org9924e52" class="outline-2">
+<h2 id="org9924e52">Primeros pasos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org9924e52">
 <ul class="org-ul">
 <li><i>Refine</i> es una aplicación web cliente-servidor.</li>
 <li>Cuando lanzamos <i>Refine</i>, estamos activando el servidor.</li>
@@ -328,7 +458,7 @@ Significa que no tenemos ningún valor para la variable <code>JAVA_HOME</code>, 
 <p>
 En mi caso:
 </p>
-<pre class="example" id="org5ddc790">
+<pre class="example" id="orgc03e533">
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 </pre>
 
@@ -344,9 +474,9 @@ Y comprobamos:
 </div>
 </div>
 
-<div id="outline-container-orgfef0f1a" class="outline-2">
-<h2 id="orgfef0f1a">Abrir un proyecto&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-orgfef0f1a">
+<div id="outline-container-org6542645" class="outline-2">
+<h2 id="org6542645">Abrir un proyecto&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org6542645">
 <ul class="org-ul">
 <li>Dado que la opción estable y en desarrollo es en inglés, seguiremos los menús en este idioma aunque lo traduciremos al castellano/español.</li>
 <li>Cuando se abre <i>Refine</i>, en la columna de la izquierda hay cuatro opciones:
@@ -359,9 +489,9 @@ Y comprobamos:
 </ul>
 </div>
 
-<div id="outline-container-org76dd358" class="outline-3">
-<h3 id="org76dd358">Language Settings</h3>
-<div class="outline-text-3" id="text-org76dd358">
+<div id="outline-container-orgc161bcd" class="outline-3">
+<h3 id="orgc161bcd">Language Settings</h3>
+<div class="outline-text-3" id="text-orgc161bcd">
 <ul class="org-ul">
 <li>Actualmente, las versiones estable y en desarrollo solo están disponibles en Inglés (English) o Italiano (Italian).</li>
 <li>En la versión <a href="https://github.com/OpenRefine/OpenRefine/releases/tag/2.6-rc.2">2.6-rc.2</a> puedes disfrutar, además, de francés, chino y español.</li>
@@ -369,9 +499,9 @@ Y comprobamos:
 </div>
 </div>
 
-<div id="outline-container-orgaf5d09b" class="outline-3">
-<h3 id="orgaf5d09b">Import Project</h3>
-<div class="outline-text-3" id="text-orgaf5d09b">
+<div id="outline-container-orga20f3c9" class="outline-3">
+<h3 id="orga20f3c9">Import Project</h3>
+<div class="outline-text-3" id="text-orga20f3c9">
 <ul class="org-ul">
 <li>Puedes cargar un proyecto de <i>Refine</i>, importar un proyecto, si:
 <ul class="org-ul">
@@ -383,9 +513,9 @@ Y comprobamos:
 </div>
 </div>
 
-<div id="outline-container-org8af0253" class="outline-3">
-<h3 id="org8af0253">Open Proyect</h3>
-<div class="outline-text-3" id="text-org8af0253">
+<div id="outline-container-org739895a" class="outline-3">
+<h3 id="org739895a">Open Proyect</h3>
+<div class="outline-text-3" id="text-org739895a">
 <ul class="org-ul">
 <li><i>Refine</i> guarda todos los proyectos con los que trabajes en el equipo.</li>
 <li>No hace falta que guardes durante el proceso de análisis o limpieza de datos, aunque copias extra siempre son recomendables.</li>
@@ -401,9 +531,9 @@ Y comprobamos:
 </div>
 </div>
 
-<div id="outline-container-orgf72163e" class="outline-3">
-<h3 id="orgf72163e">Create project</h3>
-<div class="outline-text-3" id="text-orgf72163e">
+<div id="outline-container-org6dff751" class="outline-3">
+<h3 id="org6dff751">Create project</h3>
+<div class="outline-text-3" id="text-org6dff751">
 <ul class="org-ul">
 <li>Para crear un proyecto, necesitamos que <i>Refine</i> tenga algunos datos.</li>
 <li>Podemos importar datos de algún archivo <i>TSV</i>, <i>CSV</i>, <i>*SV</i>, <i>Excel</i> (.xls y .xlsx), <i>JSON</i>, <i>XML</i>, <i>RDF como XML</i> y datos de documentos de <i>Google Drive</i>.</li>
@@ -423,9 +553,9 @@ Y comprobamos:
 </div>
 </div>
 
-<div id="outline-container-orgaa87ef9" class="outline-2">
-<h2 id="orgaa87ef9">Records y rows&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-orgaa87ef9">
+<div id="outline-container-orgc2dce2f" class="outline-2">
+<h2 id="orgc2dce2f">Records y rows&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgc2dce2f">
 <ul class="org-ul">
 <li><i>Refine</i> distingue entre registros <i>Records</i> y filas o <i>Rows</i> y permite trabajar de una u otra manera.</li>
 <li>Una fila o <i>row</i> es una línea de datos. El número total de filas se indica en la parte superior de la página, <code>N rows</code></li>
@@ -435,9 +565,9 @@ Y comprobamos:
 </ul>
 </div>
 
-<div id="outline-container-orga137db0" class="outline-3">
-<h3 id="orga137db0">Crear registros</h3>
-<div class="outline-text-3" id="text-orga137db0">
+<div id="outline-container-org922012c" class="outline-3">
+<h3 id="org922012c">Crear registros</h3>
+<div class="outline-text-3" id="text-org922012c">
 <ul class="org-ul">
 <li>Primero hay que identificar la columna que contiene el marcador de registros, una cuyas celdas se repitan.</li>
 <li>Para ver esto, podemos utilizar una faceta de texto sobre la columna desde el menú de <code>columna &gt; facetas</code>.</li>
@@ -451,14 +581,14 @@ Y comprobamos:
 </div>
 </div>
 
-<div id="outline-container-org95ff1b0" class="outline-2">
-<h2 id="org95ff1b0">Filas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org95ff1b0">
+<div id="outline-container-org0e69e9a" class="outline-2">
+<h2 id="org0e69e9a">Filas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org0e69e9a">
 <p>
 Si quisiéramos un número distinto de filas, podríamos modificar el archivo que las produce, <code>data-table-view.js</code>. Suponiendo que estemos en el directorio raíz de <i>Refine</i>, editamos el archivo con <a href="http://blog.infotics.es/2015/11/11/editor-de-textos/">nuestro editor de textos favorito</a>:
 </p>
 
-<pre class="example" id="org6ac45a8">
+<pre class="example" id="orgaf5128e">
 nano webapp/modules/core/scripts/views/data-table/data-table-view.js 
 </pre>
 
@@ -476,9 +606,9 @@ Modificamos los valores o añadimos, guardamos y cerramos y recargamos el navega
 </p>
 </div>
 </div>
-<div id="outline-container-org0b6d042" class="outline-2">
-<h2 id="org0b6d042">Facetas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org0b6d042">
+<div id="outline-container-org0251a87" class="outline-2">
+<h2 id="org0251a87">Facetas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org0251a87">
 <p>
 Las facetas o <i>facets</i> se utilizan para filtrar el contenido, para
 explorar, ver o encontrar valores erróneos o que se salgan de la
@@ -505,9 +635,9 @@ gráficos de dispersió donde encontrar patrones, tendencias o
 </div>
 </div>
 
-<div id="outline-container-org477fa38" class="outline-2">
-<h2 id="org477fa38">Buscar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org477fa38">
+<div id="outline-container-orgb6ab5f4" class="outline-2">
+<h2 id="orgb6ab5f4">Buscar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgb6ab5f4">
 <ul class="org-ul">
 <li>Para encontrar determinados valores, pincha en <code>facet</code> y luego en <code>custom text facet</code>.</li>
 <li>Introducimos lo que queremos buscar.</li>
@@ -537,14 +667,14 @@ Se pueden anidar de esta manera:
 </div>
 </div>
 
-<div id="outline-container-org2004103" class="outline-2">
-<h2 id="org2004103">Búsqueda de valores duplicados&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org2004103">
+<div id="outline-container-orga00b91e" class="outline-2">
+<h2 id="orga00b91e">Búsqueda de valores duplicados&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orga00b91e">
 <p>
 Se pueden encontrar valores duplicados a través de las facetas:
 </p>
 
-<pre class="example" id="org447f536">
+<pre class="example" id="orga49d8e7">
 Facet &gt; Customized facets &gt; Duplicates facet
 </pre>
 
@@ -552,7 +682,7 @@ Facet &gt; Customized facets &gt; Duplicates facet
 Se pueden ver las partes que se repiten de los valores de una columna
 </p>
 
-<pre class="example" id="org42b13d5">
+<pre class="example" id="orga18b199">
 Facet &gt; Customized facets &gt; Word facet
 </pre>
 
@@ -560,7 +690,7 @@ Facet &gt; Customized facets &gt; Word facet
 Ver todos los valores de una columna:
 </p>
 
-<pre class="example" id="orgcceadb7">
+<pre class="example" id="orgab12c7d">
 Facet &gt; Text facet
 </pre>
 
@@ -568,33 +698,33 @@ Facet &gt; Text facet
 Ver (y cambiar o agrupar) variantes similares de valores:
 </p>
 
-<pre class="example" id="orgd137527">
+<pre class="example" id="org877feb8">
 edit cells &gt; cluster and edit
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orge88d261" class="outline-2">
-<h2 id="orge88d261">Borrar celdas vacías de una columna&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-orge88d261">
+<div id="outline-container-org72778e5" class="outline-2">
+<h2 id="org72778e5">Borrar celdas vacías de una columna&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org72778e5">
 <p>
 A veces hay registros que producen celdas que no son necesarias. - Para eliminar los registros del <i>dataset</i>:
 </p>
 
-<pre class="example" id="org6d8b8d7">
+<pre class="example" id="orgc15c645">
 Facet &gt; Customized facets &gt; Facet by blank y clic en ‘true’
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org83b3298" class="outline-2">
-<h2 id="org83b3298">Celdas vacías&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org83b3298">
+<div id="outline-container-org6b4e51e" class="outline-2">
+<h2 id="org6b4e51e">Celdas vacías&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org6b4e51e">
 <p>
 Situar las celdas vacías al final
 </p>
 
-<pre class="example" id="org5a51991">
+<pre class="example" id="org6367693">
 Edit cells &gt; Blank down
 </pre>
 
@@ -609,9 +739,9 @@ Edit cells &gt; Blank down
 </div>
 </div>
 
-<div id="outline-container-org650aee8" class="outline-2">
-<h2 id="org650aee8">Transformar datos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org650aee8">
+<div id="outline-container-org8a1be9b" class="outline-2">
+<h2 id="org8a1be9b">Transformar datos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org8a1be9b">
 <ul class="org-ul">
 <li>Tras aplicar 1 o más filtros en el panel izquierdo podemos editar lo que interese.</li>
 <li>Cambiar conjunto de valores tras filtrar por nombre: renombrar, renombrar uno para que se fusione con otro, agrupar, etc.</li>
@@ -619,9 +749,9 @@ Edit cells &gt; Blank down
 </ul>
 </div>
 
-<div id="outline-container-orgf33b5e7" class="outline-3">
-<h3 id="orgf33b5e7">Transformar a numérico</h3>
-<div class="outline-text-3" id="text-orgf33b5e7">
+<div id="outline-container-org4b3766c" class="outline-3">
+<h3 id="org4b3766c">Transformar a numérico</h3>
+<div class="outline-text-3" id="text-org4b3766c">
 <p>
 Si queremos pasar millón a números, escribiremos:
 </p>
@@ -638,21 +768,21 @@ Con <code>value.replace</code> reemplazamos el valor <code>millón</code> y lo s
 </div>
 </div>
 
-<div id="outline-container-org85597ba" class="outline-3">
-<h3 id="org85597ba">Transformaciones</h3>
-<div class="outline-text-3" id="text-org85597ba">
+<div id="outline-container-orgdff5437" class="outline-3">
+<h3 id="orgdff5437">Transformaciones</h3>
+<div class="outline-text-3" id="text-orgdff5437">
 <p>
 Se realizan con:
 </p>
 
-<pre class="example" id="org96943e1">
+<pre class="example" id="orgff01cdc">
 Edit cells &gt; transform
 </pre>
 </div>
 
-<div id="outline-container-org6a66fc2" class="outline-4">
-<h4 id="org6a66fc2">Eliminar caracteres</h4>
-<div class="outline-text-4" id="text-org6a66fc2">
+<div id="outline-container-org46c41b9" class="outline-4">
+<h4 id="org46c41b9">Eliminar caracteres</h4>
+<div class="outline-text-4" id="text-org46c41b9">
 <div class="org-src-container">
 <pre class="src src-grel">value.unescape(‘url’)
 </pre>
@@ -673,9 +803,9 @@ Elimina el signo <code>+</code>, lo reemplaza por nada.
 </div>
 </div>
 
-<div id="outline-container-org4343d7c" class="outline-4">
-<h4 id="org4343d7c">Obtener URL</h4>
-<div class="outline-text-4" id="text-org4343d7c">
+<div id="outline-container-orged744d8" class="outline-4">
+<h4 id="orged744d8">Obtener URL</h4>
+<div class="outline-text-4" id="text-orged744d8">
 <div class="org-src-container">
 <pre class="src src-grel">‘http://’+ cells[‘nombre_columna’].value +’.com’
 </pre>
@@ -687,9 +817,9 @@ Obtiene la <i>URL</i> <a href="http://valor.com">http://valor.com</a>
 </div>
 </div>
 
-<div id="outline-container-orgbfb46aa" class="outline-4">
-<h4 id="orgbfb46aa">Añadir y borrar a la vez</h4>
-<div class="outline-text-4" id="text-orgbfb46aa">
+<div id="outline-container-org708d840" class="outline-4">
+<h4 id="org708d840">Añadir y borrar a la vez</h4>
+<div class="outline-text-4" id="text-org708d840">
 <div class="org-src-container">
 <pre class="src src-grel">‘Avenida ’+value.replace(‘AV.’,’’)
 </pre>
@@ -701,9 +831,9 @@ Añadimos <code>Avenida</code> al mismo tiempo que eliminamos <code>AV</code>
 </div>
 </div>
 
-<div id="outline-container-orgcf534e8" class="outline-4">
-<h4 id="orgcf534e8">Uso de regexp</h4>
-<div class="outline-text-4" id="text-orgcf534e8">
+<div id="outline-container-org7b66f18" class="outline-4">
+<h4 id="org7b66f18">Uso de regexp</h4>
+<div class="outline-text-4" id="text-org7b66f18">
 <div class="org-src-container">
 <pre class="src src-grel">replace(value, /\d/,"")
 
@@ -724,10 +854,10 @@ En general, usamos cualquier tipo de expresiones regulares
 </div>
 </div>
 
-<div id="outline-container-orgfb5a691" class="outline-4">
-<h4 id="orgfb5a691">Eliminar espacios en blanco</h4>
-<div class="outline-text-4" id="text-orgfb5a691">
-<pre class="example" id="org3ffd24d">
+<div id="outline-container-orgdeb75e3" class="outline-4">
+<h4 id="orgdeb75e3">Eliminar espacios en blanco</h4>
+<div class="outline-text-4" id="text-orgdeb75e3">
+<pre class="example" id="org67f2d80">
 Edit cells &gt; Common transforms &gt; Trim leading and trailing whitespace
 </pre>
 
@@ -738,23 +868,23 @@ Elimina espacios blancos del inicio y final de los valores
 </div>
 </div>
 
-<div id="outline-container-org4b600e4" class="outline-3">
-<h3 id="org4b600e4">Eliminar registros seleccionados</h3>
-<div class="outline-text-3" id="text-org4b600e4">
-<pre class="example" id="orgeca9380">
+<div id="outline-container-org7b6e057" class="outline-3">
+<h3 id="org7b6e057">Eliminar registros seleccionados</h3>
+<div class="outline-text-3" id="text-org7b6e057">
+<pre class="example" id="orgcee4850">
 All &gt; Edit rows &gt; Remove all matching rows
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org9a5f1eb" class="outline-3">
-<h3 id="org9a5f1eb">Clustering</h3>
-<div class="outline-text-3" id="text-org9a5f1eb">
+<div id="outline-container-orged9ee00" class="outline-3">
+<h3 id="orged9ee00">Clustering</h3>
+<div class="outline-text-3" id="text-orged9ee00">
 <p>
 Agrupaciones basada en similitudes. En el panel de la izqda., en filtro, aparece el botón de <i>cluster</i> donde se abre una ventana que podemos fusionar o <i>merge</i> los diferentes grupos escribiendo en todos el mismo nombre como <i>nuevo valor de celda</i>. También podemos hacerlo con:
 </p>
 
-<pre class="example" id="orgef7afcc">
+<pre class="example" id="org5fc1928">
 edit cells &gt; cluster and edit
 </pre>
 
@@ -764,14 +894,14 @@ Si no obtenemos los resultados esperados, podemos repetir el proceso para todos 
 </div>
 </div>
 
-<div id="outline-container-org50dd9a5" class="outline-3">
-<h3 id="org50dd9a5">Limpiar valores de columna numérica</h3>
-<div class="outline-text-3" id="text-org50dd9a5">
+<div id="outline-container-orge7df637" class="outline-3">
+<h3 id="orge7df637">Limpiar valores de columna numérica</h3>
+<div class="outline-text-3" id="text-orge7df637">
 <p>
 Para limpiar valores de columna numérica, hacemos una faceta numérica
 </p>
 
-<pre class="example" id="org270a7d1">
+<pre class="example" id="org03b1927">
 Facet &gt; numeric facet
 </pre>
 
@@ -805,20 +935,20 @@ Arrastramos los extremos del gráfico para visualizar el subconjunto de datos m�
 Convertir en valores numéricos:
 </p>
 
-<pre class="example" id="org8bf7bb8">
+<pre class="example" id="orgfab38f7">
 Edit cells &gt; common transforms &gt; to number
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgceff445" class="outline-3">
-<h3 id="orgceff445">Limpiar fechas</h3>
-<div class="outline-text-3" id="text-orgceff445">
+<div id="outline-container-org0c666ce" class="outline-3">
+<h3 id="org0c666ce">Limpiar fechas</h3>
+<div class="outline-text-3" id="text-org0c666ce">
 <p>
 Primero convertimos valores de columna a texto para evitar q haya números:
 </p>
 
-<pre class="example" id="org82f2493">
+<pre class="example" id="orgfd4253d">
 Edit cells -&gt; Common transformations -&gt; To text
 </pre>
 
@@ -826,7 +956,7 @@ Edit cells -&gt; Common transformations -&gt; To text
 Luego convertir valores a fecha:
 </p>
 
-<pre class="example" id="org05aa9d3">
+<pre class="example" id="org937a259">
 Edit cells -&gt; Common transformations -&gt; To date
 </pre>
 
@@ -834,7 +964,7 @@ Edit cells -&gt; Common transformations -&gt; To date
 A continuación mostramos patrones de fecha
 </p>
 
-<pre class="example" id="orga5cafd7">
+<pre class="example" id="org5604fe5">
 Facet -&gt; Timeline facet
 </pre>
 
@@ -842,7 +972,7 @@ Facet -&gt; Timeline facet
 Seleccionamos sólo los valores <code>non-time</code> para transformar sólo éstos y extraemos  sólo el año mediante una expresión regular:
 </p>
 
-<pre class="example" id="orgbeacde5">
+<pre class="example" id="org3cfcdd0">
 Edit cells -&gt; Transform
 </pre>
 
@@ -870,7 +1000,7 @@ Donde:
 Convertimos estos valores extraidos a fechas con:
 </p>
 
-<pre class="example" id="org7498317">
+<pre class="example" id="org9eef1df">
 Edit cells -&gt; Common transformations -&gt; To date
 </pre>
 
@@ -878,7 +1008,7 @@ Edit cells -&gt; Common transformations -&gt; To date
 Si hay fechas con varios formatos, utilizamos:
 </p>
 
-<pre class="example" id="org19e9fd9">
+<pre class="example" id="org11b3619">
 Edit cells -&gt; Transform
 </pre>
 
@@ -942,14 +1072,14 @@ Podemos concatenar las funciones <code>toDate</code> y <code>toString</code> par
 </div>
 </div>
 
-<div id="outline-container-org9da4821" class="outline-3">
-<h3 id="org9da4821">Partir/Unir columnas</h3>
-<div class="outline-text-3" id="text-org9da4821">
+<div id="outline-container-orgc9f0905" class="outline-3">
+<h3 id="orgc9f0905">Partir/Unir columnas</h3>
+<div class="outline-text-3" id="text-orgc9f0905">
 <p>
 Separar en distintas columnas:
 </p>
 
-<pre class="example" id="org75a32ae">
+<pre class="example" id="orgc32431d">
 Edit column &gt; split into several columns
 </pre>
 
@@ -957,20 +1087,20 @@ Edit column &gt; split into several columns
 Se pone el separador y el número de columnas. Funciona de izqda. a dcha. Después se puede renombrar la nueva columna con:
 </p>
 
-<pre class="example" id="org2cb901e">
+<pre class="example" id="org4d89393">
 Edit Column -&gt; Rename this column
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orge6f4320" class="outline-3">
-<h3 id="orge6f4320">Añadir nuevas columnas</h3>
-<div class="outline-text-3" id="text-orge6f4320">
+<div id="outline-container-org039c8b0" class="outline-3">
+<h3 id="org039c8b0">Añadir nuevas columnas</h3>
+<div class="outline-text-3" id="text-org039c8b0">
 <p>
 Añadimos una nueva columna basada en otra columna:
 </p>
 
-<pre class="example" id="orge12bf48">
+<pre class="example" id="org3169f11">
 edit column&gt;add column based on this column
 </pre>
 
@@ -985,9 +1115,9 @@ Ponemos un nombre a la nueva columna y escribimos:
 </div>
 </div>
 
-<div id="outline-container-org13a0d48" class="outline-3">
-<h3 id="org13a0d48">Jugando con <code>value</code></h3>
-<div class="outline-text-3" id="text-org13a0d48">
+<div id="outline-container-org453cf46" class="outline-3">
+<h3 id="org453cf46">Jugando con <code>value</code></h3>
+<div class="outline-text-3" id="text-org453cf46">
 <p>
 Si escribimos:
 </p>
@@ -1035,31 +1165,31 @@ Una nueva columna con el resultado de la división de dos valores:
 </div>
 </div>
 
-<div id="outline-container-org220ae53" class="outline-2">
-<h2 id="org220ae53">Variables&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org220ae53">
+<div id="outline-container-org7b47d9b" class="outline-2">
+<h2 id="org7b47d9b">Variables&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org7b47d9b">
 </div>
-<div id="outline-container-org7db58aa" class="outline-3">
-<h3 id="org7db58aa">cell</h3>
-<div class="outline-text-3" id="text-org7db58aa">
+<div id="outline-container-orgc10421a" class="outline-3">
+<h3 id="orgc10421a">cell</h3>
+<div class="outline-text-3" id="text-orgc10421a">
 <p>
 Es la celda actual. Tiene los campos <code>value</code> y <code>recon</code>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgcf3fb2f" class="outline-3">
-<h3 id="orgcf3fb2f">value</h3>
-<div class="outline-text-3" id="text-orgcf3fb2f">
+<div id="outline-container-org8fb2f9b" class="outline-3">
+<h3 id="org8fb2f9b">value</h3>
+<div class="outline-text-3" id="text-org8fb2f9b">
 <p>
 El valor de la celda actual. Es una abreviación para <code>cell.value</code>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4ff4aee" class="outline-3">
-<h3 id="org4ff4aee">row</h3>
-<div class="outline-text-3" id="text-org4ff4aee">
+<div id="outline-container-orgdb6e0c1" class="outline-3">
+<h3 id="orgdb6e0c1">row</h3>
+<div class="outline-text-3" id="text-orgdb6e0c1">
 <p>
 La fila actual. Tiene 5 campos:
 </p>
@@ -1072,18 +1202,18 @@ La fila actual. Tiene 5 campos:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6159f92" class="outline-3">
-<h3 id="org6159f92">cells</h3>
-<div class="outline-text-3" id="text-org6159f92">
+<div id="outline-container-org496e787" class="outline-3">
+<h3 id="org496e787">cells</h3>
+<div class="outline-text-3" id="text-org496e787">
 <p>
 Las celdas de la fila actual. Es una abreviación para <code>row.cells</code>. Una celda particular puede ser recuperada con <code>cells.&lt;nombre de la columna&gt;</code> (sin los caracteres menor que y mayor que), si el nombre de la columna no está separada por espacios. De lo contrario, habrá que ponerlo entre comillas y entre corchetes con <code>cells["&lt;nombre de la columna&gt;"]</code>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org43d2ccd" class="outline-3">
-<h3 id="org43d2ccd">rowIndex</h3>
-<div class="outline-text-3" id="text-org43d2ccd">
+<div id="outline-container-org95a0dc6" class="outline-3">
+<h3 id="org95a0dc6">rowIndex</h3>
+<div class="outline-text-3" id="text-org95a0dc6">
 <p>
 Es el índice de la columna actual. Es una abreviación para 'row.index'.
 </p>
@@ -1091,9 +1221,9 @@ Es el índice de la columna actual. Es una abreviación para 'row.index'.
 </div>
 </div>
 
-<div id="outline-container-org6a038e5" class="outline-2">
-<h2 id="org6a038e5">Más funciones&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org6a038e5">
+<div id="outline-container-orge0d6d60" class="outline-2">
+<h2 id="orge0d6d60">Más funciones&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orge0d6d60">
 <p>
 Las funciones se invocan de dos maneras:
 </p>
@@ -1107,17 +1237,17 @@ La primera forma es la <i>normal</i>, mientras que la segunda es un atajo que se
 </p>
 </div>
 
-<div id="outline-container-orgfcec1ae" class="outline-3">
-<h3 id="orgfcec1ae">Funciones Booleanas</h3>
-<div class="outline-text-3" id="text-orgfcec1ae">
+<div id="outline-container-orgcccea24" class="outline-3">
+<h3 id="orgcccea24">Funciones Booleanas</h3>
+<div class="outline-text-3" id="text-orgcccea24">
 <p>
 <a href="https://github.com/OpenRefine/OpenRefine/wiki/GREL-Boolean-Functions">https://github.com/OpenRefine/OpenRefine/wiki/GREL-Boolean-Functions</a>
 </p>
 </div>
 
-<div id="outline-container-orgc80894a" class="outline-4">
-<h4 id="orgc80894a">and</h4>
-<div class="outline-text-4" id="text-orgc80894a">
+<div id="outline-container-org40bed33" class="outline-4">
+<h4 id="org40bed33">and</h4>
+<div class="outline-text-4" id="text-org40bed33">
 <p>
 <code>and(booleano b1, booleano b2, ...)</code> crea un booleano en el que las dos condiciones sean verdaderas. 
 </p>
@@ -1139,9 +1269,9 @@ Los resultados serán <code>true</code> o <code>false</code>, verdadero o falso,
 </div>
 
 
-<div id="outline-container-orgd21251b" class="outline-4">
-<h4 id="orgd21251b">or</h4>
-<div class="outline-text-4" id="text-orgd21251b">
+<div id="outline-container-org2662db1" class="outline-4">
+<h4 id="org2662db1">or</h4>
+<div class="outline-text-4" id="text-org2662db1">
 <p>
 <code>or(booleano b1, booleano b2, ...)</code> crea un booleano en el que o bien la primera condición o el segundo sean verdaderos.
 </p>
@@ -1161,9 +1291,9 @@ Los resultados serán <code>true</code> o <code>false</code>, verdadero o falso,
 </div>
 </div>
 
-<div id="outline-container-org05903d2" class="outline-4">
-<h4 id="org05903d2">not</h4>
-<div class="outline-text-4" id="text-org05903d2">
+<div id="outline-container-org072a529" class="outline-4">
+<h4 id="org072a529">not</h4>
+<div class="outline-text-4" id="text-org072a529">
 <p>
 <code>not(booleano b)</code>, crea un booleano si no se cumple la condición que se declara.
 </p>
@@ -1184,13 +1314,13 @@ Por ejemplo:
 </div>
 </div>
 
-<div id="outline-container-orgb7e069f" class="outline-3">
-<h3 id="orgb7e069f">Funciones de cadenas de caracteres, literales o <i>string</i></h3>
-<div class="outline-text-3" id="text-orgb7e069f">
+<div id="outline-container-orgb946ca7" class="outline-3">
+<h3 id="orgb946ca7">Funciones de cadenas de caracteres, literales o <i>string</i></h3>
+<div class="outline-text-3" id="text-orgb946ca7">
 </div>
-<div id="outline-container-orgcfe6da6" class="outline-4">
-<h4 id="orgcfe6da6">length</h4>
-<div class="outline-text-4" id="text-orgcfe6da6">
+<div id="outline-container-org041fb08" class="outline-4">
+<h4 id="org041fb08">length</h4>
+<div class="outline-text-4" id="text-org041fb08">
 <p>
 <code>length(cadena s)</code> devuelve la cadena <code>s</code> como un número.
 </p>
@@ -1217,9 +1347,9 @@ Y también:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa90a6c" class="outline-3">
-<h3 id="orgfa90a6c">abs</h3>
-<div class="outline-text-3" id="text-orgfa90a6c">
+<div id="outline-container-orgdc9924f" class="outline-3">
+<h3 id="orgdc9924f">abs</h3>
+<div class="outline-text-3" id="text-orgdc9924f">
 <p>
 abs	(number d)
 	devuelve: number
@@ -1335,9 +1465,9 @@ lcm	(number d, number e)
 </p>
 </div>
 </div>
-<div id="outline-container-org96ae270" class="outline-3">
-<h3 id="org96ae270">length</h3>
-<div class="outline-text-3" id="text-org96ae270">
+<div id="outline-container-org70e5128" class="outline-3">
+<h3 id="org70e5128">length</h3>
+<div class="outline-text-3" id="text-org70e5128">
 <p>
 La longitud de la cadena de caracteres.
 </p>
@@ -1469,9 +1599,9 @@ splitByLengths	(string s, number n, ...)
 </p>
 </div>
 </div>
-<div id="outline-container-org5d3e704" class="outline-3">
-<h3 id="org5d3e704">startsWith</h3>
-<div class="outline-text-3" id="text-org5d3e704">
+<div id="outline-container-orgba64a6e" class="outline-3">
+<h3 id="orgba64a6e">startsWith</h3>
+<div class="outline-text-3" id="text-orgba64a6e">
 <p>
 Comprobar si comienza con una cadena de caracteres
 </p>
@@ -1493,9 +1623,9 @@ O bien, lo contrario:
 </div>
 </div>
 
-<div id="outline-container-orgfdcd225" class="outline-3">
-<h3 id="orgfdcd225">Todas</h3>
-<div class="outline-text-3" id="text-orgfdcd225">
+<div id="outline-container-orge853133" class="outline-3">
+<h3 id="orge853133">Todas</h3>
+<div class="outline-text-3" id="text-orge853133">
 <dl class="org-dl">
 <dt><code>startsWith(string s, string sub)</code></dt><dd>devuelve <code>boolean</code>.</dd>
 <dt><code>strip(string s)</code></dt><dd>devuelve <code>string</code>, omitiendo los espacios en blanco iniciales y finales.</dd>
@@ -1518,9 +1648,9 @@ O bien, lo contrario:
 <dt><code>xor(boolean a, boolean b)</code></dt><dd>devuelve <code>boolean</code>, <a href="https://es.wikipedia.org/wiki/Puerta_XOR">XOR</a> dos valores booleanos.</dd>
 </dl>
 </div>
-<div id="outline-container-orgb233980" class="outline-4">
-<h4 id="orgb233980">Controls</h4>
-<div class="outline-text-4" id="text-orgb233980">
+<div id="outline-container-orgf449946" class="outline-4">
+<h4 id="orgf449946">Controls</h4>
+<div class="outline-text-4" id="text-orgf449946">
 <dl class="org-dl">
 <dt><code>filter(expression a, variable v, expression test)</code></dt><dd>devuelve una serie. Evalúa la expresión <code>a</code> a una serie. Entonces, por cada elemento de la serie, vincula su valor a la variable <code>v</code>, evalúa la expresión <code>test</code> que debería devolver un booleano. Si el booleano es verdadero, lleva <code>v</code> a la serie resultante.</dd>
 <dt>forEach(expression a, variable v, expression e)</dt><dd>devuelve una serie. Evalúa la expresión <code>a</code> a una serie; entonces para cada elemento de la serie vincula su valor al nombre de la variable <code>v</code>, evalúa la expresión <code>e</code> y lleva el resultado a la serie resultante.</dd>
@@ -1539,9 +1669,9 @@ O bien, lo contrario:
 </div>
 </div>
 </div>
-<div id="outline-container-org7db36a8" class="outline-2">
-<h2 id="org7db36a8">Georeferenciación&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org7db36a8">
+<div id="outline-container-orgd486475" class="outline-2">
+<h2 id="orgd486475">Georeferenciación&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgd486475">
 <p>
 Sobre el documento <code>1_entidades_credito</code> se puede extraer la localización en el mapa a través de la <i>API</i> de <i>Google</i>.
 </p>
@@ -1632,9 +1762,9 @@ Y se repite el proceso de georeferenciación.
 </p>
 </div>
 
-<div id="outline-container-org37b436f" class="outline-3">
-<h3 id="org37b436f">Nominatim</h3>
-<div class="outline-text-3" id="text-org37b436f">
+<div id="outline-container-orgac33136" class="outline-3">
+<h3 id="orgac33136">Nominatim</h3>
+<div class="outline-text-3" id="text-orgac33136">
 <p>
 También podemos utilizar cualquier otro servicio de geodatos como Nominatim y obtener longitud y latitud:
 </p>
@@ -1647,9 +1777,9 @@ También podemos utilizar cualquier otro servicio de geodatos como Nominatim y o
 </div>
 </div>
 
-<div id="outline-container-orgc381117" class="outline-2">
-<h2 id="orgc381117">Expresiones regulares&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-orgc381117">
+<div id="outline-container-orgc28b346" class="outline-2">
+<h2 id="orgc28b346">Expresiones regulares&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-orgc28b346">
 <p>
 Se pueden utilizar expresiones regulares en las siguientes funciones de GREL:
 </p>
@@ -1666,7 +1796,7 @@ Se pueden utilizar expresiones regulares en las siguientes funciones de GREL:
 Por ejemplo, sobre esta estructura:
 </p>
 
-<pre class="example" id="orgffe8ab3">
+<pre class="example" id="orgfc8bee4">
 - Nombre Apellido (Empresa) Lorem ipsum
 </pre>
 
@@ -1694,13 +1824,13 @@ A través de la función <code>value.match</code>, utilizamosbusca la expresión
 </ul>
 </div>
 </div>
-<div id="outline-container-org7cf915c" class="outline-2">
-<h2 id="org7cf915c">Recursos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-org7cf915c">
+<div id="outline-container-org637321c" class="outline-2">
+<h2 id="org637321c">Recursos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org637321c">
 </div>
-<div id="outline-container-orgb30b65f" class="outline-3">
-<h3 id="orgb30b65f">Recetas y consejos de <i>OpenRefine</i></h3>
-<div class="outline-text-3" id="text-orgb30b65f">
+<div id="outline-container-org78fb513" class="outline-3">
+<h3 id="org78fb513">Recetas y consejos de <i>OpenRefine</i></h3>
+<div class="outline-text-3" id="text-org78fb513">
 <p>
 Este blog recoge consejos y recetas sobre Open Refine
 <a href="http://googlerefine.blogspot.com.es/">http://googlerefine.blogspot.com.es/</a> 
@@ -1708,9 +1838,9 @@ Este blog recoge consejos y recetas sobre Open Refine
 </div>
 </div>
 
-<div id="outline-container-orga9db07b" class="outline-3">
-<h3 id="orga9db07b">Verificación de fuentes de datos</h3>
-<div class="outline-text-3" id="text-orga9db07b">
+<div id="outline-container-org2c80eaf" class="outline-3">
+<h3 id="org2c80eaf">Verificación de fuentes de datos</h3>
+<div class="outline-text-3" id="text-org2c80eaf">
 <p>
 Con <i>Refine</i> puedes contrastar tus datos contra cualquier servicio web que soporte la <i>API</i> de verificación de <i>Refine</i>. En la investigación <i>The Dollars for Docs Data Guides 1. Using Google Refine to Clean Messy Data</i>, guía de <i>Refine</i> por Dan Nguyen tal como lo utilizaron <i>ProPublica</i> para su proyecto <i>Dollars for Docs</i> para limpiar datos y verificar las imperfecciones de los datos que habían obtenido.
 </p>
@@ -1722,9 +1852,9 @@ Con <i>Refine</i> puedes contrastar tus datos contra cualquier servicio web que 
 </div>
 </div>
 
-<div id="outline-container-org14be01b" class="outline-3">
-<h3 id="org14be01b">Limpieza de datos con Open Refine</h3>
-<div class="outline-text-3" id="text-org14be01b">
+<div id="outline-container-org43a4ddc" class="outline-3">
+<h3 id="org43a4ddc">Limpieza de datos con Open Refine</h3>
+<div class="outline-text-3" id="text-org43a4ddc">
 <p>
 Carolina Cristanchi dedica cuatro artículos de su blog a Open Refine: para novatos, para curiosos, para fans y para quienes quieren llegar a una visualización impecable. Además, está en castellano. 
 </p>
@@ -1734,27 +1864,27 @@ Carolina Cristanchi dedica cuatro artículos de su blog a Open Refine: para nova
 </div>
 </div>
 
-<div id="outline-container-org90a91f8" class="outline-3">
-<h3 id="org90a91f8">Lista de expresiones regulares</h3>
-<div class="outline-text-3" id="text-org90a91f8">
+<div id="outline-container-org3cb9ec0" class="outline-3">
+<h3 id="org3cb9ec0">Lista de expresiones regulares</h3>
+<div class="outline-text-3" id="text-org3cb9ec0">
 <p>
 De la web de ayuda de LibreOffice, <a href="https://help.libreoffice.org/Common/List_of_Regular_Expressions/es">https://help.libreoffice.org/Common/List_of_Regular_Expressions/es</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org18dea92" class="outline-3">
-<h3 id="org18dea92">Recursos externos de OpenRefine</h3>
-<div class="outline-text-3" id="text-org18dea92">
+<div id="outline-container-orgaecf652" class="outline-3">
+<h3 id="orgaecf652">Recursos externos de OpenRefine</h3>
+<div class="outline-text-3" id="text-orgaecf652">
 <p>
 Listado de turoriales y recursos desarrollados fuera del wiki de OpenRefine <a href="https://github.com/OpenRefine/OpenRefine/wiki/External-Resources">https://github.com/OpenRefine/OpenRefine/wiki/External-Resources</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org845bacd" class="outline-3">
-<h3 id="org845bacd">Reconcilia tus metadatos</h3>
-<div class="outline-text-3" id="text-org845bacd">
+<div id="outline-container-org94a0b9f" class="outline-3">
+<h3 id="org94a0b9f">Reconcilia tus metadatos</h3>
+<div class="outline-text-3" id="text-org94a0b9f">
 <p>
 De Free Your Metadata, cómo reconciliar tus metadatos:
  <a href="http://freeyourmetadata.org/reconciliation/">http://freeyourmetadata.org/reconciliation/</a>
@@ -1762,9 +1892,9 @@ De Free Your Metadata, cómo reconciliar tus metadatos:
 </div>
 </div>
 
-<div id="outline-container-org85c82cd" class="outline-3">
-<h3 id="org85c82cd">Utiliza Refine para manipular <i>HTML</i></h3>
-<div class="outline-text-3" id="text-org85c82cd">
+<div id="outline-container-org144f147" class="outline-3">
+<h3 id="org144f147">Utiliza Refine para manipular <i>HTML</i></h3>
+<div class="outline-text-3" id="text-org144f147">
 <p>
 <i>Using Refine to manipulate HTML</i> es una guía interesante sobre el uso de Refine para transformación de texto HTML.
 </p>
@@ -1775,9 +1905,9 @@ De Free Your Metadata, cómo reconciliar tus metadatos:
 </div>
 </div>
 
-<div id="outline-container-org93d7898" class="outline-3">
-<h3 id="org93d7898">How to clean a converted PDF using Refine</h3>
-<div class="outline-text-3" id="text-org93d7898">
+<div id="outline-container-orgc7fc5e1" class="outline-3">
+<h3 id="orgc7fc5e1">How to clean a converted PDF using Refine</h3>
+<div class="outline-text-3" id="text-orgc7fc5e1">
 <p>
 Otro uso más de Refine: limpiar el texto extraído de un PDF:
 </p>
@@ -1788,9 +1918,9 @@ Otro uso más de Refine: limpiar el texto extraído de un PDF:
 </div>
 
 
-<div id="outline-container-org68aee7b" class="outline-3">
-<h3 id="org68aee7b">Limpiando Datos con Google Refine</h3>
-<div class="outline-text-3" id="text-org68aee7b">
+<div id="outline-container-org468b54b" class="outline-3">
+<h3 id="org468b54b">Limpiando Datos con Google Refine</h3>
+<div class="outline-text-3" id="text-org468b54b">
 <p>
 Taller impartido por David Cabo sobre Google Refine, una herramienta gratuita de Google que permite organizar y transformar datos, ya sea de la web o de las propias bases de datos.
 </p>
@@ -1808,9 +1938,9 @@ Accede a la visualización desde la siguiente dirección web:
 </div>
 </div>
 
-<div id="outline-container-org249aa76" class="outline-3">
-<h3 id="org249aa76">Introducción a las Expresiones Regulares con Open Refine</h3>
-<div class="outline-text-3" id="text-org249aa76">
+<div id="outline-container-org9d00d1c" class="outline-3">
+<h3 id="org9d00d1c">Introducción a las Expresiones Regulares con Open Refine</h3>
+<div class="outline-text-3" id="text-org9d00d1c">
 <p>
 Taller de Introducción a las Expresiones Regulares con Open Refine impartido por Juan Elosua en la jornada decimoséptima del Grupo de Periodismo de Datos de Medialab-Prado. Las expresiones regulares las podemos utilizar en nuestra vida diaria, bien para buscar un archivo, para cambiar varios de nombre o para trabajar con hojas de cálculo.
 </p>
@@ -1824,9 +1954,9 @@ Accede a la visualización desde la siguiente dirección web:
 </div>
 
 
-<div id="outline-container-org7fc4d8f" class="outline-3">
-<h3 id="org7fc4d8f">Introduction to Open Refine:</h3>
-<div class="outline-text-3" id="text-org7fc4d8f">
+<div id="outline-container-orgf2f2d52" class="outline-3">
+<h3 id="orgf2f2d52">Introduction to Open Refine:</h3>
+<div class="outline-text-3" id="text-orgf2f2d52">
 <p>
 Explora los datos. OpenRefine puede ayudarte a explorar grandes conjuntos de datos inconsistentes o sucios, limpiar o transformar datos o reconciliar y encontrar ddatos
 </p>
@@ -1843,9 +1973,9 @@ Accede a la visualización desde la siguiente dirección web:
 </div>
 </div>
 
-<div id="outline-container-org3889cde" class="outline-3">
-<h3 id="org3889cde">Refine por Freeyourmetadata</h3>
-<div class="outline-text-3" id="text-org3889cde">
+<div id="outline-container-org6052ded" class="outline-3">
+<h3 id="org6052ded">Refine por Freeyourmetadata</h3>
+<div class="outline-text-3" id="text-org6052ded">
 <p>
 por Sydney Powerhouse Museum No importa cuanto esfuerzo tengas que poner para conseguir unos datos limpios, siempre vas a tener que hacer alguna limpieza de los mismos. Con Refine podemos hacer algunas partes del proceso de manera semi automática.
 </p>
@@ -1860,9 +1990,9 @@ Accede a la visualización desde la siguiente dirección web:
 </div>
 </div>
 
-<div id="outline-container-orga0a5566" class="outline-3">
-<h3 id="orga0a5566">Google Refine para el periodismo de investigación</h3>
-<div class="outline-text-3" id="text-orga0a5566">
+<div id="outline-container-org3c2a709" class="outline-3">
+<h3 id="org3c2a709">Google Refine para el periodismo de investigación</h3>
+<div class="outline-text-3" id="text-org3c2a709">
 <p>
 Dan Nguyen y Joe Kokenge de ProPublica realizan una introducción a una de las mejores herramientas para periodistas de cualquier nivel técnico. Aprenderás las características básicas de forma muy potente con algunos ejemplos de periodismo de datos. No require conocimientos previos de estadística, programación o  Excel.
 </p>
@@ -1878,9 +2008,9 @@ Hay un vídeo y un tutorial de cómo han usado Refine para la premiada investiga
 </div>
 
 
-<div id="outline-container-orgbe30c13" class="outline-3">
-<h3 id="orgbe30c13">Bibliografía</h3>
-<div class="outline-text-3" id="text-orgbe30c13">
+<div id="outline-container-orga447673" class="outline-3">
+<h3 id="orga447673">Bibliografía</h3>
+<div class="outline-text-3" id="text-orga447673">
 <ul class="org-ul">
 <li>Bradshaw, Paul. (2011) Cleaning data using google refine. A quick guide. Web: Onlinejournalism. URL: <a href="http://onlinejournalismblog.com/2011/07/05/cleaning-data-using-google-refine-a-quick-guide/">http://onlinejournalismblog.com/2011/07/05/cleaning-data-using-google-refine-a-quick-guide/</a></li>
 
@@ -1900,9 +2030,9 @@ Hay un vídeo y un tutorial de cómo han usado Refine para la premiada investiga
 </div>
 </div>
 
-<div id="outline-container-orgdc172fc" class="outline-2">
-<h2 id="orgdc172fc">Dudas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
-<div class="outline-text-2" id="text-orgdc172fc">
+<div id="outline-container-org3325b23" class="outline-2">
+<h2 id="org3325b23">Dudas&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TOC">TOC</span></span></h2>
+<div class="outline-text-2" id="text-org3325b23">
 <ul class="org-ul">
 <li>sort anidados?</li>
 <li>cluster que no encuentra obra</li>
@@ -2000,7 +2130,7 @@ Una vez en Drive, lo abrimos con <b>Google Spreadsheets</b>
 </p>
 
 
-<div id="orga7468eb" class="figure">
+<div id="org6d923f6" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/spreadsheet-icon.png" alt="spreadsheet-icon.png" />
 </p>
 </div>
@@ -2026,7 +2156,7 @@ e insertamos el siguiente código, que nos servirá para guardar todas
 las hojas en CSV.</li>
 </ul>
 
-<pre class="example" id="orgda514b0">
+<pre class="example" id="orgb131b43">
     function onOpen() {
       var ss = SpreadsheetApp.getActiveSpreadsheet();
       var csvMenuEntries = [{name: "export as csv files", functionName: "saveAsCSV"}];
@@ -2149,7 +2279,7 @@ los archivos csv de un directorio y fundirlos en uno.
 </ul>
 
 
-<div id="org57bf6dd" class="figure">
+<div id="org8080b6c" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_01.png" alt="talend_01.png" />
 </p>
 </div>
@@ -2159,7 +2289,7 @@ los archivos csv de un directorio y fundirlos en uno.
 </ul>
 
 
-<div id="orgdd7ffa8" class="figure">
+<div id="org6dc056e" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_02.png" alt="talend_02.png" />
 </p>
 </div>
@@ -2170,7 +2300,7 @@ Arrastrarlo a la mesa de trabajo.</li>
 </ul>
 
 
-<div id="org42fd6e6" class="figure">
+<div id="org45e9d44" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_03.png" alt="talend_03.png" />
 </p>
 </div>
@@ -2200,7 +2330,7 @@ archivos csv.</li>
 </ul>
 
 
-<div id="org35e62b3" class="figure">
+<div id="org1d48b6e" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_07.png" alt="talend_07.png" />
 </p>
 </div>
@@ -2213,7 +2343,7 @@ pestaña <b>Component</b>. En <b>Nombre de Archivo/flujo</b> pulsamos
 </ul>
 
 
-<div id="org1ae2ae1" class="figure">
+<div id="orgd2b80fd" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_08.png" alt="talend_08.png" />
 </p>
 </div>
@@ -2234,7 +2364,7 @@ decimos que sí.</li>
 </ul>
 
 
-<div id="org44a7514" class="figure">
+<div id="org67c4268" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_09.png" alt="talend_09.png" />
 </p>
 </div>
@@ -2245,7 +2375,7 @@ decimos que sí.</li>
 </ul>
 
 
-<div id="orgee15367" class="figure">
+<div id="org27dd330" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_10.png" alt="talend_10.png" />
 </p>
 </div>
@@ -2258,7 +2388,7 @@ archivo csv resultante. Por defecto se llamará <code>out.csv</code>.</li>
 </ul>
 
 
-<div id="org4d89933" class="figure">
+<div id="org3774f45" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/talend_11.png" alt="talend_11.png" />
 </p>
 </div>
@@ -2292,7 +2422,7 @@ pestaña del navegador con la dirección <code>http://127.0.0.1:3333/</code>.
 </p>
 
 
-<div id="orgf3aee57" class="figure">
+<div id="org2b17116" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_01.png" alt="refine_01.png" />
 </p>
 </div>
@@ -2303,7 +2433,7 @@ pestaña del navegador con la dirección <code>http://127.0.0.1:3333/</code>.
 </ul>
 
 
-<div id="org11e3e20" class="figure">
+<div id="org96a84e0" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_02.png" alt="refine_02.png" />
 </p>
 </div>
@@ -2361,7 +2491,7 @@ whitespace</b>. Repetimos el proceso en todas las columnas.</li>
 </ul>
 
 
-<div id="org1024571" class="figure">
+<div id="org73071c3" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_03.png" alt="refine_03.png" />
 </p>
 </div>
@@ -2373,7 +2503,7 @@ para unificar los que no son iguales. Para ello usaremos <b>Edit cells
 </ul>
 
 
-<div id="org4230fc9" class="figure">
+<div id="org55b0aa4" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_04.png" alt="refine_04.png" />
 </p>
 </div>
@@ -2393,7 +2523,7 @@ seleccionamos <b>Edit column --&gt; Split into several columns</b></li>
 </ul>
 
 
-<div id="orgaf43550" class="figure">
+<div id="org02e9545" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_05.png" alt="refine_05.png" />
 </p>
 </div>
@@ -2406,7 +2536,7 @@ bajos. Así que vamos a poner tres guiones bajos en el campo
 </ul>
 
 
-<div id="org1cc5add" class="figure">
+<div id="org1af0389" class="figure">
 <p><img src="https://github.com/rafadelascuevas/limpieza-analisis-basico/blob/master/img/refine_06.png" alt="refine_06.png" />
 </p>
 </div>
@@ -2558,6 +2688,7 @@ de España. El archivo está en <code>datasets/sql_playas/playas.sql</code>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-07-16 Sat 00:30</p>
 <p class="author">Author: Adolfo Antón Bravo</p>
+<p class="date">Created: 2021-11-05 Fri 17:13</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
